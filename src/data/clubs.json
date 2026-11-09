@@ -1,0 +1,200 @@
+[
+  {
+    "id": "medieval",
+    "name": "Медиваль",
+    "category": "Танцы",
+    "description": "Исторические танцы",
+    "schedule": "Среда 18:00–20:00 · Воскресенье 15:00–19:00",
+    "location": "Пристройка общежития № 6; Пирогова, 12/1, ауд. 224",
+    "attendance": "~10–30",
+    "url": "https://vk.ru/medieval_dances",
+    "status": "active"
+  },
+  {
+    "id": "asian",
+    "name": "Asian Club",
+    "category": "Культура",
+    "description": "Культура и языки Азии",
+    "schedule": "Субботы по расписанию",
+    "location": "Пирогова, 1; аудитория уточняется",
+    "attendance": "По мероприятию",
+    "url": "https://vk.ru/club230498526",
+    "status": "active"
+  },
+  {
+    "id": "book",
+    "name": "Книжный клуб НГУ",
+    "category": "Культура",
+    "description": "Обсуждение книг",
+    "schedule": "Воскресенье 18:00–20:00, раз в 3 недели",
+    "location": "Аудитория 5272",
+    "attendance": "25–30",
+    "url": "",
+    "status": "active"
+  },
+  {
+    "id": "swing",
+    "name": "Swing Dance NSU",
+    "category": "Танцы",
+    "description": "Свинг и социальные танцы",
+    "schedule": "Среда 20:00–22:00 · Пятница 19:00–22:00",
+    "location": "Танцевальный зал, пристройка общежития № 6, Пирогова, 16",
+    "attendance": "5–36 в зависимости от часа",
+    "url": "",
+    "status": "active"
+  },
+  {
+    "id": "shtab",
+    "name": "Штаб студенческих отрядов НГУ",
+    "category": "Сообщества",
+    "description": "Студенческие отряды",
+    "schedule": "Без фиксированного расписания",
+    "location": "Обычно ГК; база — общежитие № 10",
+    "attendance": "5–25",
+    "url": "https://vk.ru/shtab_so_nsu",
+    "status": "active"
+  },
+  {
+    "id": "digma",
+    "name": "Ридинг-группа «Дигма»",
+    "category": "Культура",
+    "description": "Совместное чтение и обсуждения",
+    "schedule": "Примерно раз в две недели",
+    "location": "Обычно 3-й блок",
+    "attendance": "3–10",
+    "url": "https://vk.ru/digma_nsu",
+    "status": "active"
+  },
+  {
+    "id": "inter",
+    "name": "Интерклуб НГУ",
+    "category": "Культура",
+    "description": "Межкультурное общение",
+    "schedule": "Суббота 18:10–20:00",
+    "location": "Аудитория 3314",
+    "attendance": "15–17",
+    "url": "https://vk.ru/club179366027",
+    "status": "active"
+  },
+  {
+    "id": "fire",
+    "name": "Мастерская огня и света",
+    "category": "Творчество",
+    "description": "Танцевально-перформативные занятия",
+    "schedule": "Вт 19:30–22:00 · Пт 18:00–21:00 · Вс 12:00–17:30",
+    "location": "Пирогова, 16; Пирогова, 12/1; Пирогова, 12",
+    "attendance": "5–10",
+    "url": "https://vk.ru/fire_nsu",
+    "status": "active"
+  },
+  {
+    "id": "craft",
+    "name": "Клуб рукоделия «τρια μοιρα»",
+    "category": "Творчество",
+    "description": "Рукоделие",
+    "schedule": "Еженедельных встреч сейчас нет",
+    "location": "Не указано",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/tria_moira_nsu",
+    "status": "inactive"
+  },
+  {
+    "id": "csi",
+    "name": "ЦСИ ИФП НГУ",
+    "category": "Наука",
+    "description": "Научные и образовательные встречи",
+    "schedule": "По расписанию подразделений",
+    "location": "Ауд. 0206, 0207, 4110, 1212",
+    "attendance": "От 10 на подразделение",
+    "url": "https://vk.ru/csi.ifpnsu",
+    "status": "active"
+  },
+  {
+    "id": "vocal",
+    "name": "Миллион голосов",
+    "category": "Творчество",
+    "description": "Вокальная студия",
+    "schedule": "Пн 19:00–21:30 · Ср 18:00–21:00 · Вс 11:00–16:00",
+    "location": "Пирогова, 11/2; пристройка общежития № 5, Пирогова, 14",
+    "attendance": "~10–20",
+    "url": "https://vk.ru/vocalnsu",
+    "status": "active"
+  },
+  {
+    "id": "cinema",
+    "name": "ППК — Киностудия НГУ",
+    "category": "Творчество",
+    "description": "Кино и видеопроизводство",
+    "schedule": "Вторник 18:10–21:00",
+    "location": "База — ауд. 2253; место встречи уточняется",
+    "attendance": "~6",
+    "url": "https://vk.ru/ppkinostodio",
+    "status": "active"
+  },
+  {
+    "id": "theatre",
+    "name": "квARTира",
+    "category": "Творчество",
+    "description": "Театральная студия",
+    "schedule": "Понедельник и четверг 18:30–22:00",
+    "location": "Пн: общежитие № 5, зал на 1-м этаже; Чт: «Юность», Строителей, 21",
+    "attendance": "7–17",
+    "url": "https://vk.ru/theatre_club_ngu",
+    "status": "active"
+  },
+  {
+    "id": "taverna",
+    "name": "Таверна",
+    "category": "Игры",
+    "description": "Настольные ролевые игры",
+    "schedule": "Будни с 18:10 · Сб с 14:30 · Вс с 12:40",
+    "location": "Разные аудитории НГУ, уточняйте в анонсах",
+    "attendance": "4–7 на игру",
+    "url": "https://vk.ru/trpg_nsu",
+    "status": "active"
+  },
+  {
+    "id": "mafia",
+    "name": "Тихий Дон",
+    "category": "Игры",
+    "description": "Клуб мафии",
+    "schedule": "Мероприятия временно не проводятся",
+    "location": "Ранее ауд. 2259–2262",
+    "attendance": "Ранее ~14",
+    "url": "https://vk.ru/mafia_silent_don",
+    "status": "inactive"
+  },
+  {
+    "id": "media",
+    "name": "Студенческий Медиацентр НГУ",
+    "category": "Творчество",
+    "description": "Студенческие медиа",
+    "schedule": "Пятница с 18:00",
+    "location": "Кабинет 0250",
+    "attendance": "30 студентов в объединении",
+    "url": "https://vk.ru/mediacenternsu",
+    "status": "active"
+  },
+  {
+    "id": "tea",
+    "name": "Чайный клуб НГУ",
+    "category": "Культура",
+    "description": "Чайная культура",
+    "schedule": "Обычно субботы нечётных недель, 16:20–19:20",
+    "location": "Обычно ауд. 1332; при большом числе гостей — 2348",
+    "attendance": "25–30",
+    "url": "https://t.me/cha_nsu",
+    "status": "active"
+  },
+  {
+    "id": "help",
+    "name": "Ты не один",
+    "category": "Сообщества",
+    "description": "Студенческая поддержка",
+    "schedule": "Еженедельных мероприятий нет",
+    "location": "База — пристройка общежития № 4",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/dopsihelp",
+    "status": "inactive"
+  }
+]
