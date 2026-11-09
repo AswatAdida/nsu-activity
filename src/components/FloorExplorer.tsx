@@ -1,4 +1,4 @@
-
+import FloorPolygonEditor from './FloorPolygonEditor'
 import { useMemo, useState } from 'react'
 import { Search, DoorOpen, Clock3, Users } from 'lucide-react'
 import { buildings } from '../data/buildings'
@@ -37,6 +37,7 @@ export default function FloorExplorer({
   const [floor, setFloor] = useState<number | null>(3)
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null)
   const [query, setQuery] = useState('')
+  const [editorOpen, setEditorOpen] = useState(false)
 
   const building = buildings.find(
     b => buildingNames[b.id] === selectedBuilding
@@ -313,6 +314,21 @@ export default function FloorExplorer({
           )}
         </div>
       </div>
+      {building?.id === 'academic-1' && floor !== null && (
+  <div className="mt-6">
+    <button
+      type="button"
+      onClick={() => setEditorOpen(open => !open)}
+      className="rounded-xl border border-blue-300 px-5 py-3 text-sm font-semibold text-[#16468c] hover:bg-blue-50"
+    >
+      {editorOpen ? 'Закрыть редактор' : 'Редактировать контуры помещений'}
+    </button>
+
+    {editorOpen && (
+      <FloorPolygonEditor key={floor} floor={floor} />
+    )}
+  </div>
+)}
     </section>
   )
 }
