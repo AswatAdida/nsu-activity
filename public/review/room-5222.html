@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5222 — проверка автоматического контура</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 28px; font: 16px/1.55 system-ui, sans-serif; color: #17253d; background: #f6f8fc; }
+    main { max-width: 1000px; margin: auto; }
+    h1 { font-size: clamp(24px, 4vw, 34px); margin: 8px 0; }
+    h2 { font-size: 18px; margin: 0 0 12px; }
+    .status { color: #946000; font-weight: 650; }
+    .comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .card { background: white; border: 1px solid #dce4f0; border-radius: 18px; padding: 20px; }
+    svg { display: block; width: 100%; height: auto; background: white; }
+    .actions { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin: 20px 0; }
+    a { color: #16468c; }
+    .download { background: #16468c; color: white; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
+    #result { font-size: 14px; color: #4b5d75; }
+    @media(max-width: 600px) { body { padding: 16px; } .comparison { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <p class="status">Эксперимент · контур требует подтверждения</p>
+  <h1>Аудитория 5222 · пятый этаж</h1>
+  <p>Граница получена по зелёным стенам исходного плана после указания точки внутри аудитории. Номер помещения выбран человеком. Подпись «5222» алгоритм не распознавал.</p>
+  <div class="comparison" id="comparison">
+    <section class="card"><h2>Исходный план</h2>
+      <svg viewBox="40 770 210 220" role="img" aria-label="Фрагмент исходного плана с аудиторией 5222">
+        <image href="../floorplans/floor-5.png" width="2048" height="2048" />
+      </svg>
+    </section>
+    <section class="card"><h2>Найденная граница</h2>
+      <svg viewBox="40 770 210 220" role="img" aria-label="Автоматически выделенная внутренняя граница аудитории 5222">
+        <image href="../floorplans/floor-5.png" width="2048" height="2048" />
+        <polygon id="contour" fill="#2563eb" fill-opacity="0.25" stroke="#16468c" stroke-width="1.5" />
+        <circle cx="110" cy="870" r="3" fill="#dc2626"><title>Точка внутри аудитории, выбранная оператором</title></circle>
+      </svg>
+    </section>
+  </div>
+  <div class="actions">
+    <label><input id="overlay" type="checkbox" checked> Показывать контур</label>
+    <a class="download" href="../data/room-polygons-5222-candidate.json" download>Скачать JSON-кандидат</a>
+    <a href="../floorplans/floor-5.png">Открыть исходный план</a>
+  </div>
+  <p id="result" role="status">Загрузка кандидата…</p>
+  <section class="card">
+    <h2>Что нужно проверить</h2>
+    <p>Синяя область должна оставаться внутри зелёных стен аудитории 5222. Красная точка показывает место начала поиска, а не расположение мероприятия.</p>
+    <p>Алгоритм обвёл внутренний край стен, сохранил небольшую неровность справа и не достраивал дверные проёмы. Область включает надпись аудитории: чёрный текст не считается стеной.</p>
+    <p>Это отдельный кандидат. Шесть опубликованных контуров сохранены; основной просмотрщик пока не показывает 5222. После проверки JSON можно объединить с ними через «Импорт JSON» редактора, затем экспортировать общий набор.</p>
+    <p>Метод пока проверен только на этой аудитории. Слишком большие области, выход за край изображения и неоднозначные границы отклоняются. Открытая дверь может объединить соседние пространства: проверка человеком обязательна. Площадь в пикселях не является площадью в квадратных метрах.</p>
+  </section>
+</main>
+<script type="module">
+  const result = document.querySelector('#result');
+  const contour = document.querySelector('#contour');
+  try {
+    const response = await fetch('../data/room-polygons-5222-candidate.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const [room] = await response.json();
+    if (room.id !== '5222' || room.floor !== 5 || room.buildingId !== 'academic-1') throw new Error('Неверный кандидат');
+    contour.setAttribute('points', room.points.map(([x, y]) => `${x * 2.048},${y * 2.048}`).join(' '));
+    result.textContent = `Найдено вершин: ${room.points.length}. Координаты переведены в систему SVG 0–1000. Контур не опубликован в основной карте.`;
+  } catch (error) { result.textContent = `Не удалось загрузить кандидат: ${error.message}`; }
+  document.querySelector('#overlay').addEventListener('change', event => {
+    contour.style.display = event.target.checked ? '' : 'none';
+  });
+</script>
+</body>
+</html>
