@@ -10,7 +10,7 @@ const polygon = { id: '0250', buildingId: 'academic-1', floor: 0, points: square
 
 test('all published contours round-trip without changes to coordinates or leading zero', () => {
   const parsed = parsePolygons(published)
-  assert.equal(parsed.length, 97)
+  assert.equal(parsed.length, 480)
   assert.deepEqual(JSON.parse(JSON.stringify(parsed)), published)
   assert.ok(parsed.some(p => p.id === '0250'))
 })

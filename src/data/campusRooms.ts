@@ -1,6 +1,7 @@
 
 import type { CampusRoom } from './campusTypes'
 import { userDigitizedRooms } from './userDigitizedRooms.ts'
+import { planDigitizedRooms } from './planDigitizedRooms.ts'
 
 export const campusRooms: CampusRoom[] = [
   {
@@ -295,4 +296,5 @@ export const campusRooms: CampusRoom[] = [
     ]
   },
   ...userDigitizedRooms,
+  ...planDigitizedRooms,
 ]

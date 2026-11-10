@@ -5,6 +5,9 @@ export type RoomPolygon = {
   buildingId: string
   floor: number
   points: Point[]
+  // Optional for physical regions sharing a printed number. Legacy IDs stay valid.
+  number?: string
+  roomId?: string
 }
 
 export const polygonKey = (p: Pick<RoomPolygon, 'buildingId' | 'floor' | 'id'>) =>
@@ -69,11 +72,19 @@ export function parsePolygons(value: unknown): RoomPolygon[] {
       throw new Error(`${label}: неверные поля id, buildingId, floor или points. Номер аудитории должен быть строкой.`)
     const error = geometryError(item.points)
     if (error) throw new Error(`${label} (${item.id}): ${error}`)
+    for (const field of ['number', 'roomId']) {
+      if (item[field] !== undefined && (typeof item[field] !== 'string' ||
+        !item[field].trim() || item[field] !== item[field].trim())) {
+        throw new Error(`${label}: ${field} должен быть непустой строкой.`)
+      }
+    }
     const key = polygonKey(item)
     if (keys.has(key)) throw new Error(`${label}: повтор здания, этажа и номера аудитории.`)
     keys.add(key)
     return { id: item.id, buildingId: item.buildingId, floor: item.floor,
-      points: item.points.map(([x, y]: Point): Point => [x, y]) }
+      points: item.points.map(([x, y]: Point): Point => [x, y]),
+      ...(item.number !== undefined ? { number: item.number } : {}),
+      ...(item.roomId !== undefined ? { roomId: item.roomId } : {}) }
   })
 }
 
@@ -90,6 +101,7 @@ export function conflictingPolygons(current: RoomPolygon[], incoming: RoomPolygo
   const existing = new Map(current.map(p => [polygonKey(p), p]))
   return incoming.filter(p => {
     const previous = existing.get(polygonKey(p))
-    return previous && JSON.stringify(previous.points) !== JSON.stringify(p.points)
+    return previous && (JSON.stringify(previous.points) !== JSON.stringify(p.points) ||
+      previous.number !== p.number || previous.roomId !== p.roomId)
   })
 }

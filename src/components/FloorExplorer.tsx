@@ -191,15 +191,8 @@ export default function FloorExplorer({
             <FloorPlanViewer
               key={floor}
               floor={floor}
-              selectedRoom={selected?.number ?? null}
-              onRoomSelect={number => {
-                const room = campusRooms.find(
-                  r =>
-                    r.buildingId === 'academic-1' &&
-                    r.number === number
-                )
-                if (room) setSelectedRoom(room.id)
-              }}
+              selectedRoomId={selected?.id ?? null}
+              onRoomSelect={setSelectedRoom}
             />
           ) : (
             <div className="flex min-h-80 items-center justify-center rounded-2xl border border-dashed border-blue-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
