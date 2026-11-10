@@ -1,5 +1,6 @@
 
 import type { CampusRoom } from './campusTypes'
+import { userDigitizedRooms } from './userDigitizedRooms.ts'
 
 export const campusRooms: CampusRoom[] = [
   {
@@ -293,4 +294,5 @@ export const campusRooms: CampusRoom[] = [
       }
     ]
   },
+  ...userDigitizedRooms,
 ]
