@@ -1,0 +1,370 @@
+[
+  {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "seedPixels": [
+      330,
+      110
+    ],
+    "interiorAreaPixels": 5122,
+    "boundaryPixels": [
+      [
+        277,
+        75
+      ],
+      [
+        356,
+        75
+      ],
+      [
+        356,
+        140
+      ],
+      [
+        338,
+        140
+      ],
+      [
+        338,
+        139
+      ],
+      [
+        325,
+        139
+      ],
+      [
+        325,
+        140
+      ],
+      [
+        277,
+        140
+      ]
+    ],
+    "coordinateSystem": "SVG viewBox 0 0 1000 1000",
+    "wallRule": "G > 100 and G > 1.25*R and G > 1.25*B",
+    "method": "4-connected flood fill, directed pixel boundary, collinear-only simplification",
+    "status": "candidate-needs-human-review",
+    "labelRecognition": "not performed; seed and room number supplied by operator",
+    "boundaryMeaning": "inner edge of green wall pixels; not wall centre line",
+    "gapClosing": false,
+    "roomId": "2241",
+    "floor": 2,
+    "sourceImage": "public/floorplans/floor-2.png",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "seedPixels": [
+      470,
+      230
+    ],
+    "interiorAreaPixels": 5763,
+    "boundaryPixels": [
+      [
+        438,
+        195
+      ],
+      [
+        447,
+        195
+      ],
+      [
+        447,
+        196
+      ],
+      [
+        460,
+        196
+      ],
+      [
+        460,
+        195
+      ],
+      [
+        514,
+        195
+      ],
+      [
+        514,
+        271
+      ],
+      [
+        438,
+        271
+      ]
+    ],
+    "coordinateSystem": "SVG viewBox 0 0 1000 1000",
+    "wallRule": "G > 100 and G > 1.25*R and G > 1.25*B",
+    "method": "4-connected flood fill, directed pixel boundary, collinear-only simplification",
+    "status": "candidate-needs-human-review",
+    "labelRecognition": "not performed; seed and room number supplied by operator",
+    "boundaryMeaning": "inner edge of green wall pixels; not wall centre line",
+    "gapClosing": false,
+    "roomId": "2270",
+    "floor": 2,
+    "sourceImage": "public/floorplans/floor-2.png",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "seedPixels": [
+      390,
+      230
+    ],
+    "interiorAreaPixels": 5765,
+    "boundaryPixels": [
+      [
+        357,
+        195
+      ],
+      [
+        370,
+        195
+      ],
+      [
+        370,
+        196
+      ],
+      [
+        380,
+        196
+      ],
+      [
+        380,
+        195
+      ],
+      [
+        433,
+        195
+      ],
+      [
+        433,
+        271
+      ],
+      [
+        358,
+        271
+      ],
+      [
+        358,
+        270
+      ],
+      [
+        357,
+        270
+      ]
+    ],
+    "coordinateSystem": "SVG viewBox 0 0 1000 1000",
+    "wallRule": "G > 100 and G > 1.25*R and G > 1.25*B",
+    "method": "4-connected flood fill, directed pixel boundary, collinear-only simplification",
+    "status": "candidate-needs-human-review",
+    "labelRecognition": "not performed; seed and room number supplied by operator",
+    "boundaryMeaning": "inner edge of green wall pixels; not wall centre line",
+    "gapClosing": false,
+    "roomId": "2271",
+    "floor": 2,
+    "sourceImage": "public/floorplans/floor-2.png",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "seedPixels": [
+      1860,
+      490
+    ],
+    "interiorAreaPixels": 5833,
+    "boundaryPixels": [
+      [
+        1839,
+        452
+      ],
+      [
+        1917,
+        452
+      ],
+      [
+        1917,
+        453
+      ],
+      [
+        1918,
+        453
+      ],
+      [
+        1918,
+        526
+      ],
+      [
+        1839,
+        526
+      ],
+      [
+        1839,
+        513
+      ],
+      [
+        1840,
+        513
+      ],
+      [
+        1840,
+        501
+      ],
+      [
+        1839,
+        501
+      ]
+    ],
+    "coordinateSystem": "SVG viewBox 0 0 1000 1000",
+    "wallRule": "G > 100 and G > 1.25*R and G > 1.25*B",
+    "method": "4-connected flood fill, directed pixel boundary, collinear-only simplification",
+    "status": "candidate-needs-human-review",
+    "labelRecognition": "not performed; seed and room number supplied by operator",
+    "boundaryMeaning": "inner edge of green wall pixels; not wall centre line",
+    "gapClosing": false,
+    "roomId": "2323",
+    "floor": 2,
+    "sourceImage": "public/floorplans/floor-2.png",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "seedPixels": [
+      220,
+      1330
+    ],
+    "interiorAreaPixels": 2917,
+    "boundaryPixels": [
+      [
+        196,
+        1313
+      ],
+      [
+        271,
+        1313
+      ],
+      [
+        271,
+        1352
+      ],
+      [
+        196,
+        1352
+      ],
+      [
+        196,
+        1339
+      ],
+      [
+        197,
+        1339
+      ],
+      [
+        197,
+        1331
+      ],
+      [
+        196,
+        1331
+      ]
+    ],
+    "coordinateSystem": "SVG viewBox 0 0 1000 1000",
+    "wallRule": "G > 100 and G > 1.25*R and G > 1.25*B",
+    "method": "4-connected flood fill, directed pixel boundary, collinear-only simplification",
+    "status": "candidate-needs-human-review",
+    "labelRecognition": "not performed; seed and room number supplied by operator",
+    "boundaryMeaning": "inner edge of green wall pixels; not wall centre line",
+    "gapClosing": false,
+    "roomId": "3140",
+    "floor": 3,
+    "sourceImage": "public/floorplans/floor-3.png",
+    "sourceImageSha256": "266c7b6d620879ce249059a79a88bbb78fb7c467cf65473cd42cfdcd4e433d4c"
+  },
+  {
+    "imageSize": [
+      2048,
+      2048
+    ],
+    "seedPixels": [
+      660,
+      230
+    ],
+    "interiorAreaPixels": 9863,
+    "boundaryPixels": [
+      [
+        639,
+        196
+      ],
+      [
+        649,
+        196
+      ],
+      [
+        649,
+        197
+      ],
+      [
+        664,
+        197
+      ],
+      [
+        664,
+        196
+      ],
+      [
+        768,
+        196
+      ],
+      [
+        768,
+        197
+      ],
+      [
+        769,
+        197
+      ],
+      [
+        769,
+        271
+      ],
+      [
+        768,
+        271
+      ],
+      [
+        768,
+        272
+      ],
+      [
+        639,
+        272
+      ]
+    ],
+    "coordinateSystem": "SVG viewBox 0 0 1000 1000",
+    "wallRule": "G > 100 and G > 1.25*R and G > 1.25*B",
+    "method": "4-connected flood fill, directed pixel boundary, collinear-only simplification",
+    "status": "candidate-needs-human-review",
+    "labelRecognition": "not performed; seed and room number supplied by operator",
+    "boundaryMeaning": "inner edge of green wall pixels; not wall centre line",
+    "gapClosing": false,
+    "roomId": "3266",
+    "floor": 3,
+    "sourceImage": "public/floorplans/floor-3.png",
+    "sourceImageSha256": "266c7b6d620879ce249059a79a88bbb78fb7c467cf65473cd42cfdcd4e433d4c"
+  }
+]

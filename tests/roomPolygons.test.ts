@@ -8,9 +8,9 @@ const published = JSON.parse(readFileSync(new URL('../public/data/room-polygons.
 const square: Point[] = [[10, 10], [20, 10], [20, 20], [10, 20]]
 const polygon = { id: '0250', buildingId: 'academic-1', floor: 0, points: square }
 
-test('all six published contours round-trip without changes to coordinates or leading zero', () => {
+test('all seven published contours round-trip without changes to coordinates or leading zero', () => {
   const parsed = parsePolygons(published)
-  assert.equal(parsed.length, 6)
+  assert.equal(parsed.length, 7)
   assert.deepEqual(JSON.parse(JSON.stringify(parsed)), published)
   assert.ok(parsed.some(p => p.id === '0250'))
 })
@@ -42,11 +42,11 @@ test('merge retains other floors/buildings and changes conflicts only by explici
   assert.equal(conflictingPolygons(current, incoming).length, 1)
   assert.equal(conflictingPolygons(current, current).length, 0)
   const keep = mergePolygons(current, incoming, false)
-  assert.equal(keep.length, 8)
+  assert.equal(keep.length, current.length + 2)
   assert.deepEqual(keep[0], current[0])
   const replace = mergePolygons(current, incoming, true)
-  assert.equal(replace.length, 8)
+  assert.equal(replace.length, current.length + 2)
   assert.deepEqual(replace[0].points, square)
-  assert.deepEqual(replace.slice(1, 6), current.slice(1))
+  assert.deepEqual(replace.slice(1, current.length), current.slice(1))
   assert.deepEqual(current, before)
 })
