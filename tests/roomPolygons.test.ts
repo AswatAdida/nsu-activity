@@ -8,9 +8,9 @@ const published = JSON.parse(readFileSync(new URL('../public/data/room-polygons.
 const square: Point[] = [[10, 10], [20, 10], [20, 20], [10, 20]]
 const polygon = { id: '0250', buildingId: 'academic-1', floor: 0, points: square }
 
-test('all seven published contours round-trip without changes to coordinates or leading zero', () => {
+test('all thirteen published contours round-trip without changes to coordinates or leading zero', () => {
   const parsed = parsePolygons(published)
-  assert.equal(parsed.length, 7)
+  assert.equal(parsed.length, 13)
   assert.deepEqual(JSON.parse(JSON.stringify(parsed)), published)
   assert.ok(parsed.some(p => p.id === '0250'))
 })

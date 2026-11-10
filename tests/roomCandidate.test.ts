@@ -12,9 +12,9 @@ test('approved 5222 geometry matches the reviewed candidate and preserves six ex
   assert.equal(room.buildingId, 'academic-1')
   assert.equal(room.points.length, 8)
   const published = parsePolygons(read('../public/data/room-polygons.json'))
-  assert.equal(published.length, 7)
+  assert.equal(published.length, 13)
   assert.deepEqual(published.find(p => p.id === room.id), room)
-  assert.deepEqual(published.filter(p => p.id !== room.id).map(p => p.id).sort(), ['0250', '1332', '2253', '2348', '3314', '5272'])
+  assert.deepEqual(published.slice(0, 6).map(p => p.id).sort(), ['0250', '1332', '2253', '2348', '3314', '5272'])
   const [review] = read('../docs/geometry-review-log.json')
   assert.equal(review.status, 'approved')
   assert.equal(review.roomId, room.id)
@@ -27,11 +27,18 @@ test('approved 5222 geometry matches the reviewed candidate and preserves six ex
     [Math.round(x / 2048 * 10000) / 10, Math.round(y / 2048 * 10000) / 10]))
 })
 
-test('six further proposals are valid but remain outside published geometry', () => {
+test('six confirmed contours match their reviewed proposals and approval records', () => {
   const read = (path: string) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
   const candidates = parsePolygons(read('../public/data/room-polygons-next-candidates.json'))
   assert.deepEqual(candidates.map(room => room.id), ['2241', '2270', '2271', '2323', '3140', '3266'])
-  const publishedIds = new Set(parsePolygons(read('../public/data/room-polygons.json')).map(room => room.id))
-  assert.ok(candidates.every(room => !publishedIds.has(room.id)))
+  const published = parsePolygons(read('../public/data/room-polygons.json'))
+  const reviews = read('../docs/geometry-review-log.json')
+  const digest = createHash('sha256').update(readFileSync(new URL('../public/data/room-polygons-next-candidates.json', import.meta.url))).digest('hex')
+  for (const room of candidates) {
+    assert.deepEqual(published.find(p => p.id === room.id), room)
+    const review = reviews.find((r: { roomId: string }) => r.roomId === room.id)
+    assert.equal(review.status, 'approved')
+    assert.equal(review.candidateSha256, digest)
+  }
   assert.ok(read('../docs/next-room-detection.json').every((report: { status: string }) => report.status === 'candidate-needs-human-review'))
 })
