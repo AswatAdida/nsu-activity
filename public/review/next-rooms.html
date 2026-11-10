@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Следующие помещения — проверка контуров</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#f6f8fc;color:#17253d;font:16px/1.5 system-ui,sans-serif}main{max-width:1120px;margin:auto}h1{font-size:28px;margin:8px 0}h2{font-size:18px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{padding:16px;background:white;border:1px solid #dce4f0;border-radius:16px}.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}svg{display:block;width:100%;height:auto}.caption{font-size:13px;color:#4b5d75;margin-bottom:8px}.status{color:#946000;font-weight:600}.actions{display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin:20px 0}a{color:#16468c}@media(max-width:650px){body{padding:16px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<p class="status">Шесть предложений · требуется подтверждение</p>
+<h1>Следующие помещения для оцифровки</h1>
+<p>Слева — исходный план, справа — автоматически найденный внутренний край зелёных стен. Номера помещений и начальные точки выбраны человеком. Эти контуры пока не добавлены на карту.</p>
+<div class="actions"><label><input id="overlay" type="checkbox" checked> Показывать контуры</label><a href="../data/room-polygons-next-candidates.json" download>Скачать JSON предложений</a><a href="../">Карта кампуса</a></div>
+<p id="status" role="status">Загрузка…</p><div class="grid" id="rooms"></div>
+<p>Проверьте границы каждого помещения, особенно дверные участки. Метод не распознаёт номера и не отличает одну комнату от нескольких соединённых комнат. Результат требует визуальной проверки. Подтверждённая 5222 уже входит в основной набор отдельно от этих предложений.</p>
+</main>
+<script type="module">
+const ns='http://www.w3.org/2000/svg';
+function element(tag,attrs){const el=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));return el}
+try{
+const response=await fetch('../data/room-polygons-next-candidates.json');if(!response.ok)throw new Error(`HTTP ${response.status}`);const rooms=await response.json();
+for(const room of rooms){
+const card=document.createElement('section');card.className='card';const title=document.createElement('h2');title.textContent=`${room.id} · этаж ${room.floor}`;card.append(title);const pair=document.createElement('div');pair.className='pair';
+const points=room.points.map(([x,y])=>[x*2.048,y*2.048]);const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);const left=Math.min(...xs)-22,top=Math.min(...ys)-22,width=Math.max(...xs)-left+22,height=Math.max(...ys)-top+22;
+for(const overlay of [false,true]){const panel=document.createElement('div');const caption=document.createElement('div');caption.className='caption';caption.textContent=overlay?'Найденная граница':'Исходный план';panel.append(caption);const svg=element('svg',{viewBox:`${left} ${top} ${width} ${height}`,role:'img','aria-label':`${room.id}: ${caption.textContent}`});svg.append(element('image',{href:`../floorplans/floor-${room.floor}.png`,width:2048,height:2048}));if(overlay)svg.append(element('polygon',{points:points.map(p=>p.join(',')).join(' '),class:'contour',fill:'#2563eb','fill-opacity':0.25,stroke:'#16468c','stroke-width':1}));panel.append(svg);pair.append(panel)}card.append(pair);document.querySelector('#rooms').append(card)}
+document.querySelector('#status').textContent=`Предложений: ${rooms.length}. На основную карту они не добавлены.`;
+}catch(error){document.querySelector('#status').textContent=`Ошибка: ${error.message}`}
+document.querySelector('#overlay').addEventListener('change',event=>document.querySelectorAll('.contour').forEach(p=>p.style.display=event.target.checked?'':'none'));
+</script></body></html>

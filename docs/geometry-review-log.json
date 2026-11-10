@@ -1,0 +1,13 @@
+[
+  {
+    "buildingId": "academic-1",
+    "floor": 5,
+    "roomId": "5222",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the comparison in chat",
+    "candidateFile": "public/data/room-polygons-5222-candidate.json",
+    "candidateSha256": "119665a9e3793e6345cc84136207b1c7f212b584097960b8d55c02f78ceac08f",
+    "sourceImageSha256": "2eb6e1728889fe4d26b9d63fffad582afc36fdaa8cf48e9b6348a991a7eb6334"
+  }
+]
