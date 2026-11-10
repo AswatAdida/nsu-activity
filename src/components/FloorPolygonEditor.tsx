@@ -3,9 +3,10 @@ import type { ChangeEvent, MouseEvent, PointerEvent } from 'react'
 import { Download, RotateCcw, Undo2, Trash2 } from 'lucide-react'
 import { conflictingPolygons, geometryError, isPoint, mergePolygons, parsePolygons, polygonKey } from '../data/roomPolygons'
 import type { Point, RoomPolygon } from '../data/roomPolygons'
+import { suggestRoomContour } from '../data/suggestRoomContour'
 
 type Props = { floor: number }
-type Draft = { roomId: string; originalId: string | null; points: Point[] }
+type Draft = { roomId: string; originalId: string | null; points: Point[]; method?: 'assisted' }
 const STORAGE_KEY = 'nsu-activity-room-polygons-v1'
 const emptyDraft = (): Draft => ({ roomId: '', originalId: null, points: [] })
 const errorText = (error: unknown) => error instanceof Error ? error.message : String(error)
@@ -44,6 +45,10 @@ export default function FloorPolygonEditor({ floor }: Props) {
   const [message, setMessage] = useState('')
   const [busy, setBusy] = useState(!initial.exists)
   const [pendingImport, setPendingImport] = useState<RoomPolygon[] | null>(null)
+  const [mode, setMode] = useState<'manual' | 'assisted'>('manual')
+  const [detecting, setDetecting] = useState(false)
+  const detection = useRef<AbortController | null>(null)
+  const imageRef = useRef<HTMLImageElement>(null)
   const [zoom, setZoom] = useState(1)
   const [showLabels, setShowLabels] = useState(true)
   const [selectedVertex, setSelectedVertex] = useState<number | null>(null)
@@ -106,6 +111,12 @@ export default function FloorPolygonEditor({ floor }: Props) {
     window.addEventListener('beforeunload', warn)
     return () => window.removeEventListener('beforeunload', warn)
   }, [hasDraft, storageErrors.polygons, storageErrors.draft])
+
+  useEffect(() => () => {
+    const controller = detection.current
+    detection.current = null
+    controller?.abort()
+  }, [])
 
   const currentPolygons = polygons.filter(p => p.buildingId === 'academic-1' && p.floor === floor)
   const conflicts = pendingImport ? conflictingPolygons(polygons, pendingImport) : []
@@ -184,16 +195,49 @@ export default function FloorPolygonEditor({ floor }: Props) {
     const local = point.matrixTransform(matrix.inverse())
     return [local.x, local.y].map(n => Math.round(Math.max(0, Math.min(1000, n)) * 10) / 10) as Point
   }
+  async function findContour(point: Point) {
+    if (!imageRef.current || detection.current) return
+    const controller = new AbortController()
+    detection.current = controller
+    setDetecting(true)
+    try {
+      const result = await suggestRoomContour(imageRef.current, point, controller.signal)
+      if (controller.signal.aborted) return
+      const error = geometryError(result.points)
+      if (error) throw new Error(error)
+      if (draft.points.length && !window.confirm('Заменить точки текущего черновика найденной границей? Сохранённый контур останется на месте.')) {
+        setMessage('Черновик не изменён. Можно продолжить вручную или выбрать другую точку.')
+        return
+      }
+      updateDraft({ ...draft, points: result.points, method: 'assisted' })
+      setSelectedVertex(null)
+      setMessage(`Предложена граница из ${result.points.length} вершин. Проверьте её по стенам, при необходимости поправьте и нажмите «Сохранить контур».`)
+    } catch (error) {
+      if (!controller.signal.aborted) setMessage(`Поиск не выполнен: ${errorText(error)} Черновик не изменён.`)
+    } finally {
+      if (detection.current === controller) { detection.current = null; setDetecting(false) }
+    }
+  }
+  function cancelDetection() {
+    const controller = detection.current
+    detection.current = null
+    controller?.abort()
+    setDetecting(false)
+    setMessage('Поиск отменён. Черновик не изменён.')
+  }
   function addPoint(event: MouseEvent<SVGSVGElement>) {
     if (suppressClick.current) { suppressClick.current = false; return }
-    if (busy || pendingImport) return
+    if (busy || pendingImport || detection.current) return
     if (!draft.roomId.trim()) { setMessage('Сначала введите номер аудитории.'); return }
     const point = eventPoint(event)
-    if (point) updateDraft({ ...draft, points: [...draft.points, point] })
+    if (point) {
+      if (mode === 'assisted') void findContour(point)
+      else updateDraft({ ...draft, points: [...draft.points, point] })
+    }
   }
   function startDrag(event: PointerEvent<SVGCircleElement>, index: number) {
     event.stopPropagation()
-    if (busy || pendingImport || event.button !== 0) return
+    if (busy || pendingImport || detection.current || event.button !== 0) return
     setSelectedVertex(index)
     drag.current = { index, pointerId: event.pointerId }
     suppressClick.current = true
@@ -212,7 +256,7 @@ export default function FloorPolygonEditor({ floor }: Props) {
   }
   function insertVertex(event: MouseEvent<SVGLineElement>, index: number) {
     event.stopPropagation()
-    if (busy || pendingImport) return
+    if (busy || pendingImport || detection.current) return
     const point = eventPoint(event)
     if (!point) return
     const a = draft.points[index], b = draft.points[(index + 1) % draft.points.length]
@@ -232,9 +276,10 @@ export default function FloorPolygonEditor({ floor }: Props) {
   return (
     <section className="mt-6 rounded-2xl border border-blue-200 bg-white p-4" aria-label="Редактор контуров">
       <h3 className="text-lg font-bold">Редактор контуров · {floor} этаж</h3>
-      <p className="mt-2 text-sm text-slate-500">Нажимайте на углы помещения, чтобы создать контур. Вершины можно перетаскивать; нажатие на ребро добавляет вершину. Синие контуры — сохранённые, красный — черновик.</p>
+      <p className="mt-2 text-sm text-slate-500">Выберите ручную разметку или поиск границы по клику внутри помещения. Вершины можно перетаскивать; нажатие на ребро добавляет вершину. Синие контуры — сохранённые, красный — черновик.</p>
       {Object.entries(storageErrors).filter(([, message]) => message).map(([key, message]) => <p key={key} role="alert" className="mt-3 rounded-lg bg-red-50 p-3 text-sm text-red-800">{message}</p>)}
-      <p role="status" className="mt-3 text-sm text-slate-600">{busy ? 'Загрузка контуров…' : message}</p>
+      <p role="status" className="mt-3 text-sm text-slate-600">{detecting ? 'Ищу границу помещения…' : busy ? 'Загрузка контуров…' : message}</p>
+      {detecting && <button type="button" className={button} onClick={cancelDetection}>Отменить поиск</button>}
       {pendingImport && <div className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm" role="group" aria-label="Конфликты импорта">
         <p>Отличающиеся контуры ({conflicts.length}): {conflicts.map(p => `${p.buildingId}, этаж ${p.floor}, ${p.id}`).join('; ')}. Остальные помещения будут объединены.</p>
         <div className="mt-2 flex flex-wrap gap-2">
@@ -243,13 +288,21 @@ export default function FloorPolygonEditor({ floor }: Props) {
           <button type="button" className={button} onClick={() => setPendingImport(null)}>Отменить импорт</button>
         </div>
       </div>}
-      <fieldset disabled={busy || Boolean(pendingImport)}>
+      <fieldset disabled={busy || detecting || Boolean(pendingImport)}>
         <div className="mt-4 flex flex-wrap gap-2">
           <input ref={fileRef} type="file" accept=".json,application/json" onChange={importFile} className="hidden" aria-label="Файл контуров JSON" />
           <button type="button" className={button} onClick={() => fileRef.current?.click()}>Импорт JSON</button>
           <button type="button" className={button} onClick={() => void loadPublished()}>Загрузить опубликованные контуры</button>
         </div>
         <p className="mt-2 text-xs text-slate-500">Существующая разметка не заменяется без выбора при конфликте. Загрузите опубликованные контуры, если они отсутствуют в браузере.</p>
+        <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50 p-3">
+          <p className="text-sm font-semibold">Способ разметки</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <button type="button" className={`${button} ${mode === 'manual' ? 'bg-[#16468c] text-white' : 'bg-white'}`} aria-pressed={mode === 'manual'} onClick={() => setMode('manual')}>Точки вручную</button>
+            <button type="button" className={`${button} ${mode === 'assisted' ? 'bg-[#16468c] text-white' : 'bg-white'}`} aria-pressed={mode === 'assisted'} onClick={() => setMode('assisted')}>Найти контур по клику</button>
+          </div>
+          <p className="mt-2 text-sm text-slate-600">{mode === 'assisted' ? 'Введите номер аудитории и нажмите внутри неё на плане. Будет предложена граница по зелёным стенам. Проверьте, что выделено именно нужное помещение: открытая дверь может объединить соседние комнаты.' : 'Нажимайте на углы помещения, чтобы расставить точки вручную.'}</p>
+        </div>
         <div className="mt-4 flex flex-wrap gap-2">
           <input value={draft.roomId} readOnly={draft.originalId !== null} onChange={e => updateDraft({ ...draft, roomId: e.target.value })} placeholder="Номер аудитории" aria-label="Номер аудитории" className="min-w-40 flex-1 rounded-lg border border-slate-300 p-2 read-only:bg-slate-100" />
           <button type="button" className={button} title="Убрать последнюю точку" aria-label="Убрать последнюю точку" disabled={!draft.points.length} onClick={() => { updateDraft({ ...draft, points: draft.points.slice(0, -1) }); setSelectedVertex(null) }}><Undo2 size={18} /></button>
@@ -258,6 +311,7 @@ export default function FloorPolygonEditor({ floor }: Props) {
           <button type="button" className={button} disabled={!hasDraft} onClick={cancelDraft}>Отменить изменения</button>
         </div>
         <p className="mt-2 text-xs text-slate-500">{draft.originalId ? `Редактируется ${draft.originalId}. Оригинал сохраняется до нажатия «Сохранить контур».` : 'Создание нового контура. Номер аудитории сохраняется как строка, включая начальные нули.'}</p>
+        {draft.method === 'assisted' && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-sm text-amber-900">Это предложенная граница. Проверьте стены и дверные участки перед сохранением. Её можно поправить вершинами.</p>}
         {validationError && <p className="mt-2 text-sm text-amber-800">{validationError}</p>}
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
           <span>Точек: {draft.points.length}</span>
@@ -270,7 +324,7 @@ export default function FloorPolygonEditor({ floor }: Props) {
       </fieldset>
       <div className="mt-4 max-h-[700px] overflow-auto rounded-xl bg-slate-100 p-2">
         <div className="relative mx-auto" style={{ width: `${zoom * 100}%`, minWidth: '500px', aspectRatio: '1 / 1' }}>
-          <img src={`${import.meta.env.BASE_URL}floorplans/floor-${floor}.png`} alt={`План ${floor} этажа`} className="absolute inset-0 h-full w-full select-none" draggable={false} />
+          <img ref={imageRef} src={`${import.meta.env.BASE_URL}floorplans/floor-${floor}.png`} alt={`План ${floor} этажа`} className="absolute inset-0 h-full w-full select-none" draggable={false} />
           <svg ref={svgRef} viewBox="0 0 1000 1000" preserveAspectRatio="none" className="absolute inset-0 h-full w-full cursor-crosshair" style={{ touchAction: 'none' }} onClick={addPoint} onPointerMove={moveVertex} onPointerUp={stopDrag} onPointerCancel={stopDrag} onLostPointerCapture={() => { drag.current = null }}>
             {currentPolygons.map(polygon => <g key={polygon.id} pointerEvents="none">
               <polygon points={polygonPoints(polygon.points)} fill="#2563eb" fillOpacity={0.22} stroke="#1d4ed8" strokeWidth={2} vectorEffect="non-scaling-stroke" />
@@ -284,8 +338,8 @@ export default function FloorPolygonEditor({ floor }: Props) {
                 const next = draft.points[(i + 1) % draft.points.length]
                 return <line key={`edge-${i}`} data-edge={i} x1={p[0]} y1={p[1]} x2={next[0]} y2={next[1]} stroke="transparent" strokeWidth={12} vectorEffect="non-scaling-stroke" className="cursor-copy" onClick={e => insertVertex(e, i)}><title>Нажмите, чтобы добавить вершину</title></line>
               })}
-              {draft.points.map(([x, y], index) => <circle key={index} data-vertex={index} cx={x} cy={y} r={7 / zoom} fill={selectedVertex === index ? '#f59e0b' : '#dc2626'} stroke="white" strokeWidth={1} className="cursor-move" role="button" aria-label={`Вершина ${index + 1}`} tabIndex={busy || pendingImport ? -1 : 0} onPointerDown={e => startDrag(e, index)} onClick={e => { e.stopPropagation(); suppressClick.current = false; if (!busy && !pendingImport) setSelectedVertex(index) }} onKeyDown={e => {
-                if (busy || pendingImport) return
+              {draft.points.map(([x, y], index) => <circle key={index} data-vertex={index} cx={x} cy={y} r={7 / zoom} fill={selectedVertex === index ? '#f59e0b' : '#dc2626'} stroke="white" strokeWidth={1} className="cursor-move" role="button" aria-label={`Вершина ${index + 1}`} tabIndex={busy || detecting || pendingImport ? -1 : 0} onPointerDown={e => startDrag(e, index)} onClick={e => { e.stopPropagation(); suppressClick.current = false; if (!busy && !pendingImport && !detection.current) setSelectedVertex(index) }} onKeyDown={e => {
+                if (busy || pendingImport || detection.current) return
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedVertex(index) }
                 if (e.key === 'Delete' && draft.points.length > 3) { e.preventDefault(); updateDraft({ ...draft, points: draft.points.filter((_, i) => i !== index) }); setSelectedVertex(null) }
               }}><title>Вершина {index + 1}: {x}, {y}</title></circle>)}
@@ -300,8 +354,8 @@ export default function FloorPolygonEditor({ floor }: Props) {
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         {currentPolygons.map(polygon => <div key={polygon.id} className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm">
-          <button type="button" disabled={busy || Boolean(pendingImport)} onClick={() => editPolygon(polygon)} className="font-medium text-blue-700" title="Изменить контур">{polygon.id}</button>
-          <button type="button" disabled={busy || Boolean(pendingImport) || draft.originalId === polygon.id} onClick={() => removePolygon(polygon)} title={`Удалить контур ${polygon.id}`} aria-label={`Удалить контур ${polygon.id}`} className="text-red-600 disabled:opacity-40"><Trash2 size={15} /></button>
+          <button type="button" disabled={busy || detecting || Boolean(pendingImport)} onClick={() => editPolygon(polygon)} className="font-medium text-blue-700" title="Изменить контур">{polygon.id}</button>
+          <button type="button" disabled={busy || detecting || Boolean(pendingImport) || draft.originalId === polygon.id} onClick={() => removePolygon(polygon)} title={`Удалить контур ${polygon.id}`} aria-label={`Удалить контур ${polygon.id}`} className="text-red-600 disabled:opacity-40"><Trash2 size={15} /></button>
         </div>)}
       </div>
       <p className="mt-4 text-xs text-slate-500">Черновик сохраняется отдельно для каждого этажа и восстанавливается при открытии. Экспорт JSON включает только сохранённые контуры всех этажей; сначала сохраните нужный черновик. «Скачать черновик» — отдельная резервная копия, не файл для публикации. Для публикации замените public/data/room-polygons.json в репозитории экспортированным файлом. Просмотрщик показывает опубликованную версию.</p>
