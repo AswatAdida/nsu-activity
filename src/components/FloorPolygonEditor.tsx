@@ -42,19 +42,37 @@ export default function FloorPolygonEditor({ floor }: Props) {
     p => p.buildingId === 'academic-1' && p.floor === floor
   )
 
-  function addPoint(event: MouseEvent<SVGSVGElement>) {
-    if (!roomId.trim()) return
 
-    const rect = event.currentTarget.getBoundingClientRect()
-
-    const x = ((event.clientX - rect.left) / rect.width) * 1000
-    const y = ((event.clientY - rect.top) / rect.height) * 1000
-
-    setPoints(previous => [
-      ...previous,
-      [Math.round(x * 10) / 10, Math.round(y * 10) / 10],
-    ])
+function addPoint(event: MouseEvent<SVGSVGElement>) {
+    console.log('Клик по плану!', event.clientX, event.clientY)
+    if (!roomId.trim()) {
+    alert('Сначала введи номер аудитории')
+    return
   }
+
+  const svg = event.currentTarget
+  const point = svg.createSVGPoint()
+
+  point.x = event.clientX
+  point.y = event.clientY
+
+  const matrix = svg.getScreenCTM()
+  if (!matrix) return
+
+  const transformed = point.matrixTransform(matrix.inverse())
+
+  const x = Math.max(0, Math.min(1000, transformed.x))
+  const y = Math.max(0, Math.min(1000, transformed.y))
+
+  setPoints(previous => [
+    ...previous,
+    [
+      Math.round(x * 10) / 10,
+      Math.round(y * 10) / 10,
+    ],
+  ])
+}
+
 
   function savePolygon() {
     const id = roomId.trim()
@@ -279,10 +297,11 @@ export default function FloorPolygonEditor({ floor }: Props) {
                     key={index}
                     cx={x}
                     cy={y}
-                    r={4}
+                    r={7}
                     fill="#dc2626"
                     stroke="white"
                     strokeWidth={1}
+                    pointerEvents="none"
                   />
                 ))}
               </g>
