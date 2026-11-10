@@ -73,6 +73,10 @@ export default function FloorPlanViewer({
       polygon.floor === floor
   )
 
+  console.log('Текущий этаж:', floor)
+  console.log('Всего загружено контуров:', polygons.length)
+  console.log('Контуры текущего этажа:', floorPolygons)
+
   const polygonIds = new Set(
     floorPolygons.map(polygon => polygon.id)
   )
