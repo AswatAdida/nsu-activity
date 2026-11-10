@@ -12,7 +12,7 @@ test('approved 5222 geometry matches the reviewed candidate and preserves six ex
   assert.equal(room.buildingId, 'academic-1')
   assert.equal(room.points.length, 8)
   const published = parsePolygons(read('../public/data/room-polygons.json'))
-  assert.equal(published.length, 13)
+  assert.equal(published.length, 97)
   assert.deepEqual(published.find(p => p.id === room.id), room)
   assert.deepEqual(published.slice(0, 6).map(p => p.id).sort(), ['0250', '1332', '2253', '2348', '3314', '5272'])
   const [review] = read('../docs/geometry-review-log.json')

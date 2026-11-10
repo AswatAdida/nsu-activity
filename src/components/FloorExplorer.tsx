@@ -221,6 +221,7 @@ export default function FloorExplorer({
             </p>
           )}
 
+          <div className="max-h-80 space-y-3 overflow-y-auto pr-1" role="region" aria-label="Список помещений">
           {visibleRooms.map(room => (
             <button
               key={room.id}
@@ -243,6 +244,7 @@ export default function FloorExplorer({
               </div>
             </button>
           ))}
+          </div>
 
           {buildingSessions.length > 0 && <div className="rounded-xl bg-[#163e79] p-5 text-white">
             <h3 className="font-bold">Встречи без указанной аудитории</h3>
