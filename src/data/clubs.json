@@ -196,5 +196,327 @@
     "attendance": "Не указано",
     "url": "https://vk.ru/dopsihelp",
     "status": "inactive"
+  },
+  {
+    "id": "siberian-english",
+    "name": "Siberian English Club",
+    "category": "Языки",
+    "description": "Обсуждения на английском языке, игры и тематические встречи.",
+    "schedule": "Воскресенье с 18:00, с сентября по апрель",
+    "location": "Учебный корпус № 1, 5-й этаж, аудитория 5222",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/siberianenglishclub",
+    "status": "active",
+    "scheduleStatus": "needs-confirmation",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/siberianenglishclub",
+        "note": "Пользователь передал текст расписания, действующего с сентября 2025 года."
+      }
+    ],
+    "notes": [
+      "Расписание в предоставленном тексте указано с сентября 2025 года; актуальность требует проверки."
+    ]
+  },
+  {
+    "id": "academian-english",
+    "name": "Academian English Club (Novosibirsk)",
+    "category": "Языки",
+    "description": "Встречи английского разговорного клуба.",
+    "schedule": "Воскресенье с 17:30",
+    "location": "Учебный корпус № 1, аудитория 5222",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/academianenglishclub",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/academianenglishclub"
+      }
+    ],
+    "notes": [
+      "Воскресенье и та же аудитория указаны также у Siberian English Club. Это отдельные записи; связь клубов и время окончания встреч не установлены."
+    ]
+  },
+  {
+    "id": "russian-speaking",
+    "name": "Русский разговорный клуб НГУ",
+    "category": "Языки",
+    "description": "Разговорная практика русского языка.",
+    "schedule": "Воскресенье с 15:00",
+    "location": "Учебный корпус № 1, аудитория 3266",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/rscciep",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/rscciep"
+      }
+    ]
+  },
+  {
+    "id": "confucius-knowledge",
+    "name": "Студенческий клуб Института Конфуция НГУ «Знание»",
+    "category": "Культура",
+    "description": "新西国立大学孔子学院 “知之” 俱乐部",
+    "schedule": "Расписание не указано",
+    "location": "Базовая аудитория 2323, учебный корпус № 1",
+    "attendance": "Не указано",
+    "url": "",
+    "status": "active",
+    "scheduleStatus": "needs-confirmation",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10"
+      }
+    ],
+    "notes": [
+      "Указана база клуба, а не место подтверждённых регулярных встреч."
+    ],
+    "baseRoomIds": [
+      "academic-1-2323"
+    ]
+  },
+  {
+    "id": "dansu",
+    "name": "Студия современного танца НГУ DaNSU",
+    "category": "Танцы",
+    "description": "Современный танец contemporary. Занятия для начинающих и продолжающих.",
+    "schedule": "Требует уточнения: в тексте вт 18:00–19:30, чт 17:00–18:30; на афише начинающие — сб 17:30, продолжающие — чт 18:30 и сб 16:00",
+    "location": "Пирогова, 16, пристройка общежития № 6",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/contemp_dance_nsu",
+    "status": "active",
+    "scheduleStatus": "needs-confirmation",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/contemp_dance_nsu"
+      },
+      {
+        "kind": "poster",
+        "recordedOn": "2026-11-10",
+        "note": "Афиша DaNSU, приложенная пользователем; дата действия на афише не указана."
+      }
+    ],
+    "notes": [
+      "Два источника содержат разные расписания. До уточнения регулярные встречи не добавлены."
+    ]
+  },
+  {
+    "id": "omut",
+    "name": "ОМУТ | Танцы НГУ",
+    "category": "Танцы",
+    "description": "Танцевальное объединение НГУ.",
+    "schedule": "Расписание не указано",
+    "location": "Место занятий не указано",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/omut_dance_nsu",
+    "status": "active",
+    "scheduleStatus": "needs-confirmation",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/omut_dance_nsu"
+      }
+    ]
+  },
+  {
+    "id": "intellectual-games",
+    "name": "Клуб интеллектуальных игр НГУ | КИИ НГУ",
+    "category": "Игры",
+    "description": "Тренировки по интеллектуальным играм.",
+    "schedule": "Четверг с 18:10",
+    "location": "Учебный корпус № 1, аудитория 5222",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/kii_nsu",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/kii_nsu"
+      }
+    ]
+  },
+  {
+    "id": "board-games",
+    "name": "Клуб настольных игр НГУ",
+    "category": "Игры",
+    "description": "Еженедельные игротеки для всех желающих.",
+    "schedule": "Суббота с 18:00",
+    "location": "Учебный корпус № 1, аудитории 2241, 2270, 2271; возможны изменения",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/games_odina",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/games_odina"
+      }
+    ],
+    "notes": [
+      "Указаны несколько возможных аудиторий одной игротеки. Место уточняется по актуальному анонсу."
+    ]
+  },
+  {
+    "id": "ultimate",
+    "name": "НИИ ТУДА — команда НГУ по алтимат фрисби",
+    "category": "Спорт",
+    "description": "Тренировки по алтимат фрисби. Бесплатное участие; новичкам нужно согласовать участие с организатором.",
+    "schedule": "Пн 20:45–22:00 · Чт 17:45–19:30 · Вс 12:45–15:00",
+    "location": "Новый спорткомплекс НГУ",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/ultimate_nsu",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/ultimate_nsu",
+        "note": "В предоставленном тексте указан период: осень–зима 2026."
+      }
+    ],
+    "notes": [
+      "Расписание относится к осени–зиме 2026 года. Нужны вода, спортивные одежда и обувь.",
+      "Для согласования участия новичков указан Андрей: https://vk.ru/ololobus"
+    ]
+  },
+  {
+    "id": "siberica-legion",
+    "name": "Клуб СМБ в НГУ «Siberica LegioN*»",
+    "category": "Спорт",
+    "description": "Тренировки по фехтованию.",
+    "schedule": "Вт, ср, чт 21:00–23:00 · Вс 18:00–22:00",
+    "location": "Пирогова, 12, тир НГУ",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/nsu_knights",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/nsu_knights"
+      }
+    ]
+  },
+  {
+    "id": "bridge",
+    "name": "Бридж-клуб НГУ",
+    "category": "Игры",
+    "description": "Занятия бриджем; приглашаются новички.",
+    "schedule": "Воскресенье с 17:30",
+    "location": "Новый спорткомплекс НГУ, аудитория 309",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/bridge_nsu",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/bridge_nsu"
+      }
+    ]
+  },
+  {
+    "id": "mtg",
+    "name": "Клуб MTG «Planeswalker» | НГУ | NSU",
+    "category": "Игры",
+    "description": "Magic: The Gathering: Стандарт, Модерн, Кухня и EDH. Новичкам помогают освоить правила.",
+    "schedule": "Суббота 16:20–20:00",
+    "location": "Учебный корпус № 1, аудитория 3140",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/mtg_nsu",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/mtg_nsu"
+      }
+    ]
+  },
+  {
+    "id": "historical-political",
+    "name": "Дискуссионный клуб НГУ",
+    "category": "Культура",
+    "description": "Обсуждение исторических и политических процессов со студентами, преподавателями и выпускниками НГУ.",
+    "schedule": "Нерегулярно, по анонсам",
+    "location": "Новый корпус НГУ, ректорат, 2-й этаж, базовая аудитория 212",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/istpolitclubnsu",
+    "status": "active",
+    "scheduleStatus": "needs-confirmation",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/istpolitclubnsu"
+      }
+    ],
+    "notes": [
+      "Встречи нерегулярные, по анонсам. Корпус и этаж уточнены пользователем; контура аудитории 212 пока нет."
+    ],
+    "baseRoomIds": [
+      "academic-1-212"
+    ]
+  },
+  {
+    "id": "ethno",
+    "name": "Этноклуб НГУ «Семёнов день»",
+    "category": "Культура",
+    "description": "Изучение и популяризация русской традиционной культуры. Клуб основан в 2014 году.",
+    "schedule": "Понедельник с 19:00 · Воскресенье с 13:00",
+    "location": "Пн: пристройка общежития № 5, репетиционный зал; вс: общежитие № 6, танцевальный зал",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/etnoclubnsu",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/etnoclubnsu"
+      }
+    ],
+    "notes": [
+      "Не уточнено, находится ли воскресный зал в пристройке общежития № 6. Эти места пока хранятся отдельно."
+    ]
+  },
+  {
+    "id": "mountain-tourism",
+    "name": "Секция горного туризма НГУ",
+    "category": "Спорт",
+    "description": "Беговые тренировки и лекции по горному туризму.",
+    "schedule": "Пн и пт — беговая тренировка, время не указано; чт 19:00 — лекция",
+    "location": "Пн и пт: у крыльца старого спорткомплекса НГУ; чт: новый спорткомплекс НГУ, аудитория 223",
+    "attendance": "Не указано",
+    "url": "https://vk.ru/mountainnsu",
+    "status": "active",
+    "scheduleStatus": "reported",
+    "sources": [
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-10",
+        "url": "https://vk.ru/mountainnsu"
+      }
+    ]
   }
 ]
