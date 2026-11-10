@@ -12,10 +12,15 @@ const bytes = readFileSync(new URL('../public/data/room-polygons.json', import.m
 const polygons = parsePolygons(JSON.parse(bytes.toString()))
 const report = JSON.parse(readFileSync(new URL('../docs/user-room-import-2026-11-10.json', import.meta.url), 'utf8'))
 
-test('user export is preserved exactly and all 57 polygons have matching selectable rooms', () => {
-  assert.equal(createHash('sha256').update(bytes).digest('hex'), report.sourceSha256)
-  assert.equal(polygons.length, 57)
-  assert.equal(userDigitizedRooms.length, 44)
+test('raw user export and unchanged points are preserved with two approved label corrections', () => {
+  const rawBytes = readFileSync(new URL('../docs/source-exports/room-polygons-3.json', import.meta.url))
+  assert.equal(createHash('sha256').update(rawBytes).digest('hex'), report.sourceSha256)
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), report.preparedGeometrySha256)
+  const corrected = parsePolygons(JSON.parse(rawBytes.toString())).map(room => ({ ...room,
+    id: room.floor === 3 && room.id === '3241' ? '3141' : room.floor === 3 && room.id === '3242' ? '3142' : room.id }))
+  assert.deepEqual(polygons, corrected)
+  assert.equal(polygons.length, 97)
+  assert.equal(userDigitizedRooms.length, 84)
   for (const polygon of polygons) {
     assert.equal(campusRooms.filter(room => room.buildingId === polygon.buildingId &&
       room.floor === polygon.floor && room.number === polygon.id).length, 1, polygon.id)
