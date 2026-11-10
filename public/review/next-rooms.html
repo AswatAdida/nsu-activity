@@ -8,12 +8,12 @@
 </style>
 </head>
 <body><main>
-<p class="status">Шесть предложений · требуется подтверждение</p>
+<p class="status">Шесть контуров подтверждены пользователем</p>
 <h1>Следующие помещения для оцифровки</h1>
-<p>Слева — исходный план, справа — автоматически найденный внутренний край зелёных стен. Номера помещений и начальные точки выбраны человеком. Эти контуры пока не добавлены на карту.</p>
-<div class="actions"><label><input id="overlay" type="checkbox" checked> Показывать контуры</label><a href="../data/room-polygons-next-candidates.json" download>Скачать JSON предложений</a><a href="../">Карта кампуса</a></div>
+<p>Слева — исходный план, справа — автоматически найденный внутренний край зелёных стен. Номера помещений и начальные точки выбраны человеком. Все шесть контуров добавлены на карту.</p>
+<div class="actions"><label><input id="overlay" type="checkbox" checked> Показывать контуры</label><a href="../data/room-polygons-next-candidates.json" download>Скачать JSON контуров</a><a href="../">Карта кампуса</a></div>
 <p id="status" role="status">Загрузка…</p><div class="grid" id="rooms"></div>
-<p>Проверьте границы каждого помещения, особенно дверные участки. Метод не распознаёт номера и не отличает одну комнату от нескольких соединённых комнат. Результат требует визуальной проверки. Подтверждённая 5222 уже входит в основной набор отдельно от этих предложений.</p>
+<p>Эти границы проверены и подтверждены пользователем. На карте теперь 13 помещений, включая 5222 и шесть исходных аудиторий. Для будущих помещений метод по-прежнему требует визуальной проверки: он не распознаёт номера и может объединять комнаты через открытые двери.</p>
 </main>
 <script type="module">
 const ns='http://www.w3.org/2000/svg';
@@ -24,7 +24,7 @@ for(const room of rooms){
 const card=document.createElement('section');card.className='card';const title=document.createElement('h2');title.textContent=`${room.id} · этаж ${room.floor}`;card.append(title);const pair=document.createElement('div');pair.className='pair';
 const points=room.points.map(([x,y])=>[x*2.048,y*2.048]);const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);const left=Math.min(...xs)-22,top=Math.min(...ys)-22,width=Math.max(...xs)-left+22,height=Math.max(...ys)-top+22;
 for(const overlay of [false,true]){const panel=document.createElement('div');const caption=document.createElement('div');caption.className='caption';caption.textContent=overlay?'Найденная граница':'Исходный план';panel.append(caption);const svg=element('svg',{viewBox:`${left} ${top} ${width} ${height}`,role:'img','aria-label':`${room.id}: ${caption.textContent}`});svg.append(element('image',{href:`../floorplans/floor-${room.floor}.png`,width:2048,height:2048}));if(overlay)svg.append(element('polygon',{points:points.map(p=>p.join(',')).join(' '),class:'contour',fill:'#2563eb','fill-opacity':0.25,stroke:'#16468c','stroke-width':1}));panel.append(svg);pair.append(panel)}card.append(pair);document.querySelector('#rooms').append(card)}
-document.querySelector('#status').textContent=`Предложений: ${rooms.length}. На основную карту они не добавлены.`;
+document.querySelector('#status').textContent=`Подтверждено контуров: ${rooms.length}. Все контуры включены в основную карту.`;
 }catch(error){document.querySelector('#status').textContent=`Ошибка: ${error.message}`}
 document.querySelector('#overlay').addEventListener('change',event=>document.querySelectorAll('.contour').forEach(p=>p.style.display=event.target.checked?'':'none'));
 </script></body></html>

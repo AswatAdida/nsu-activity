@@ -9,5 +9,71 @@
     "candidateFile": "public/data/room-polygons-5222-candidate.json",
     "candidateSha256": "119665a9e3793e6345cc84136207b1c7f212b584097960b8d55c02f78ceac08f",
     "sourceImageSha256": "2eb6e1728889fe4d26b9d63fffad582afc36fdaa8cf48e9b6348a991a7eb6334"
+  },
+  {
+    "buildingId": "academic-1",
+    "floor": 2,
+    "roomId": "2241",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the six-room comparison in chat",
+    "candidateFile": "public/data/room-polygons-next-candidates.json",
+    "candidateSha256": "8fbebf24150fe9ad3dff2c5492cb78d192cd78602d1c780fda5adb33ae654f8c",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "buildingId": "academic-1",
+    "floor": 2,
+    "roomId": "2270",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the six-room comparison in chat",
+    "candidateFile": "public/data/room-polygons-next-candidates.json",
+    "candidateSha256": "8fbebf24150fe9ad3dff2c5492cb78d192cd78602d1c780fda5adb33ae654f8c",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "buildingId": "academic-1",
+    "floor": 2,
+    "roomId": "2271",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the six-room comparison in chat",
+    "candidateFile": "public/data/room-polygons-next-candidates.json",
+    "candidateSha256": "8fbebf24150fe9ad3dff2c5492cb78d192cd78602d1c780fda5adb33ae654f8c",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "buildingId": "academic-1",
+    "floor": 2,
+    "roomId": "2323",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the six-room comparison in chat",
+    "candidateFile": "public/data/room-polygons-next-candidates.json",
+    "candidateSha256": "8fbebf24150fe9ad3dff2c5492cb78d192cd78602d1c780fda5adb33ae654f8c",
+    "sourceImageSha256": "c33f37c878578f05053f4f59811abfe5ff10212dd50d532d886423568e601ef6"
+  },
+  {
+    "buildingId": "academic-1",
+    "floor": 3,
+    "roomId": "3140",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the six-room comparison in chat",
+    "candidateFile": "public/data/room-polygons-next-candidates.json",
+    "candidateSha256": "8fbebf24150fe9ad3dff2c5492cb78d192cd78602d1c780fda5adb33ae654f8c",
+    "sourceImageSha256": "266c7b6d620879ce249059a79a88bbb78fb7c467cf65473cd42cfdcd4e433d4c"
+  },
+  {
+    "buildingId": "academic-1",
+    "floor": 3,
+    "roomId": "3266",
+    "status": "approved",
+    "reviewedOn": "2026-11-10",
+    "source": "User confirmed the six-room comparison in chat",
+    "candidateFile": "public/data/room-polygons-next-candidates.json",
+    "candidateSha256": "8fbebf24150fe9ad3dff2c5492cb78d192cd78602d1c780fda5adb33ae654f8c",
+    "sourceImageSha256": "266c7b6d620879ce249059a79a88bbb78fb7c467cf65473cd42cfdcd4e433d4c"
   }
 ]
