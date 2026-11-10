@@ -4,14 +4,18 @@ import { Download, RotateCcw, Undo2, Trash2 } from 'lucide-react'
 import { conflictingPolygons, geometryError, isPoint, mergePolygons, parsePolygons, polygonKey } from '../data/roomPolygons'
 import type { Point, RoomPolygon } from '../data/roomPolygons'
 import { suggestRoomContour } from '../data/suggestRoomContour'
+import { polygonNumber, resolvePolygonRoom } from '../data/roomIdentity'
+import { campusRooms } from '../data/campusRooms'
 
 type Props = { floor: number }
-type Draft = { roomId: string; originalId: string | null; points: Point[]; method?: 'assisted' }
+type Draft = { roomId: string; originalId: string | null; points: Point[]; method?: 'assisted'; polygonNumber?: string; linkedRoomId?: string }
 const STORAGE_KEY = 'nsu-activity-room-polygons-v1'
 const emptyDraft = (): Draft => ({ roomId: '', originalId: null, points: [] })
 const errorText = (error: unknown) => error instanceof Error ? error.message : String(error)
 const polygonPoints = (points: Point[]) => points.map(p => p.join(',')).join(' ')
 const button = 'rounded-lg border border-slate-300 px-3 py-2 text-sm disabled:opacity-40'
+const polygonCaption = (polygon: RoomPolygon) => polygon.number
+  ? resolvePolygonRoom(polygon, campusRooms)?.name ?? polygon.number : polygon.id
 
 function readPolygons() {
   try {
@@ -29,6 +33,11 @@ function readDraft(key: string) {
     if (!value || typeof value.roomId !== 'string' ||
       !(value.originalId === null || typeof value.originalId === 'string') ||
       !Array.isArray(value.points) || !value.points.every(isPoint)) throw new Error('Неверный формат черновика')
+    for (const field of ['polygonNumber', 'linkedRoomId']) {
+      if (value[field] !== undefined && (typeof value[field] !== 'string' || !value[field].trim())) {
+        throw new Error('Неверная связь помещения в черновике')
+      }
+    }
     return { draft: value as Draft, error: '' }
   } catch (error) {
     return { draft: emptyDraft(), error: `Не удалось восстановить черновик: ${errorText(error)}. Исходная запись не изменена.` }
@@ -153,9 +162,19 @@ export default function FloorPolygonEditor({ floor }: Props) {
     const id = draft.roomId.trim()
     const error = geometryError(draft.points)
     if (!id || error) { setMessage(error || 'Укажите номер аудитории.'); return }
-    const polygon: RoomPolygon = { id, buildingId: 'academic-1', floor, points: draft.points }
-    if (draft.originalId === null && polygons.some(p => polygonKey(p) === polygonKey(polygon)) &&
-      !window.confirm(`Заменить существующий контур аудитории ${id}?`)) return
+    const matches = polygons.filter(p => p.buildingId === 'academic-1' && p.floor === floor && polygonNumber(p) === id)
+    if (draft.originalId === null && matches.length > 1) {
+      setMessage(`На этаже несколько помещений с номером ${id}. Выберите конкретную область в списке под планом, чтобы её изменить.`)
+      return
+    }
+    const original = draft.originalId !== null
+      ? polygons.find(p => p.buildingId === 'academic-1' && p.floor === floor && p.id === draft.originalId)
+      : matches[0]
+    const polygon: RoomPolygon = { ...(draft.polygonNumber ? { number: draft.polygonNumber } : {}),
+      ...(draft.linkedRoomId ? { roomId: draft.linkedRoomId } : {}),
+      ...original, id: draft.originalId ?? original?.id ?? id,
+      buildingId: 'academic-1', floor, points: draft.points }
+    if (draft.originalId === null && original && !window.confirm(`Заменить существующий контур аудитории ${id}?`)) return
     if (commitPolygons(mergePolygons(polygons, [polygon], true))) {
       updateDraft(emptyDraft())
       setSelectedVertex(null)
@@ -164,11 +183,13 @@ export default function FloorPolygonEditor({ floor }: Props) {
   }
   function editPolygon(polygon: RoomPolygon) {
     if (hasDraft && !window.confirm('Заменить текущий черновик выбранным контуром?')) return
-    updateDraft({ roomId: polygon.id, originalId: polygon.id, points: polygon.points.map(p => [...p] as Point) })
+    updateDraft({ roomId: polygonNumber(polygon), originalId: polygon.id, points: polygon.points.map(p => [...p] as Point),
+      ...(polygon.number ? { polygonNumber: polygon.number } : {}),
+      ...(polygon.roomId ? { linkedRoomId: polygon.roomId } : {}) })
     setSelectedVertex(null)
   }
   function removePolygon(polygon: RoomPolygon) {
-    if (!window.confirm(`Удалить контур аудитории ${polygon.id}?`)) return
+    if (!window.confirm(`Удалить контур ${resolvePolygonRoom(polygon, campusRooms)?.name ?? polygonNumber(polygon)}?`)) return
     commitPolygons(polygons.filter(p => polygonKey(p) !== polygonKey(polygon)))
   }
   function cancelDraft() {
@@ -310,7 +331,7 @@ export default function FloorPolygonEditor({ floor }: Props) {
           <button type="button" disabled={!draft.roomId.trim() || Boolean(geometryError(draft.points))} onClick={savePolygon} className="rounded-lg bg-[#16468c] px-4 py-2 text-white disabled:opacity-40">Сохранить контур</button>
           <button type="button" className={button} disabled={!hasDraft} onClick={cancelDraft}>Отменить изменения</button>
         </div>
-        <p className="mt-2 text-xs text-slate-500">{draft.originalId ? `Редактируется ${draft.originalId}. Оригинал сохраняется до нажатия «Сохранить контур».` : 'Создание нового контура. Номер аудитории сохраняется как строка, включая начальные нули.'}</p>
+        <p className="mt-2 text-xs text-slate-500">{draft.originalId ? `Редактируется ${draft.roomId}. Оригинал сохраняется до нажатия «Сохранить контур».` : 'Создание нового контура. Номер аудитории сохраняется как строка, включая начальные нули.'}</p>
         {draft.method === 'assisted' && <p className="mt-2 rounded-lg bg-amber-50 p-2 text-sm text-amber-900">Это предложенная граница. Проверьте стены и дверные участки перед сохранением. Её можно поправить вершинами.</p>}
         {validationError && <p className="mt-2 text-sm text-amber-800">{validationError}</p>}
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
@@ -328,7 +349,7 @@ export default function FloorPolygonEditor({ floor }: Props) {
           <svg ref={svgRef} viewBox="0 0 1000 1000" preserveAspectRatio="none" className="absolute inset-0 h-full w-full cursor-crosshair" style={{ touchAction: 'none' }} onClick={addPoint} onPointerMove={moveVertex} onPointerUp={stopDrag} onPointerCancel={stopDrag} onLostPointerCapture={() => { drag.current = null }}>
             {currentPolygons.map(polygon => <g key={polygon.id} pointerEvents="none">
               <polygon points={polygonPoints(polygon.points)} fill="#2563eb" fillOpacity={0.22} stroke="#1d4ed8" strokeWidth={2} vectorEffect="non-scaling-stroke" />
-              {showLabels && <text x={polygon.points.reduce((s, p) => s + p[0], 0) / polygon.points.length} y={polygon.points.reduce((s, p) => s + p[1], 0) / polygon.points.length} textAnchor="middle" fontSize={12} fontWeight="bold" fill="#1e3a8a">{polygon.id}</text>}
+              {showLabels && <text x={polygon.points.reduce((s, p) => s + p[0], 0) / polygon.points.length} y={polygon.points.reduce((s, p) => s + p[1], 0) / polygon.points.length} textAnchor="middle" fontSize={12} fontWeight="bold" fill="#1e3a8a">{polygonNumber(polygon)}</text>}
             </g>)}
             {draft.points.length > 0 && <g>
               <polyline points={polygonPoints(draft.points)} fill="none" stroke="#dc2626" strokeWidth={3} vectorEffect="non-scaling-stroke" pointerEvents="none" />
@@ -354,8 +375,8 @@ export default function FloorPolygonEditor({ floor }: Props) {
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         {currentPolygons.map(polygon => <div key={polygon.id} className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm">
-          <button type="button" disabled={busy || detecting || Boolean(pendingImport)} onClick={() => editPolygon(polygon)} className="font-medium text-blue-700" title="Изменить контур">{polygon.id}</button>
-          <button type="button" disabled={busy || detecting || Boolean(pendingImport) || draft.originalId === polygon.id} onClick={() => removePolygon(polygon)} title={`Удалить контур ${polygon.id}`} aria-label={`Удалить контур ${polygon.id}`} className="text-red-600 disabled:opacity-40"><Trash2 size={15} /></button>
+          <button type="button" disabled={busy || detecting || Boolean(pendingImport)} onClick={() => editPolygon(polygon)} className="font-medium text-blue-700" title="Изменить контур">{polygonCaption(polygon)}</button>
+          <button type="button" disabled={busy || detecting || Boolean(pendingImport) || draft.originalId === polygon.id} onClick={() => removePolygon(polygon)} title={`Удалить контур ${polygonCaption(polygon)}`} aria-label={`Удалить контур ${polygonCaption(polygon)}`} className="text-red-600 disabled:opacity-40"><Trash2 size={15} /></button>
         </div>)}
       </div>
       <p className="mt-4 text-xs text-slate-500">Черновик сохраняется отдельно для каждого этажа и восстанавливается при открытии. Экспорт JSON включает только сохранённые контуры всех этажей; сначала сохраните нужный черновик. «Скачать черновик» — отдельная резервная копия, не файл для публикации. Для публикации замените public/data/room-polygons.json в репозитории экспортированным файлом. Просмотрщик показывает опубликованную версию.</p>

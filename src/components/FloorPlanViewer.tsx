@@ -2,14 +2,9 @@
 import { useEffect, useState } from 'react'
 import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react'
 
-type Point = [number, number]
-
-type RoomPolygon = {
-  id: string
-  buildingId: string
-  floor: number
-  points: Point[]
-}
+import type { RoomPolygon } from '../data/roomPolygons'
+import { polygonNumber, resolvePolygonRoom } from '../data/roomIdentity'
+import { campusRooms } from '../data/campusRooms'
 
 const markers: Record<number, { id: string; x: number; y: number }[]> = {
   0: [{ id: '0250', x: 9.4, y: 7.5 }],
@@ -25,13 +20,13 @@ const markers: Record<number, { id: string; x: number; y: number }[]> = {
 
 type Props = {
   floor: number
-  selectedRoom?: string | null
+  selectedRoomId?: string | null
   onRoomSelect?: (id: string) => void
 }
 
 export default function FloorPlanViewer({
   floor,
-  selectedRoom,
+  selectedRoomId,
   onRoomSelect,
 }: Props) {
   const [zoom, setZoom] = useState(1)
@@ -73,12 +68,8 @@ export default function FloorPlanViewer({
       polygon.floor === floor
   )
 
-  console.log('Текущий этаж:', floor)
-  console.log('Всего загружено контуров:', polygons.length)
-  console.log('Контуры текущего этажа:', floorPolygons)
-
   const polygonIds = new Set(
-    floorPolygons.map(polygon => polygon.id)
+    floorPolygons.map(polygonNumber)
   )
 
   return (
@@ -152,7 +143,8 @@ export default function FloorPlanViewer({
             className="absolute inset-0 h-full w-full"
           >
             {floorPolygons.map(room => {
-              const isSelected = selectedRoom === room.id
+              const record = resolvePolygonRoom(room, campusRooms)
+              const isSelected = Boolean(record && selectedRoomId === record.id)
 
               const points = room.points
                 .map(([x, y]) => `${x},${y}`)
@@ -161,6 +153,8 @@ export default function FloorPlanViewer({
               return (
                 <polygon
                   key={room.id}
+                  data-polygon-id={room.id}
+                  data-room-id={record?.id}
                   points={points}
                   fill={isSelected ? '#f59e0b' : '#2563eb'}
                   fillOpacity={isSelected ? 0.4 : 0.2}
@@ -168,9 +162,9 @@ export default function FloorPlanViewer({
                   strokeWidth={3}
                   vectorEffect="non-scaling-stroke"
                   className="cursor-pointer"
-                  onClick={() => onRoomSelect?.(room.id)}
+                  onClick={() => { if (record) onRoomSelect?.(record.id) }}
                 >
-                  <title>Аудитория {room.id}</title>
+                  <title>{record?.name ?? `Помещение ${polygonNumber(room)}`}</title>
                 </polygon>
               )
             })}
@@ -183,9 +177,12 @@ export default function FloorPlanViewer({
                 type="button"
                 key={marker.id}
                 title={`Аудитория ${marker.id}`}
-                onClick={() => onRoomSelect?.(marker.id)}
+                onClick={() => {
+                  const record = resolvePolygonRoom({ id: marker.id, buildingId: 'academic-1', floor }, campusRooms)
+                  if (record) onRoomSelect?.(record.id)
+                }}
                 className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white px-2 py-1 text-xs font-bold text-white shadow-lg ${
-                  selectedRoom === marker.id
+                  selectedRoomId === resolvePolygonRoom({ id: marker.id, buildingId: 'academic-1', floor }, campusRooms)?.id
                     ? 'bg-amber-600'
                     : 'bg-[#16468c]'
                 }`}
