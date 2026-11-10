@@ -1,6 +1,10 @@
 import FloorPolygonEditor from './FloorPolygonEditor'
 import { useMemo, useState } from 'react'
-import { Search, DoorOpen, Clock3, Users } from 'lucide-react'
+import { Search, DoorOpen } from 'lucide-react'
+import rawClubs from '../data/clubs.json'
+import type { Club } from '../types/club'
+import { buildingNames } from '../data/buildingLabels'
+import { ActivitySessionDetails } from './ActivitySessionDetails'
 import { buildings } from '../data/buildings'
 import { campusRooms } from '../data/campusRooms'
 import { activitySessions } from '../data/activitySessions'
@@ -11,24 +15,7 @@ type Props = {
   onBuildingChange: (building: string) => void
 }
 
-const days = [
-  '',
-  'Понедельник',
-  'Вторник',
-  'Среда',
-  'Четверг',
-  'Пятница',
-  'Суббота',
-  'Воскресенье',
-]
-
-const buildingNames: Record<string, string> = {
-  'academic-1': 'Новый корпус НГУ',
-  'dorm-6-annex': 'Пристройка общежития № 6',
-  'dorm-5': 'Общежитие № 5',
-  'sports-12-1': 'Спортивные помещения, Пирогова 12/1',
-  stc: 'СТЦ НГУ',
-}
+const clubs = rawClubs as Club[]
 
 export default function FloorExplorer({
   selectedBuilding,
@@ -50,7 +37,7 @@ export default function FloorExplorer({
   const floors = building?.floors ?? []
 
   const visibleRooms = buildingRooms.filter(
-    room => floor === null || room.floor === floor
+    room => floors.length === 0 || floor === null || room.floor === floor
   )
 
   const searchResults = useMemo(() => {
@@ -65,12 +52,14 @@ export default function FloorExplorer({
   }, [query])
 
   const selected = campusRooms.find(
-    room => room.id === selectedRoom
+    room => room.id === selectedRoom && room.buildingId === building?.id
   )
 
-  const sessions = activitySessions.filter(
-    session => session.roomId === selectedRoom
-  )
+  const sessions = selected ? activitySessions.filter(
+    session => session.roomId === selected.id || session.alternativeRoomIds?.includes(selected.id)
+  ) : []
+  const baseClubs = selected ? clubs.filter(club => club.baseRoomIds?.includes(selected.id)) : []
+  const buildingSessions = activitySessions.filter(session => session.buildingId === building?.id && session.roomId === null)
 
   function chooseRoom(roomId: string) {
     const room = campusRooms.find(r => r.id === roomId)
@@ -197,7 +186,7 @@ export default function FloorExplorer({
       </div>
 
       <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(270px,1fr)]">
-        <div>
+        <div className="min-w-0">
           {building?.id === 'academic-1' && floor !== null ? (
             <FloorPlanViewer
               key={floor}
@@ -214,7 +203,7 @@ export default function FloorExplorer({
             />
           ) : (
             <div className="flex min-h-80 items-center justify-center rounded-2xl border border-dashed border-blue-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
-              {floor === null
+              {floor === null && floors.length > 0
                 ? 'Выбери этаж для просмотра плана'
                 : 'План этого здания пока не загружен'}
             </div>
@@ -248,12 +237,17 @@ export default function FloorExplorer({
                 <p className="font-medium">{room.name}</p>
                 <p className="text-xs text-slate-500">
                   {room.block
-                    ? `${room.block} блок`
+                    ? room.block === 'Ректорат' ? 'Ректорат' : `${room.block} блок`
                     : 'Блок не указан'}
                 </p>
               </div>
             </button>
           ))}
+
+          {buildingSessions.length > 0 && <div className="rounded-xl bg-[#163e79] p-5 text-white">
+            <h3 className="font-bold">Встречи без указанной аудитории</h3>
+            <div className="mt-3 space-y-4">{buildingSessions.map(session => <ActivitySessionDetails key={session.id} session={session} />)}</div>
+          </div>}
 
           {selected && (
             <div className="rounded-xl bg-[#163e79] p-5 text-white">
@@ -263,53 +257,20 @@ export default function FloorExplorer({
 
               {sessions.length ? (
                 <div className="mt-4 space-y-4">
-                  {sessions.map(session => (
-                    <div
-                      key={session.id}
-                      className="border-t border-blue-300/30 pt-3"
-                    >
-                      <p className="font-medium">
-                        {session.clubName}
-                      </p>
-
-                      <p className="mt-2 flex items-center gap-2 text-sm text-blue-100">
-                        <Clock3 size={16} />
-                        {session.dayOfWeek
-                          ? days[session.dayOfWeek]
-                          : 'День уточняется'}
-                        {session.startTime
-                          ? ` · ${session.startTime}–${session.endTime ?? '?'}`
-                          : ''}
-                      </p>
-
-                      <p className="mt-1 text-xs text-blue-200">
-                        Периодичность: {session.recurrence}
-                      </p>
-
-                      {session.attendanceMin !== null && (
-                        <p className="mt-2 flex items-center gap-2 text-sm text-blue-100">
-                          <Users size={16} />
-                          {session.attendanceMin}
-                          {session.attendanceMax !== null &&
-                            session.attendanceMax !== session.attendanceMin
-                            ? `–${session.attendanceMax}`
-                            : ''}{' '}
-                          участников
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                  {sessions.map(session => <ActivitySessionDetails key={session.id} session={session} />)}
                 </div>
               ) : (
                 <p className="mt-3 text-sm text-blue-100">
-                  Подтверждённых регулярных мероприятий
-                  в нашей базе пока нет.
+                  Сведений о регулярных мероприятиях в нашей базе пока нет.
                 </p>
               )}
 
-              <p className="mt-4 text-xs text-blue-200">
-                Расположение метки на плане требует проверки.
-              </p>
+              {baseClubs.length > 0 && <div className="mt-4 text-sm text-blue-100">
+                <p className="font-semibold">База объединений</p>
+                {baseClubs.map(club => <p key={club.id} className="mt-2">{club.name}. {club.schedule}</p>)}
+                <p className="mt-2 text-xs">Место базирования не означает регулярные встречи в этой аудитории.</p>
+              </div>}
+              <p className="mt-4 text-xs text-blue-200">Наличие записи о помещении не означает, что его контур уже оцифрован.</p>
             </div>
           )}
         </div>

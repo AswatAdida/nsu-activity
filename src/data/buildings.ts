@@ -42,4 +42,44 @@ export const buildings: Building[] = [
     coordinates: null,
     floors: [],
   },
+  {
+    "id": "sports-new",
+    "name": "Новый спорткомплекс НГУ",
+    "address": null,
+    "type": "sports",
+    "coordinates": null,
+    "floors": []
+  },
+  {
+    "id": "sports-old",
+    "name": "Старый спорткомплекс НГУ",
+    "address": null,
+    "type": "sports",
+    "coordinates": null,
+    "floors": []
+  },
+  {
+    "id": "sports-shooting",
+    "name": "Тир НГУ, Пирогова, 12",
+    "address": "Пирогова, 12",
+    "type": "sports",
+    "coordinates": null,
+    "floors": []
+  },
+  {
+    "id": "dorm-5-annex",
+    "name": "Пристройка общежития № 5",
+    "address": null,
+    "type": "dormitory",
+    "coordinates": null,
+    "floors": []
+  },
+  {
+    "id": "dorm-6",
+    "name": "Общежитие № 6",
+    "address": null,
+    "type": "dormitory",
+    "coordinates": null,
+    "floors": []
+  },
 ]

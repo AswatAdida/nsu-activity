@@ -1,4 +1,11 @@
 
+export type DataSource = {
+  kind: 'user-message' | 'poster' | 'floor-plan'
+  recordedOn: string
+  url?: string
+  note?: string
+}
+
 export type Building = {
   id: string
   name: string
@@ -20,12 +27,17 @@ export type CampusRoom = {
     x: number
     y: number
   } | null
+  sources?: DataSource[]
 }
 
 export type ActivitySession = {
   id: string
+  clubId?: string
   clubName: string
   roomId: string | null
+  alternativeRoomIds?: string[]
+  buildingId?: string
+  locationNote?: string
   dayOfWeek: number | null // 1 = понедельник, 7 = воскресенье
   startTime: string | null
   endTime: string | null
@@ -33,4 +45,7 @@ export type ActivitySession = {
   attendanceMin: number | null
   attendanceMax: number | null
   locationStatus: 'confirmed' | 'approximate' | 'unknown'
+  scheduleStatus?: 'reported' | 'needs-confirmation'
+  source?: DataSource
+  notes?: string[]
 }

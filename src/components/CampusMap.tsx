@@ -1,6 +1,7 @@
 
 import { MapContainer, TileLayer } from 'react-leaflet'
-import { rooms } from '../data/rooms'
+import { buildings } from '../data/buildings'
+import { buildingNames } from '../data/buildingLabels'
 import 'leaflet/dist/leaflet.css'
 
 type CampusMapProps = {
@@ -12,23 +13,21 @@ export default function CampusMap({
   selectedBuilding,
   onBuildingSelect,
 }: CampusMapProps) {
-  const buildings = [...new Set(rooms.map(room => room.building))]
-
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
-        {buildings.map(building => (
+        {buildings.map(({ id }) => (
           <button
-            key={building}
+            key={id}
             type="button"
-            onClick={() => onBuildingSelect(building)}
+            onClick={() => onBuildingSelect(buildingNames[id])}
             className={`rounded-xl border px-4 py-2 text-sm transition ${
-              selectedBuilding === building
+              selectedBuilding === buildingNames[id]
                 ? 'border-[#16468c] bg-[#16468c] text-white'
                 : 'border-slate-200 bg-white text-slate-700 hover:border-blue-300'
             }`}
           >
-            {building}
+            {buildingNames[id]}
           </button>
         ))}
       </div>
