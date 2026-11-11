@@ -1,5 +1,6 @@
 import { CalendarDays, MapPin, Users, ExternalLink } from 'lucide-react'
 import type { Club } from '../types/club'
+import { activityPolicy } from '../data/activityState'
 
 export function ClubCard({ club }: { club: Club }) {
   return <article className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md">
@@ -11,7 +12,7 @@ export function ClubCard({ club }: { club: Club }) {
     <p className="mt-1 text-sm text-slate-600">{club.description}</p>
     <div className="mt-5 flex-1 space-y-3 text-sm text-slate-600">
       <p className="flex items-start gap-2"><CalendarDays className="mt-0.5 shrink-0 text-[#16468c]" size={17} />{club.schedule}</p>
-      {club.scheduleStatus && <p className="text-xs text-amber-800">{club.scheduleStatus === 'needs-confirmation' ? 'Расписание требует уточнения' : 'Расписание со слов пользователя; актуальность не проверена'}</p>}
+      {club.scheduleStatus && <p className="text-xs text-amber-800">{activityPolicy.confirmSchedules ? 'Расписание принято как подтверждённое' : club.scheduleStatus === 'needs-confirmation' ? 'Расписание требует уточнения' : 'Расписание со слов пользователя; актуальность не проверена'}</p>}
       <p className="flex items-start gap-2"><MapPin className="mt-0.5 shrink-0 text-[#16468c]" size={17} />{club.location}</p>
       <p className="flex items-start gap-2"><Users className="mt-0.5 shrink-0 text-[#16468c]" size={17} />{club.attendance}</p>
       {club.notes?.map(note => <p key={note} className="text-xs leading-relaxed text-slate-500">{note}</p>)}
