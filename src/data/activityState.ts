@@ -34,6 +34,7 @@ const minutes = (value: string | null) => value && /^([01]\d|2[0-3]):[0-5]\d$/.t
 // Pure evaluator: accepts any session set, including a future building-level selection.
 // Missing confirmation, unknown recurrence or missing times never imply an active meeting.
 export function evaluateActivity(sessions: readonly ActivitySession[], instant: Date): ActivityState {
+  if (!sessions.length) return { status: 'no-data', uncertain: false, reasons: [] }
   const reasons = new Set<string>()
   let scheduled = false
   const local = Number.isFinite(instant.getTime()) ? campusDateTime(instant) : null

@@ -31,7 +31,7 @@ export default function FloorExplorer({
     const timer = window.setInterval(() => setNow(new Date()), 15000)
     return () => window.clearInterval(timer)
   }, [mode])
-  const instant = mode === 'now' ? now : parseCampusDateTime(chosenTime)
+  const instant = useMemo(() => mode === 'now' ? now : parseCampusDateTime(chosenTime), [mode, now, chosenTime])
   const activityByRoom = useMemo(() => new Map(campusRooms.map(room => [room.id,
     evaluateActivity(sessionsForRoom(activitySessions, room.id), instant ?? new Date(NaN)),
   ])), [instant])
