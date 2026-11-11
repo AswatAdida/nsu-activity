@@ -5,6 +5,8 @@ import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-react'
 import type { RoomPolygon } from '../data/roomPolygons'
 import { polygonNumber, resolvePolygonRoom } from '../data/roomIdentity'
 import { campusRooms } from '../data/campusRooms'
+import { activityColors, activityLabels } from '../data/activityState'
+import type { ActivityState } from '../data/activityState'
 
 const markers: Record<number, { id: string; x: number; y: number }[]> = {
   0: [{ id: '0250', x: 9.4, y: 7.5 }],
@@ -20,12 +22,14 @@ const markers: Record<number, { id: string; x: number; y: number }[]> = {
 
 type Props = {
   floor: number
+  activityByRoom: ReadonlyMap<string, ActivityState>
   selectedRoomId?: string | null
   onRoomSelect?: (id: string) => void
 }
 
 export default function FloorPlanViewer({
   floor,
+  activityByRoom,
   selectedRoomId,
   onRoomSelect,
 }: Props) {
@@ -80,7 +84,7 @@ export default function FloorPlanViewer({
             Учебный корпус № 1 · {floor} этаж
           </p>
           <p className="text-xs text-slate-500">
-            Нажми на выделенную аудиторию, чтобы посмотреть мероприятия.
+            Нажми на любое помещение, чтобы посмотреть сведения о встречах.
           </p>
         </div>
 
@@ -144,6 +148,9 @@ export default function FloorPlanViewer({
           >
             {floorPolygons.map(room => {
               const record = resolvePolygonRoom(room, campusRooms)
+              const activity = record ? activityByRoom.get(record.id) : undefined
+              const status = activity?.status ?? 'no-data'
+              const label = `${record?.name ?? `Помещение ${polygonNumber(room)}`} · ${activityLabels[status]}${activity?.uncertain ? ' · ? Данные требуют уточнения' : ''}`
               const isSelected = Boolean(record && selectedRoomId === record.id)
 
               const points = room.points
@@ -156,15 +163,27 @@ export default function FloorPlanViewer({
                   data-polygon-id={room.id}
                   data-room-id={record?.id}
                   points={points}
-                  fill={isSelected ? '#f59e0b' : '#2563eb'}
+                  fill={activityColors[status]}
+                  data-activity={status}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={label}
+                  aria-pressed={isSelected}
+                  onKeyDown={event => {
+                    if (record && (event.key === 'Enter' || event.key === ' ')) {
+                      event.preventDefault()
+                      onRoomSelect?.(record.id)
+                    }
+                  }}
                   fillOpacity={isSelected ? 0.4 : 0.2}
-                  stroke={isSelected ? '#d97706' : '#16468c'}
-                  strokeWidth={3}
+                  stroke={isSelected ? '#0f172a' : activity?.uncertain ? '#b45309' : activityColors[status]}
+                  strokeDasharray={activity?.uncertain ? '5 4' : undefined}
+                  strokeWidth={isSelected ? 5 : 2}
                   vectorEffect="non-scaling-stroke"
                   className="cursor-pointer"
                   onClick={() => { if (record) onRoomSelect?.(record.id) }}
                 >
-                  <title>{record?.name ?? `Помещение ${polygonNumber(room)}`}</title>
+                  <title>{label}{activity?.reasons.length ? `: ${activity.reasons.join('; ')}` : ''}</title>
                 </polygon>
               )
             })}
@@ -183,10 +202,11 @@ export default function FloorPlanViewer({
                 }}
                 className={`absolute z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white px-2 py-1 text-xs font-bold text-white shadow-lg ${
                   selectedRoomId === resolvePolygonRoom({ id: marker.id, buildingId: 'academic-1', floor }, campusRooms)?.id
-                    ? 'bg-amber-600'
-                    : 'bg-[#16468c]'
+                    ? 'ring-2 ring-slate-900'
+                    : ''
                 }`}
                 style={{
+                  backgroundColor: activityColors[activityByRoom.get(resolvePolygonRoom({ id: marker.id, buildingId: 'academic-1', floor }, campusRooms)?.id ?? '')?.status ?? 'no-data'],
                   left: `${marker.x}%`,
                   top: `${marker.y}%`,
                 }}
@@ -198,8 +218,7 @@ export default function FloorPlanViewer({
       </div>
 
       <p className="border-t border-slate-200 px-4 py-3 text-xs text-slate-500">
-        Синие области — оцифрованные помещения. Остальные отметки
-        временные и будут заменяться контурами.
+        Цвет показывает сведения об активности; пунктир — неопределённость. Тёмная рамка — выбранное помещение. Круглые отметки обозначают помещения без контура.
       </p>
     </div>
   )

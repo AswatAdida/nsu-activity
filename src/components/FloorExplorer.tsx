@@ -1,5 +1,5 @@
 import FloorPolygonEditor from './FloorPolygonEditor'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Search, DoorOpen } from 'lucide-react'
 import rawClubs from '../data/clubs.json'
 import type { Club } from '../types/club'
@@ -9,6 +9,8 @@ import { buildings } from '../data/buildings'
 import { campusRooms } from '../data/campusRooms'
 import { activitySessions } from '../data/activitySessions'
 import FloorPlanViewer from './FloorPlanViewer'
+import ActivityTimeFilter from './ActivityTimeFilter'
+import { activityColors, activityLabels, campusDateTime, evaluateActivity, parseCampusDateTime, sessionsForRoom } from '../data/activityState'
 
 type Props = {
   selectedBuilding: string
@@ -21,6 +23,18 @@ export default function FloorExplorer({
   selectedBuilding,
   onBuildingChange,
 }: Props) {
+  const [mode, setMode] = useState<'now' | 'chosen'>('now')
+  const [now, setNow] = useState(() => new Date())
+  const [chosenTime, setChosenTime] = useState(() => campusDateTime(new Date()))
+  useEffect(() => {
+    if (mode !== 'now') return
+    const timer = window.setInterval(() => setNow(new Date()), 15000)
+    return () => window.clearInterval(timer)
+  }, [mode])
+  const instant = useMemo(() => mode === 'now' ? now : parseCampusDateTime(chosenTime), [mode, now, chosenTime])
+  const activityByRoom = useMemo(() => new Map(campusRooms.map(room => [room.id,
+    evaluateActivity(sessionsForRoom(activitySessions, room.id), instant ?? new Date(NaN)),
+  ])), [instant])
   const [floor, setFloor] = useState<number | null>(3)
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null)
   const [query, setQuery] = useState('')
@@ -82,6 +96,8 @@ export default function FloorExplorer({
         Найди аудиторию, выбери этаж и посмотри
         студенческие мероприятия.
       </p>
+
+      <ActivityTimeFilter mode={mode} value={chosenTime} instant={instant} onMode={value => { setNow(new Date()); setMode(value) }} onValue={setChosenTime} />
 
       <div className="relative mt-6">
         <Search
@@ -191,6 +207,7 @@ export default function FloorExplorer({
             <FloorPlanViewer
               key={floor}
               floor={floor}
+              activityByRoom={activityByRoom}
               selectedRoomId={selected?.id ?? null}
               onRoomSelect={setSelectedRoom}
             />
@@ -226,9 +243,10 @@ export default function FloorExplorer({
                   : 'border-slate-200 hover:bg-slate-50'
               }`}
             >
-              <DoorOpen size={20} className="text-[#16468c]" />
+              <DoorOpen size={20} className="shrink-0" style={{ color: activityColors[activityByRoom.get(room.id)!.status] }} />
               <div>
                 <p className="font-medium">{room.name}</p>
+                <p className="text-xs text-slate-600">{activityLabels[activityByRoom.get(room.id)!.status]}{activityByRoom.get(room.id)!.uncertain && ' · ? Требует уточнения'}</p>
                 <p className="text-xs text-slate-500">
                   {room.block
                     ? room.block === 'Ректорат' ? 'Ректорат' : `${room.block} блок`
@@ -250,6 +268,8 @@ export default function FloorExplorer({
                 {selected.name}
               </h3>
 
+              <p className="mt-2 text-sm">{activityLabels[activityByRoom.get(selected.id)!.status]}</p>
+              {activityByRoom.get(selected.id)!.reasons.map(reason => <p key={reason} className="mt-1 text-xs text-amber-200">? {reason}</p>)}
               {sessions.length ? (
                 <div className="mt-4 space-y-4">
                   {sessions.map(session => <ActivitySessionDetails key={session.id} session={session} />)}
