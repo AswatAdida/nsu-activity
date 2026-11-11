@@ -1,7 +1,8 @@
 
 import type { Building } from './campusTypes'
+import { campusSites } from './campusSites.ts'
 
-export const buildings: Building[] = [
+const records: Building[] = [
   {
     id: 'academic-1',
     name: 'Учебный корпус № 1 НГУ',
@@ -83,3 +84,21 @@ export const buildings: Building[] = [
     "floors": []
   },
 ]
+
+// Retain logical IDs and room/session references while sharing verified physical footprints.
+export const buildings: Building[] = records.map(building => {
+  const site = campusSites.find(site => site.buildingIds.includes(building.id))
+  return {
+    ...building,
+    address: site?.address ?? building.address,
+    coordinates: site?.center ?? null,
+    mapSiteId: site?.id,
+    geographyNote: building.id.endsWith('-annex')
+      ? 'Показан общий контур общежития. Отдельная граница и вход пристройки не установлены.'
+      : building.id === 'stc'
+        ? 'СТЦ расположен в пристройке по адресу Пирогова, 6. Показан общий контур здания; граница зала не установлена.'
+        : site?.sharedInterior
+          ? 'Несколько записей справочника относятся к одному физическому зданию; встречи и помещения показаны совместно.'
+          : undefined,
+  }
+})

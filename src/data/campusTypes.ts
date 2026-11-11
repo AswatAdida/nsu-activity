@@ -6,6 +6,18 @@ export type DataSource = {
   note?: string
 }
 
+export type CampusSite = {
+  id: string
+  name: string
+  address: string
+  buildingIds: string[]
+  sharedInterior: boolean
+  center: [number, number]
+  rings: [number, number][][] // outer ring, then holes; latitude, longitude
+  source: { url: string; version: number; checkedOn: string }
+  geometrySources: { url: string; version: number; checkedOn: string }[]
+}
+
 export type Building = {
   id: string
   name: string
@@ -13,6 +25,8 @@ export type Building = {
   type: 'academic' | 'dormitory' | 'sports' | 'cultural' | 'other'
   coordinates: [number, number] | null
   floors: number[]
+  mapSiteId?: string
+  geographyNote?: string
 }
 
 export type CampusRoom = {
@@ -38,6 +52,8 @@ export type ActivitySession = {
   alternativeRoomIds?: string[]
   buildingId?: string
   locationNote?: string
+  locationKind?: 'indoor' | 'outdoor'
+  validityNeedsClarification?: boolean
   dayOfWeek: number | null // 1 = понедельник, 7 = воскресенье
   startTime: string | null
   endTime: string | null

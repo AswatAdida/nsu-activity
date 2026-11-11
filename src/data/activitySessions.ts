@@ -1,8 +1,7 @@
 
 import type { ActivitySession } from './campusTypes'
 
-// Missing scheduleStatus is legacy evidence, not a confirmed schedule.
-// Set confirmed only after verification; partial times/recurrences remain uncertain.
+// Original source schedules are retained. The map's effective policy is in activityState.ts.
 export const activitySessions: ActivitySession[] = [
   {
     id: 'interclub-sat',
@@ -175,6 +174,7 @@ export const activitySessions: ActivitySession[] = [
   },
   {
     "id": "ultimate-mon",
+    "validityNeedsClarification": true,
     "clubId": "ultimate",
     "clubName": "НИИ ТУДА — команда НГУ по алтимат фрисби",
     "roomId": null,
@@ -200,6 +200,7 @@ export const activitySessions: ActivitySession[] = [
   },
   {
     "id": "ultimate-thu",
+    "validityNeedsClarification": true,
     "clubId": "ultimate",
     "clubName": "НИИ ТУДА — команда НГУ по алтимат фрисби",
     "roomId": null,
@@ -225,6 +226,7 @@ export const activitySessions: ActivitySession[] = [
   },
   {
     "id": "ultimate-sun",
+    "validityNeedsClarification": true,
     "clubId": "ultimate",
     "clubName": "НИИ ТУДА — команда НГУ по алтимат фрисби",
     "roomId": null,
@@ -433,6 +435,7 @@ export const activitySessions: ActivitySession[] = [
   },
   {
     "id": "mountain-run-mon",
+    "locationKind": "outdoor",
     "clubId": "mountain-tourism",
     "clubName": "Секция горного туризма НГУ",
     "roomId": null,
@@ -457,6 +460,7 @@ export const activitySessions: ActivitySession[] = [
   },
   {
     "id": "mountain-run-fri",
+    "locationKind": "outdoor",
     "clubId": "mountain-tourism",
     "clubName": "Секция горного туризма НГУ",
     "roomId": null,

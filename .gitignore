@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 __pycache__/
 .venv/
+
+# Local browser validation screenshots
+work/
