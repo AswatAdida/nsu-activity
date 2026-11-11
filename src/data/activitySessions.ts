@@ -1,6 +1,8 @@
 
 import type { ActivitySession } from './campusTypes'
 
+// Missing scheduleStatus is legacy evidence, not a confirmed schedule.
+// Set confirmed only after verification; partial times/recurrences remain uncertain.
 export const activitySessions: ActivitySession[] = [
   {
     id: 'interclub-sat',

@@ -45,7 +45,10 @@ export type ActivitySession = {
   attendanceMin: number | null
   attendanceMax: number | null
   locationStatus: 'confirmed' | 'approximate' | 'unknown'
-  scheduleStatus?: 'reported' | 'needs-confirmation'
+  scheduleStatus?: 'confirmed' | 'reported' | 'needs-confirmation'
+  // Inclusive local dates in Asia/Novosibirsk; absent bounds mean no stated limit.
+  validFrom?: string
+  validUntil?: string
   source?: DataSource
   notes?: string[]
 }
