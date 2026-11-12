@@ -1,7 +1,8 @@
 import { buildingContext } from '../data/campusNavigation'
-import { buildings } from '../data/buildings'
 import { campusRooms } from '../data/campusRooms'
 import { activityColors, activityLabels, campusDateTime, evaluateBuildingActivity, nextSessionStart } from '../data/activityState'
+import { isRegularSession } from '../data/sessionSchedule'
+import { baseRoomIds } from '../data/activityCatalog'
 import { geographyEvidence } from '../data/geographyEvidence'
 import { ActivitySessionDetails } from './ActivitySessionDetails'
 import type { ActivityState } from '../data/activityState'
@@ -12,19 +13,17 @@ type Props = {
   activityByRoom: ReadonlyMap<string, ActivityState>
   onExplore: () => void
   onRoomSelect: (id: string) => void
-  onBuildingSelect: (id: string) => void
   onBack: () => void
 }
-export default function BuildingCard({ buildingId, instant, activityByRoom, onExplore, onRoomSelect, onBuildingSelect, onBack }: Props) {
+export default function BuildingCard({ buildingId, instant, activityByRoom, onExplore, onRoomSelect, onBack }: Props) {
   const context = buildingContext(buildingId)
   if (!context) return null
   const { building, site, memberIds, rooms, sessions, clubs } = context
-  const activity = evaluateBuildingActivity(sessions, campusRooms, memberIds, instant ?? new Date(NaN))
+  const activity = evaluateBuildingActivity(sessions, campusRooms, memberIds, instant ?? new Date(NaN), rooms.some(room => baseRoomIds.has(room.id)))
   const upcoming = instant ? sessions.flatMap(session => {
     const start = nextSessionStart(session, instant)
     return start ? [{ session, start }] : []
   }).sort((a, b) => +a.start - +b.start) : []
-  const unresolvedCount = instant ? sessions.length - upcoming.length : sessions.length
   const indoors = sessions.filter(session => session.locationKind !== 'outdoor')
   const outdoors = sessions.filter(session => session.locationKind === 'outdoor')
   return <article className="min-w-0 space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5" aria-label="Карточка здания" data-building-card={buildingId}>
@@ -32,15 +31,15 @@ export default function BuildingCard({ buildingId, instant, activityByRoom, onEx
     <div>
       <h3 className="text-xl font-bold">{building.name}</h3>
       <p className="mt-1 text-sm text-slate-600">{building.address ?? 'Адрес уточняется'}</p>
-      <p className="mt-3 flex items-center gap-2 text-sm font-medium"><span className="h-3 w-3 shrink-0 rounded-full" style={{ background: activityColors[activity.status] }} />{activityLabels[activity.status]}{activity.uncertain && ' · ?'}</p>
+      <p className="mt-3 flex items-center gap-2 text-sm font-medium"><span className="h-3 w-3 shrink-0 rounded-full" style={{ background: activityColors[activity.status] }} />{activityLabels[activity.status]}</p>
       {building.geographyNote && <p className="mt-2 text-xs text-amber-800">{building.geographyNote}</p>}
     </div>
     <dl className="grid grid-cols-2 gap-3 rounded-xl bg-slate-50 p-3 text-sm">
       <div><dt className="text-slate-600">Объединений со встречами</dt><dd className="mt-1 text-lg font-bold">{clubs.length}</dd></div>
-      <div><dt className="text-slate-600">Регулярных встреч</dt><dd className="mt-1 text-lg font-bold">{sessions.filter(session => ['weekly', 'every-3-weeks', 'usually-odd-weeks', 'Воскресенья с сентября по апрель'].includes(session.recurrence)).length}</dd></div>
+      <div><dt className="text-slate-600">Регулярных встреч</dt><dd className="mt-1 text-lg font-bold">{sessions.filter(isRegularSession).length}</dd></div>
     </dl>
     {clubs.length > 0 && <div><h4 className="font-semibold">Объединения</h4><ul className="mt-2 list-inside list-disc space-y-1 text-sm">{clubs.map(name => <li key={name}>{name}</li>)}</ul></div>}
-    {site && site.buildingIds.length > 1 && <div className="space-y-2 text-sm"><p className="font-semibold">Также по этому адресу</p>{site.buildingIds.filter(id => id !== buildingId).map(id => <button key={id} type="button" onClick={() => onBuildingSelect(id)} className="block text-left text-blue-800 underline">{buildings.find(building => building.id === id)!.name}</button>)}{!site.sharedInterior && <p className="text-xs text-slate-500">У общежития и пристройки отдельные карточки помещений и встреч.</p>}</div>}
+
     <div>
       <h4 className="font-semibold">Доступные этажи</h4>
       <p className="mt-1 text-sm text-slate-600">{building.floors.length ? `${building.floors.join(', ')} · планы учебного корпуса № 1` : 'Поэтажных планов пока нет; доступны известные помещения и встречи.'}</p>
@@ -50,7 +49,6 @@ export default function BuildingCard({ buildingId, instant, activityByRoom, onEx
       <h4 className="font-semibold">Ближайшие известные начала встреч</h4>
       <p className="mt-1 text-xs text-slate-500">Относительно выбранного времени · Новосибирск. Уточняйте место в расписании ниже.</p>
       {upcoming.length ? <ul className="mt-2 space-y-2 text-sm">{upcoming.slice(0, 5).map(({ session, start }) => <li key={session.id} className="rounded-lg bg-slate-50 p-2"><span className="font-semibold">{campusDateTime(start).replace('T', ' ')}</span> · {session.clubName}{session.locationKind === 'outdoor' && ' · На улице'}{(session.locationStatus !== 'confirmed' || session.alternativeRoomIds?.length) ? ' · Место уточняется' : ''}</li>)}</ul> : <p className="mt-2 text-sm text-slate-600">{instant ? 'Нет встреч с вычислимой ближайшей датой.' : 'Выберите корректные дату и время.'}</p>}
-      {unresolvedCount > 0 && <p className="mt-2 text-xs text-amber-800">Для {unresolvedCount} записей нет вычислимого следующего начала. Проверьте периодичность, время и период действия. Предположительные даты не показаны.</p>}
     </div>
     <div>
       <h4 className="font-semibold">Известные помещения ({rooms.length})</h4>

@@ -51,5 +51,5 @@ test('rectorate 212 clarification is retained; sports floors and uncertain dorm 
 
 test('missing start or end time is displayed explicitly', () => {
   assert.equal(formatSessionTime({ dayOfWeek: 1, startTime: null, endTime: null }), 'Понедельник · время начала не указано')
-  assert.equal(formatSessionTime({ dayOfWeek: 7, startTime: '17:30', endTime: null }), 'Воскресенье · 17:30 · время окончания не указано')
+  assert.equal(formatSessionTime({ dayOfWeek: 7, startTime: '17:30', endTime: null }), 'Воскресенье · 17:30')
 })

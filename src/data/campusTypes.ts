@@ -44,6 +44,16 @@ export type CampusRoom = {
   sources?: DataSource[]
 }
 
+export type WeeklyPattern =
+  | { kind: 'weekly' }
+  | { kind: 'interval'; weeks: number; anchorDate?: string }
+  | { kind: 'weeks'; cycleWeeks: number; weeks: number[]; anchorDate?: string }
+
+export type RecurrenceRule = WeeklyPattern
+  | { kind: 'seasonal'; months: number[]; pattern: WeeklyPattern }
+  | { kind: 'announced'; dates?: string[] }
+  | { kind: 'unknown' }
+
 export type ActivitySession = {
   id: string
   clubId?: string
@@ -58,6 +68,7 @@ export type ActivitySession = {
   startTime: string | null
   endTime: string | null
   recurrence: string
+  recurrenceRule?: RecurrenceRule // Structured rule; the original description remains intact.
   attendanceMin: number | null
   attendanceMax: number | null
   locationStatus: 'confirmed' | 'approximate' | 'unknown'
@@ -66,5 +77,6 @@ export type ActivitySession = {
   validFrom?: string
   validUntil?: string
   source?: DataSource
+  catalogSource?: { clubId: string; schedule: string; location: string }
   notes?: string[]
 }
