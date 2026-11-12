@@ -6,6 +6,7 @@ import { mkdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
 import { chromium } from 'playwright'
+import { checkStudentPlanner } from './studentBrowserChecks.mjs'
 
 const port = process.env.CAMPUS_TEST_PORT ?? '4173'
 const origin = `http://127.0.0.1:${port}`
@@ -55,7 +56,7 @@ try {
 
   await site('academic-1').waitFor()
   assert.equal(await page.locator('path[data-site-id]').count(), 6)
-  assert.equal(await page.locator('[data-building-id]').count(), 10)
+  assert.equal(await page.locator('[data-building-id]').count(), 6)
   await page.getByLabel('Выбрать дату и время', { exact: true }).check()
   await fillTime('2026-11-13T18:30')
   await hasColor(site('sports-new'), '#16a34a')
@@ -64,15 +65,15 @@ try {
   await site('sports-old').click({ force: true })
   await page.locator('[data-building-card="sports-old"]').waitFor()
   assert.ok(await card.getByRole('heading', { name: 'На улице у здания', exact: true }).count())
+  assert.equal(await page.locator('path[data-site-id][stroke-dasharray]').count(), 0)
   await site('academic-1').focus()
   await page.keyboard.press('Enter')
   await page.locator('[data-building-card="academic-1"]').waitFor()
   await choose('stc')
   assert.ok(await card.getByText('В базе нет сведений о мероприятиях.', { exact: false }).count())
-  await choose('dorm-5-annex')
-  assert.ok(await card.getByText('Отдельная граница и вход пристройки не установлены.', { exact: false }).count())
+  assert.equal(await page.locator('[data-building-id="dorm-5-annex"]').count(), 0)
   await choose('dorm-5')
-  assert.ok(await card.getByText('В базе нет сведений о мероприятиях.', { exact: false }).count())
+  assert.ok(await card.getByText('Репетиционный зал', { exact: false }).count())
   await choose('academic-1')
   await fillTime('2026-11-14T18:30')
   await hasColor(site('academic-1'), '#16a34a')
@@ -80,9 +81,24 @@ try {
   await room('academic-1-3314').waitFor()
   assert.equal(await page.getByLabel('Выбрать дату и время', { exact: true }).count(), 1)
   await hasColor(room('academic-1-3314'), '#16a34a')
-  await room('academic-1-3314').dispatchEvent('click')
+  await room('academic-1-3314').click()
   assert.equal(await room('academic-1-3314').getAttribute('aria-pressed'), 'true')
   assert.equal(await room('academic-1-3314').getAttribute('fill'), '#16a34a')
+  // Selection/focus outlines follow the polygon at every zoom, never its rectangle.
+  const chosen = room('academic-1-3314')
+  const sourcePoints = await chosen.getAttribute('points')
+  await chosen.focus()
+  await page.keyboard.press('Enter')
+  for (let step = 0; step <= 8; step++) {
+    assert.equal(await chosen.evaluate(el => getComputedStyle(el).outlineStyle), 'none')
+    assert.equal(await chosen.evaluate(el => getComputedStyle(el).strokeWidth), '5px')
+    assert.equal(await chosen.getAttribute('vector-effect'), 'non-scaling-stroke')
+    assert.equal(await chosen.getAttribute('points'), sourcePoints)
+    if (step < 8) await page.getByRole('button', { name: 'Увеличить', exact: true }).click()
+  }
+  await page.getByRole('button', { name: 'Сбросить масштаб', exact: true }).click()
+  assert.equal(await page.locator('polygon[stroke-dasharray]').count(), 0)
+  assert.equal((await page.getByLabel('Легенда активности').textContent()).includes('?'), false)
   const grey = page.locator('polygon[data-activity="no-data"]').first()
   await grey.dispatchEvent('click')
   assert.ok(await section.getByText('Сведений о регулярных мероприятиях в нашей базе пока нет.', { exact: true }).count())
@@ -105,21 +121,23 @@ try {
   }
   assert.equal(total, 480)
   await fillTime('2026-11-15T18:29')
-  await hasColor(room('academic-1-5222'), '#16a34a')
+  await hasColor(room('academic-1-5222'), '#2563eb')
   await fillTime('2026-11-15T18:30')
   await hasColor(room('academic-1-5222'), '#2563eb')
   assert.equal(await page.locator('polygon[data-activity="scheduled"]').count(), 0)
   await page.getByRole('button', { name: '2 этаж', exact: true }).click()
   await room('academic-1-2241').waitFor()
   await fillTime('2026-11-14T18:30')
-  await hasColor(room('academic-1-2241'), '#ea580c')
+  await hasColor(room('academic-1-2241'), '#2563eb')
+  await hasColor(room('academic-1-2323'), '#9333ea')
   // Search changes both the building and room, without a second building search.
   await page.getByLabel('Поиск аудитории').fill('309')
   await page.getByRole('button', { name: 'Аудитория 309', exact: false }).click()
   assert.equal(await page.locator('#building-select').inputValue(), 'sports-new')
   assert.equal(await page.locator('polygon[data-polygon-id]').count(), 0)
   assert.ok(await section.getByText('План этого здания пока не загружен', { exact: true }).count())
-  assert.ok(await section.getByText('Длительность принята равной 1 часу;', { exact: false }).count())
+  assert.equal(await section.getByText('Длительность принята равной 1 часу;', { exact: false }).count(), 0)
+  assert.ok(await section.getByText('Воскресенье · 17:30', { exact: true }).count())
   await back()
   assert.equal(await input.inputValue(), '2026-11-14T18:30')
   await hasColor(site('academic-1'), '#16a34a')
@@ -143,6 +161,7 @@ try {
   assert.equal(await page.locator('path[data-site-id][fill="#16a34a"]').count(), 0)
   await page.getByLabel('Сейчас', { exact: true }).check()
   assert.equal(await input.count(), 0)
+  await checkStudentPlanner(page, artifacts)
   // Network failure must not remove local map geometry or navigation.
   await page.route('https://tile.openstreetmap.org/**', route => route.abort())
   await page.reload({ waitUntil: 'domcontentloaded' })
@@ -151,7 +170,7 @@ try {
   assert.equal(await page.locator('path[data-site-id]').count(), 6)
   await choose('academic-1')
   assert.deepEqual(errors, [])
-  console.log(JSON.stringify({ contours: total, buildings: 10, sites: 6, widths: [320, 390, 1440], sharedTime: true, editor: true, noPlanNavigation: true, outdoorEvents: true, keyboard: true, tileFailureFallback: true, pageErrors: errors }))
+  console.log(JSON.stringify({ contours: total, places: 6, sourceBuildingIds: 10, sites: 6, widths: [320, 390, 1440], sharedTime: true, editor: true, noPlanNavigation: true, outdoorEvents: true, keyboard: true, tileFailureFallback: true, pageErrors: errors }))
 } finally {
   await browser?.close()
   server.kill('SIGTERM')

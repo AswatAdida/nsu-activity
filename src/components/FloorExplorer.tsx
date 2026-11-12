@@ -5,9 +5,9 @@ import rawClubs from '../data/clubs.json'
 import type { Club } from '../types/club'
 import { buildingNames } from '../data/buildingLabels'
 import { ActivitySessionDetails } from './ActivitySessionDetails'
-import { buildings } from '../data/buildings'
+import { activityPlaces } from '../data/campusNavigation'
 import { campusRooms } from '../data/campusRooms'
-import { activitySessions } from '../data/activitySessions'
+import { activitySessions } from '../data/activityModel'
 import FloorPlanViewer from './FloorPlanViewer'
 import { activityColors, activityLabels } from '../data/activityState'
 import type { ActivityState } from '../data/activityState'
@@ -145,7 +145,7 @@ export default function FloorExplorer({
         }}
         className="w-full rounded-xl border border-slate-200 bg-white p-3"
       >
-        {buildings.map(b => (
+        {activityPlaces.map(b => (
           <option key={b.id} value={b.id}>
             {b.name}
           </option>
@@ -198,7 +198,7 @@ export default function FloorExplorer({
               onRoomSelect={onRoomSelect}
             />
           ) : (
-            <div className="flex min-h-24 items-center justify-center rounded-2xl border border-dashed border-blue-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
+            <div className="flex min-h-24 items-center justify-center rounded-2xl border border-blue-200 bg-slate-50 p-6 text-center text-sm text-slate-500">
               {floor === null && floors.length > 0
                 ? 'Выбери этаж для просмотра плана'
                 : 'План этого здания пока не загружен'}
@@ -232,7 +232,7 @@ export default function FloorExplorer({
               <DoorOpen size={20} className="shrink-0" style={{ color: activityColors[activityByRoom.get(room.id)!.status] }} />
               <div>
                 <p className="font-medium">{room.name}</p>
-                <p className="text-xs text-slate-600">{activityLabels[activityByRoom.get(room.id)!.status]}{activityByRoom.get(room.id)!.uncertain && ' · ? Требует уточнения'}</p>
+                <p className="text-xs text-slate-600">{activityLabels[activityByRoom.get(room.id)!.status]}</p>
                 <p className="text-xs text-slate-500">
                   {room.block
                     ? room.block === 'Ректорат' ? 'Ректорат' : `${room.block} блок`
@@ -255,7 +255,6 @@ export default function FloorExplorer({
               </h3>
 
               <p className="mt-2 text-sm">{activityLabels[activityByRoom.get(selected.id)!.status]}</p>
-              {activityByRoom.get(selected.id)!.reasons.map(reason => <p key={reason} className="mt-1 text-xs text-amber-200">? {reason}</p>)}
               {sessions.length ? (
                 <div className="mt-4 space-y-4">
                   {sessions.map(session => <ActivitySessionDetails key={session.id} session={session} />)}

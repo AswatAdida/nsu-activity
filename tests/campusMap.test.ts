@@ -43,7 +43,7 @@ test('OSM geometry keeps closed rings, courtyard hole, source IDs and snapshot v
   }
   assert.equal(campusSites.find(site => site.id === 'academic-1')!.rings.length, 2)
 })
-test('sports aliases share evidence without duplicate sessions; dorm annexes stay distinct', () => {
+test('sports aliases and dorm annexes merge without losing source rooms or meetings', () => {
   const sports = buildingContext('sports-new')!
   assert.ok(sports.rooms.some(room => room.id === 'sports-aerobics'))
   assert.deepEqual(sports.sessions, buildingContext('sports-12-1')!.sessions)
@@ -51,9 +51,10 @@ test('sports aliases share evidence without duplicate sessions; dorm annexes sta
   const old = buildingContext('sports-old')!
   assert.ok(old.sessions.some(session => session.locationKind === 'outdoor'))
   assert.ok(old.sessions.some(session => session.id === 'siberica-tue'))
-  assert.equal(buildingContext('dorm-5')!.sessions.length, 0)
-  assert.equal(buildingContext('dorm-5-annex')!.sessions.length, 1)
-  assert.notDeepEqual(buildingContext('dorm-6')!.rooms, buildingContext('dorm-6-annex')!.rooms)
+  assert.deepEqual(buildingContext('dorm-5')!.sessions, buildingContext('dorm-5-annex')!.sessions)
+  assert.ok(buildingContext('dorm-5')!.sessions.some(session => session.id === 'ethno-mon'))
+  assert.ok(buildingContext('dorm-5')!.sessions.some(session => session.id === 'catalog-theatre-mon'))
+  assert.deepEqual(buildingContext('dorm-6')!.rooms, buildingContext('dorm-6-annex')!.rooms)
   assert.match(buildings.find(building => building.id === 'dorm-6-annex')!.geographyNote!, /не установлены/)
 })
 test('physical building state combines aliases and changes with the same campus instant as rooms', () => {

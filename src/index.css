@@ -1,3 +1,10 @@
 @import "tailwindcss";
 :root { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
 body { margin: 0; min-width: 320px; }
+
+/* SVG focus follows the physical shape; browser outlines create a second rectangle. */
+.room-contour, .leaflet-interactive[role="button"] { outline: none; }
+.room-contour:focus-visible, .leaflet-interactive[role="button"]:focus-visible {
+  stroke: #0f172a;
+  stroke-width: 5px;
+}

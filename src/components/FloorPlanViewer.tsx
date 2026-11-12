@@ -150,7 +150,7 @@ export default function FloorPlanViewer({
               const record = resolvePolygonRoom(room, campusRooms)
               const activity = record ? activityByRoom.get(record.id) : undefined
               const status = activity?.status ?? 'no-data'
-              const label = `${record?.name ?? `Помещение ${polygonNumber(room)}`} · ${activityLabels[status]}${activity?.uncertain ? ' · ? Данные требуют уточнения' : ''}`
+              const label = `${record?.name ?? `Помещение ${polygonNumber(room)}`} · ${activityLabels[status]}`
               const isSelected = Boolean(record && selectedRoomId === record.id)
 
               const points = room.points
@@ -176,11 +176,10 @@ export default function FloorPlanViewer({
                     }
                   }}
                   fillOpacity={isSelected ? 0.4 : 0.2}
-                  stroke={isSelected ? '#0f172a' : activity?.uncertain ? '#b45309' : activityColors[status]}
-                  strokeDasharray={activity?.uncertain ? '5 4' : undefined}
+                  stroke={isSelected ? '#0f172a' : activityColors[status]}
                   strokeWidth={isSelected ? 5 : 2}
                   vectorEffect="non-scaling-stroke"
-                  className="cursor-pointer"
+                  className="room-contour cursor-pointer"
                   onClick={() => { if (record) onRoomSelect?.(record.id) }}
                 >
                   <title>{label}{activity?.reasons.length ? `: ${activity.reasons.join('; ')}` : ''}</title>
@@ -218,7 +217,7 @@ export default function FloorPlanViewer({
       </div>
 
       <p className="border-t border-slate-200 px-4 py-3 text-xs text-slate-500">
-        Цвет показывает сведения об активности; пунктир — неопределённость. Тёмная рамка — выбранное помещение. Круглые отметки обозначают помещения без контура.
+        Цвет показывает активность. Толстая тёмная обводка выделяет выбранное помещение. Круглые отметки обозначают помещения без контура.
       </p>
     </div>
   )

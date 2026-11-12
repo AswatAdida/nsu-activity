@@ -353,7 +353,7 @@ export default function FloorPolygonEditor({ floor }: Props) {
             </g>)}
             {draft.points.length > 0 && <g>
               <polyline points={polygonPoints(draft.points)} fill="none" stroke="#dc2626" strokeWidth={3} vectorEffect="non-scaling-stroke" pointerEvents="none" />
-              {draft.points.length >= 3 && <line x1={draft.points.at(-1)![0]} y1={draft.points.at(-1)![1]} x2={draft.points[0][0]} y2={draft.points[0][1]} stroke="#dc2626" strokeDasharray="5 4" vectorEffect="non-scaling-stroke" pointerEvents="none" />}
+              {draft.points.length >= 3 && <line x1={draft.points.at(-1)![0]} y1={draft.points.at(-1)![1]} x2={draft.points[0][0]} y2={draft.points[0][1]} stroke="#dc2626" vectorEffect="non-scaling-stroke" pointerEvents="none" />}
               {draft.points.length >= 2 && draft.points.map((p, i) => {
                 if (i === draft.points.length - 1 && draft.points.length < 3) return null
                 const next = draft.points[(i + 1) % draft.points.length]
