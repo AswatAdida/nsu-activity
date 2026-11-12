@@ -3,6 +3,7 @@ import { campusSites } from './campusSites.ts'
 import { campusRooms } from './campusRooms.ts'
 import { activitySessions } from './activityModel.ts'
 import { sessionsForBuildings } from './activityState.ts'
+import { clubs as catalogClubs, sessionsForClub } from './activityCatalog.ts'
 import type { ActivitySession } from './campusTypes.ts'
 
 // View model only: original building/room IDs and all geographic rings stay unchanged.
@@ -52,4 +53,14 @@ export function sessionLocationLabel(session: ActivitySession): string {
   const place = session.buildingId ? placeForBuilding(session.buildingId) : sharedPlace
   const roomLabel = rooms.length > 1 ? `Возможные помещения: ${rooms.map(room => `${room.name}${!sharedPlace ? ` (${placeForBuilding(room.buildingId)?.name ?? room.buildingId})` : ''}`).join(', ')}` : rooms[0]?.name
   return [place?.name, roomLabel ?? session.locationNote ?? 'Помещение не указано', session.locationKind === 'outdoor' && !session.locationNote?.toLocaleLowerCase('ru').includes('на улице') ? 'На улице' : null].filter(Boolean).join(' · ')
+}
+
+export function clubMapContext(clubId: string) {
+  const club = catalogClubs.find(club => club.id === clubId)
+  if (!club) return null
+  const sessions = sessionsForClub(clubId)
+  const targets = sessions.map(sessionMapTarget).filter(target => target !== null)
+  const bases = (club.baseRoomIds ?? []).map(roomNavigation).filter(target => target !== null)
+  const ids = new Set([...targets, ...bases].map(target => target.buildingId))
+  return { club, sessions, bases, places: activityPlaces.filter(place => ids.has(place.id)), unplaced: sessions.filter(session => !sessionMapTarget(session)).length }
 }

@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react'
+import { lazy, Suspense, useRef, useState } from 'react'
 import { Header } from './components/Header'
 import type { AppView } from './components/Header'
-import ClubCatalog from './components/ClubCatalog'
+const ClubCatalog = lazy(() => import('./components/ClubCatalog'))
 import CampusActivityExplorer from './components/CampusActivityExplorer'
-import PersonalSchedule from './components/PersonalSchedule'
+const PersonalSchedule = lazy(() => import('./components/PersonalSchedule'))
 import type { ActivitySession } from './data/campusTypes'
 import { readClubSelection, sanitizeClubSelection, writeClubSelection } from './data/personalSchedule'
 import type { MapSessionRequest } from './data/personalSchedule'
@@ -31,15 +31,20 @@ function App() {
     setView('map')
     window.scrollTo({ top: 0 })
   }
-  return <div className="min-h-screen bg-[#f6f8fc] text-slate-900">
+  function openClubMap(clubId: string) {
+    setMapRequest({ clubId, token: ++requestToken.current })
+    setView('map')
+    window.scrollTo({ top: 0 })
+  }
+  return <div className="min-h-screen bg-[#f5f7f9] text-slate-900">
     <Header view={view} onNavigate={setView} />
-    <main className="mx-auto max-w-6xl px-5 pb-16">
-      <p className="mb-5 mt-5 text-sm text-slate-600">Знакомься с объединениями НГУ, находи места занятий и составляй собственное расписание.</p>
+    <main className="site-main">
+      <div className="site-intro"><span>Твоё сообщество. Твоё расписание. Твой кампус.</span><span>Новосибирск · Академгородок</span></div>
       <div hidden={view !== 'map'}><CampusActivityExplorer key={mapRequest?.token ?? 'campus'} request={mapRequest} /></div>
-      <div hidden={view !== 'catalog'}><ClubCatalog onOpenSchedule={id => { updateSelection([...selectedIds, id]); setView('schedule') }} /></div>
-      <div hidden={view !== 'schedule'}><PersonalSchedule selectedIds={selectedIds} onSelection={updateSelection} onMap={openSession} onBaseRoom={openBase} storageAvailable={storageAvailable} /></div>
+      <div hidden={view !== 'catalog'}><Suspense fallback={<p className="empty-state">Загружаем каталог…</p>}><ClubCatalog selectedIds={selectedIds} onOpenMap={openClubMap} onOpenSchedule={id => { updateSelection([...selectedIds, id]); setView('schedule') }} /></Suspense></div>
+      <div hidden={view !== 'schedule'}><Suspense fallback={<p className="empty-state">Загружаем расписание…</p>}><PersonalSchedule selectedIds={selectedIds} onSelection={updateSelection} onMap={openSession} onBaseRoom={openBase} storageAvailable={storageAvailable} /></Suspense></div>
     </main>
-    <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">NSU Activity · Время Новосибирска · Подробности встреч — в сообществах объединений</footer>
+    <footer className="site-footer">NSU Activity · Время Новосибирска · Подробности встреч — в сообществах объединений</footer>
   </div>
 }
 export default App

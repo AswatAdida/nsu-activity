@@ -161,7 +161,7 @@ export default function FloorExplorer({
           }}
           className={`rounded-lg px-4 py-2 text-sm ${
             floor === null
-              ? 'bg-[#16468c] text-white'
+              ? 'bg-[#173e6a] text-white'
               : 'bg-slate-100 text-slate-700'
           }`}
         >
@@ -178,7 +178,7 @@ export default function FloorExplorer({
             }}
             className={`rounded-lg px-4 py-2 text-sm ${
               floor === f
-                ? 'bg-[#16468c] text-white'
+                ? 'bg-[#173e6a] text-white'
                 : 'bg-slate-100 text-slate-700'
             }`}
           >
@@ -243,13 +243,13 @@ export default function FloorExplorer({
           ))}
           </div>
 
-          {buildingSessions.length > 0 && <div className="rounded-xl bg-[#163e79] p-5 text-white">
+          {buildingSessions.length > 0 && <div className="rounded-xl bg-[#173e6a] p-5 text-white">
             <h3 className="font-bold">Встречи без указанной аудитории / на улице</h3>
             <div className="mt-3 space-y-4">{buildingSessions.map(session => <ActivitySessionDetails key={session.id} session={session} />)}</div>
           </div>}
 
           {selected && (
-            <div className="rounded-xl bg-[#163e79] p-5 text-white">
+            <div className="rounded-xl bg-[#173e6a] p-5 text-white">
               <h3 className="text-lg font-bold">
                 {selected.name}
               </h3>
@@ -280,7 +280,7 @@ export default function FloorExplorer({
     <button
       type="button"
       onClick={() => setEditorOpen(open => !open)}
-      className="rounded-xl border border-blue-300 px-5 py-3 text-sm font-semibold text-[#16468c] hover:bg-blue-50"
+      className="rounded-xl border border-blue-300 px-5 py-3 text-sm font-semibold text-[#173e6a] hover:bg-blue-50"
     >
       {editorOpen ? 'Закрыть редактор' : 'Редактировать контуры помещений'}
     </button>

@@ -77,6 +77,7 @@ export type ActivitySession = {
   validFrom?: string
   validUntil?: string
   source?: DataSource
+  sourceHistory?: DataSource[]
   catalogSource?: { clubId: string; schedule: string; location: string }
   notes?: string[]
 }

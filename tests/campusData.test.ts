@@ -19,7 +19,8 @@ test('all newly provided meetings have provenance and unknown attendance remains
     assert.equal(session.attendanceMin, null)
     assert.equal(session.attendanceMax, null)
     assert.equal(session.source?.kind, 'user-message')
-    assert.equal(session.source?.recordedOn, '2026-11-10')
+    assert.equal(session.source?.recordedOn, session.id.startsWith('mountain-run-') ? '2026-11-12' : '2026-11-10')
+    if (session.id.startsWith('mountain-run-')) assert.equal(session.sourceHistory?.[0].recordedOn, '2026-11-10')
   }
   assert.equal(activitySessions.some(s => s.clubId === 'dansu'), false)
   assert.equal(activitySessions.some(s => s.clubId === 'omut'), false)

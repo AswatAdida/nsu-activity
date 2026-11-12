@@ -435,12 +435,11 @@ export const activitySessions: ActivitySession[] = [
   },
   {
     "id": "mountain-run-mon",
-    "locationKind": "outdoor",
     "clubId": "mountain-tourism",
     "clubName": "Секция горного туризма НГУ",
     "roomId": null,
     "dayOfWeek": 1,
-    "startTime": null,
+    "startTime": "19:00",
     "endTime": null,
     "recurrence": "weekly",
     "attendanceMin": null,
@@ -449,23 +448,24 @@ export const activitySessions: ActivitySession[] = [
     "scheduleStatus": "reported",
     "source": {
       "kind": "user-message",
-      "recordedOn": "2026-11-10",
+      "recordedOn": "2026-11-12",
+      "note": "Уточнение пользователя: еженедельная тренировка в 19:00, старый спорткомплекс НГУ; окончание неизвестно.",
       "url": "https://vk.ru/mountainnsu"
     },
     "buildingId": "sports-old",
-    "locationNote": "У крыльца старого спорткомплекса НГУ, на улице",
+    "sourceHistory": [{"kind": "user-message", "recordedOn": "2026-11-10", "url": "https://vk.ru/mountainnsu"}],
+    "locationNote": "Старый спорткомплекс НГУ; конкретный зал не указан",
     "notes": [
-      "Время начала и окончания беговой тренировки не указано."
+      "Ранее: у крыльца старого спорткомплекса, на улице; начало и окончание не были указаны. Текущее уточнение пользователя от 2026-11-12: начало 19:00, старый спорткомплекс; окончание неизвестно."
     ]
   },
   {
     "id": "mountain-run-fri",
-    "locationKind": "outdoor",
     "clubId": "mountain-tourism",
     "clubName": "Секция горного туризма НГУ",
     "roomId": null,
     "dayOfWeek": 5,
-    "startTime": null,
+    "startTime": "19:00",
     "endTime": null,
     "recurrence": "weekly",
     "attendanceMin": null,
@@ -474,13 +474,15 @@ export const activitySessions: ActivitySession[] = [
     "scheduleStatus": "reported",
     "source": {
       "kind": "user-message",
-      "recordedOn": "2026-11-10",
+      "recordedOn": "2026-11-12",
+      "note": "Уточнение пользователя: еженедельная тренировка в 19:00, старый спорткомплекс НГУ; окончание неизвестно.",
       "url": "https://vk.ru/mountainnsu"
     },
     "buildingId": "sports-old",
-    "locationNote": "У крыльца старого спорткомплекса НГУ, на улице",
+    "sourceHistory": [{"kind": "user-message", "recordedOn": "2026-11-10", "url": "https://vk.ru/mountainnsu"}],
+    "locationNote": "Старый спорткомплекс НГУ; конкретный зал не указан",
     "notes": [
-      "Время начала и окончания беговой тренировки не указано."
+      "Ранее: у крыльца старого спорткомплекса, на улице; начало и окончание не были указаны. Текущее уточнение пользователя от 2026-11-12: начало 19:00, старый спорткомплекс; окончание неизвестно."
     ]
   },
   {

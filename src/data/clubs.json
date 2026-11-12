@@ -85,7 +85,67 @@
     "location": "Пирогова, 16; Пирогова, 12/1; Пирогова, 12",
     "attendance": "5–10",
     "url": "https://vk.ru/fire_nsu",
-    "status": "active"
+    "status": "active",
+    "cover": {
+      "kind": "photo",
+      "fit": "contain",
+      "background": "#1d1720",
+      "alt": "Участники Мастерской огня и света выступают с огненными факелами",
+      "src": "images/clubs/fire-cover-1280.webp",
+      "width": 1280,
+      "height": 428,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/fire-cover-480.webp",
+          "width": 480,
+          "height": 161,
+          "bytes": 87418
+        },
+        {
+          "src": "images/clubs/fire-cover-960.webp",
+          "width": 960,
+          "height": 321,
+          "bytes": 304358
+        },
+        {
+          "src": "images/clubs/fire-cover-1280.webp",
+          "width": 1280,
+          "height": 428,
+          "bytes": 503050
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#242424",
+      "alt": "Золотистая эмблема Мастерской огня и света",
+      "src": "images/clubs/fire-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/fire-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 17372
+        },
+        {
+          "src": "images/clubs/fire-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 50498
+        },
+        {
+          "src": "images/clubs/fire-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 72262
+        }
+      ]
+    }
   },
   {
     "id": "craft",
@@ -96,7 +156,67 @@
     "location": "Не указано",
     "attendance": "Не указано",
     "url": "https://vk.ru/tria_moira_nsu",
-    "status": "inactive"
+    "status": "inactive",
+    "cover": {
+      "kind": "banner",
+      "fit": "contain",
+      "background": "#f5f1ec",
+      "alt": "Обложка клуба рукоделия с разноцветными нитями",
+      "src": "images/clubs/craft-cover-1280.webp",
+      "width": 1280,
+      "height": 383,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/craft-cover-480.webp",
+          "width": 480,
+          "height": 144,
+          "bytes": 121426
+        },
+        {
+          "src": "images/clubs/craft-cover-960.webp",
+          "width": 960,
+          "height": 287,
+          "bytes": 398960
+        },
+        {
+          "src": "images/clubs/craft-cover-1280.webp",
+          "width": 1280,
+          "height": 383,
+          "bytes": 640008
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема клуба рукоделия τρια μοιρα",
+      "src": "images/clubs/craft-logo-453.webp",
+      "width": 453,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/craft-logo-170.webp",
+          "width": 170,
+          "height": 240,
+          "bytes": 5770
+        },
+        {
+          "src": "images/clubs/craft-logo-340.webp",
+          "width": 340,
+          "height": 480,
+          "bytes": 16326
+        },
+        {
+          "src": "images/clubs/craft-logo-453.webp",
+          "width": 453,
+          "height": 640,
+          "bytes": 24486
+        }
+      ]
+    }
   },
   {
     "id": "csi",
@@ -107,7 +227,37 @@
     "location": "Ауд. 0206, 0207, 4110, 1212",
     "attendance": "От 10 на подразделение",
     "url": "https://vk.ru/csi.ifpnsu",
-    "status": "active"
+    "status": "active",
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#1046e8",
+      "alt": "Эмблема Центра студенческой инициативы ИФП НГУ",
+      "src": "images/clubs/csi-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/csi-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 17124
+        },
+        {
+          "src": "images/clubs/csi-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 42966
+        },
+        {
+          "src": "images/clubs/csi-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 63464
+        }
+      ]
+    }
   },
   {
     "id": "vocal",
@@ -118,7 +268,67 @@
     "location": "Пирогова, 11/2; пристройка общежития № 5, Пирогова, 14",
     "attendance": "~10–20",
     "url": "https://vk.ru/vocalnsu",
-    "status": "active"
+    "status": "active",
+    "cover": {
+      "kind": "banner",
+      "fit": "contain",
+      "background": "#eef4f0",
+      "alt": "Баннер вокальной студии Миллион голосов с названием и участниками",
+      "src": "images/clubs/vocal-cover-1280.webp",
+      "width": 1280,
+      "height": 376,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/vocal-cover-480.webp",
+          "width": 480,
+          "height": 141,
+          "bytes": 79762
+        },
+        {
+          "src": "images/clubs/vocal-cover-960.webp",
+          "width": 960,
+          "height": 282,
+          "bytes": 286018
+        },
+        {
+          "src": "images/clubs/vocal-cover-1280.webp",
+          "width": 1280,
+          "height": 376,
+          "bytes": 470486
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#edf2f4",
+      "alt": "Эмблема Миллиона голосов с голубой птицей",
+      "src": "images/clubs/vocal-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/vocal-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 57150
+        },
+        {
+          "src": "images/clubs/vocal-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 196324
+        },
+        {
+          "src": "images/clubs/vocal-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 318676
+        }
+      ]
+    }
   },
   {
     "id": "cinema",
@@ -129,7 +339,37 @@
     "location": "База — ауд. 2253; место встречи уточняется",
     "attendance": "~6",
     "url": "https://vk.ru/ppkinostodio",
-    "status": "active"
+    "status": "active",
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#f5f0e6",
+      "alt": "Иллюстрированная эмблема киностудии ППК с киноклаппером",
+      "src": "images/clubs/cinema-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/cinema-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 68060
+        },
+        {
+          "src": "images/clubs/cinema-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 258096
+        },
+        {
+          "src": "images/clubs/cinema-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 444178
+        }
+      ]
+    }
   },
   {
     "id": "theatre",
@@ -140,7 +380,37 @@
     "location": "Пн: общежитие № 5, зал на 1-м этаже; Чт: «Юность», Строителей, 21",
     "attendance": "7–17",
     "url": "https://vk.ru/theatre_club_ngu",
-    "status": "active"
+    "status": "active",
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Разноцветная типографическая эмблема театра квARTира",
+      "src": "images/clubs/theatre-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/theatre-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 5578
+        },
+        {
+          "src": "images/clubs/theatre-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 7972
+        },
+        {
+          "src": "images/clubs/theatre-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 12054
+        }
+      ]
+    }
   },
   {
     "id": "taverna",
@@ -151,7 +421,37 @@
     "location": "Разные аудитории НГУ, уточняйте в анонсах",
     "attendance": "4–7 на игру",
     "url": "https://vk.ru/trpg_nsu",
-    "status": "active"
+    "status": "active",
+    "cover": {
+      "kind": "illustration",
+      "fit": "contain",
+      "background": "#f0e7db",
+      "alt": "Иллюстрация Таверны с деревянной бочкой и многогранными игральными костями",
+      "src": "images/clubs/taverna-cover-1280.webp",
+      "width": 1280,
+      "height": 1280,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/taverna-cover-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 152836
+        },
+        {
+          "src": "images/clubs/taverna-cover-960.webp",
+          "width": 960,
+          "height": 960,
+          "bytes": 450514
+        },
+        {
+          "src": "images/clubs/taverna-cover-1280.webp",
+          "width": 1280,
+          "height": 1280,
+          "bytes": 720798
+        }
+      ]
+    }
   },
   {
     "id": "mafia",
@@ -162,7 +462,37 @@
     "location": "Ранее ауд. 2259–2262",
     "attendance": "Ранее ~14",
     "url": "https://vk.ru/mafia_silent_don",
-    "status": "inactive"
+    "status": "inactive",
+    "cover": {
+      "kind": "illustration",
+      "fit": "contain",
+      "background": "#161616",
+      "alt": "Иллюстрация клуба мафии: фигура в шляпе и игральные кости",
+      "src": "images/clubs/mafia-cover-904.webp",
+      "width": 904,
+      "height": 1280,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/mafia-cover-339.webp",
+          "width": 339,
+          "height": 480,
+          "bytes": 12024
+        },
+        {
+          "src": "images/clubs/mafia-cover-678.webp",
+          "width": 678,
+          "height": 960,
+          "bytes": 37920
+        },
+        {
+          "src": "images/clubs/mafia-cover-904.webp",
+          "width": 904,
+          "height": 1280,
+          "bytes": 62724
+        }
+      ]
+    }
   },
   {
     "id": "media",
@@ -173,7 +503,37 @@
     "location": "Кабинет 0250",
     "attendance": "30 студентов в объединении",
     "url": "https://vk.ru/mediacenternsu",
-    "status": "active"
+    "status": "active",
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема Студенческого Медиацентра НГУ в форме диафрагмы",
+      "src": "images/clubs/media-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/media-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 25272
+        },
+        {
+          "src": "images/clubs/media-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 75238
+        },
+        {
+          "src": "images/clubs/media-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 117412
+        }
+      ]
+    }
   },
   {
     "id": "tea",
@@ -184,7 +544,31 @@
     "location": "Обычно ауд. 1332; при большом числе гостей — 2348",
     "attendance": "25–30",
     "url": "https://t.me/cha_nsu",
-    "status": "active"
+    "status": "active",
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема Чайного клуба в форме чайника",
+      "src": "images/clubs/tea-logo-320.webp",
+      "width": 320,
+      "height": 320,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/tea-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 29776
+        },
+        {
+          "src": "images/clubs/tea-logo-320.webp",
+          "width": 320,
+          "height": 320,
+          "bytes": 46804
+        }
+      ]
+    }
   },
   {
     "id": "help",
@@ -195,7 +579,67 @@
     "location": "База — пристройка общежития № 4",
     "attendance": "Не указано",
     "url": "https://vk.ru/dopsihelp",
-    "status": "inactive"
+    "status": "inactive",
+    "cover": {
+      "kind": "illustration",
+      "fit": "contain",
+      "background": "#117e82",
+      "alt": "Иллюстрация Ты не один: люди соединены линией с сердцем",
+      "src": "images/clubs/help-cover-1280.webp",
+      "width": 1280,
+      "height": 385,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/help-cover-480.webp",
+          "width": 480,
+          "height": 144,
+          "bytes": 25040
+        },
+        {
+          "src": "images/clubs/help-cover-960.webp",
+          "width": 960,
+          "height": 288,
+          "bytes": 77474
+        },
+        {
+          "src": "images/clubs/help-cover-1280.webp",
+          "width": 1280,
+          "height": 385,
+          "bytes": 124130
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#117e82",
+      "alt": "Эмблема Ты не один с жёлтой надписью на бирюзовом фоне",
+      "src": "images/clubs/help-logo-510.webp",
+      "width": 510,
+      "height": 510,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/help-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 19376
+        },
+        {
+          "src": "images/clubs/help-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 50858
+        },
+        {
+          "src": "images/clubs/help-logo-510.webp",
+          "width": 510,
+          "height": 510,
+          "bytes": 47206
+        }
+      ]
+    }
   },
   {
     "id": "siberian-english",
@@ -240,7 +684,37 @@
     ],
     "notes": [
       "Воскресенье и та же аудитория указаны также у Siberian English Club. Это отдельные записи; связь клубов и время окончания встреч не установлены."
-    ]
+    ],
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема Academian English Club: буква A на белом фоне",
+      "src": "images/clubs/academian-english-logo-640.webp",
+      "width": 640,
+      "height": 421,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/academian-english-logo-240.webp",
+          "width": 240,
+          "height": 158,
+          "bytes": 1796
+        },
+        {
+          "src": "images/clubs/academian-english-logo-480.webp",
+          "width": 480,
+          "height": 315,
+          "bytes": 4814
+        },
+        {
+          "src": "images/clubs/academian-english-logo-640.webp",
+          "width": 640,
+          "height": 421,
+          "bytes": 7236
+        }
+      ]
+    }
   },
   {
     "id": "russian-speaking",
@@ -259,7 +733,67 @@
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/rscciep"
       }
-    ]
+    ],
+    "cover": {
+      "kind": "photo",
+      "fit": "contain",
+      "background": "#f0f3f5",
+      "alt": "Групповая фотография участников Русского разговорного клуба НГУ",
+      "src": "images/clubs/russian-speaking-cover-1280.webp",
+      "width": 1280,
+      "height": 422,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/russian-speaking-cover-480.webp",
+          "width": 480,
+          "height": 158,
+          "bytes": 92144
+        },
+        {
+          "src": "images/clubs/russian-speaking-cover-960.webp",
+          "width": 960,
+          "height": 317,
+          "bytes": 312872
+        },
+        {
+          "src": "images/clubs/russian-speaking-cover-1280.webp",
+          "width": 1280,
+          "height": 422,
+          "bytes": 513768
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема Русского разговорного клуба НГУ",
+      "src": "images/clubs/russian-speaking-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/russian-speaking-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 23894
+        },
+        {
+          "src": "images/clubs/russian-speaking-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 62382
+        },
+        {
+          "src": "images/clubs/russian-speaking-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 100882
+        }
+      ]
+    }
   },
   {
     "id": "confucius-knowledge",
@@ -310,7 +844,37 @@
     ],
     "notes": [
       "Два источника содержат разные расписания. До уточнения регулярные встречи не добавлены."
-    ]
+    ],
+    "cover": {
+      "kind": "photo",
+      "fit": "contain",
+      "background": "#171a20",
+      "alt": "Танцовщица DaNSU на сцене с поднятой рукой",
+      "src": "images/clubs/dansu-cover-905.webp",
+      "width": 905,
+      "height": 1280,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/dansu-cover-339.webp",
+          "width": 339,
+          "height": 480,
+          "bytes": 82922
+        },
+        {
+          "src": "images/clubs/dansu-cover-679.webp",
+          "width": 679,
+          "height": 960,
+          "bytes": 241264
+        },
+        {
+          "src": "images/clubs/dansu-cover-905.webp",
+          "width": 905,
+          "height": 1280,
+          "bytes": 377448
+        }
+      ]
+    }
   },
   {
     "id": "omut",
@@ -329,7 +893,37 @@
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/omut_dance_nsu"
       }
-    ]
+    ],
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема танцевального коллектива ОМУТ с фигурами танцоров",
+      "src": "images/clubs/omut-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/omut-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 17610
+        },
+        {
+          "src": "images/clubs/omut-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 50058
+        },
+        {
+          "src": "images/clubs/omut-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 80448
+        }
+      ]
+    }
   },
   {
     "id": "intellectual-games",
@@ -370,7 +964,37 @@
     ],
     "notes": [
       "Указаны несколько возможных аудиторий одной игротеки. Место уточняется по актуальному анонсу."
-    ]
+    ],
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#f4f2f7",
+      "alt": "Эмблема клуба настольных игр НГУ с игральными костями",
+      "src": "images/clubs/board-games-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/board-games-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 45920
+        },
+        {
+          "src": "images/clubs/board-games-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 163946
+        },
+        {
+          "src": "images/clubs/board-games-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 267300
+        }
+      ]
+    }
   },
   {
     "id": "ultimate",
@@ -394,7 +1018,37 @@
     "notes": [
       "Расписание относится к осени–зиме 2026 года. Нужны вода, спортивные одежда и обувь.",
       "Для согласования участия новичков указан Андрей: https://vk.ru/ololobus"
-    ]
+    ],
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Геометрическая эмблема команды по алтимату НИИ ТУДА",
+      "src": "images/clubs/ultimate-logo-640.webp",
+      "width": 640,
+      "height": 563,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/ultimate-logo-240.webp",
+          "width": 240,
+          "height": 211,
+          "bytes": 9230
+        },
+        {
+          "src": "images/clubs/ultimate-logo-480.webp",
+          "width": 480,
+          "height": 422,
+          "bytes": 24556
+        },
+        {
+          "src": "images/clubs/ultimate-logo-640.webp",
+          "width": 640,
+          "height": 563,
+          "bytes": 39130
+        }
+      ]
+    }
   },
   {
     "id": "siberica-legion",
@@ -413,7 +1067,67 @@
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/nsu_knights"
       }
-    ]
+    ],
+    "cover": {
+      "kind": "illustration",
+      "fit": "contain",
+      "background": "#ede7de",
+      "alt": "Тематическая обложка клуба СМБ с воинами в исторических доспехах",
+      "src": "images/clubs/siberica-legion-cover-1280.webp",
+      "width": 1280,
+      "height": 437,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/siberica-legion-cover-480.webp",
+          "width": 480,
+          "height": 164,
+          "bytes": 104260
+        },
+        {
+          "src": "images/clubs/siberica-legion-cover-960.webp",
+          "width": 960,
+          "height": 328,
+          "bytes": 373924
+        },
+        {
+          "src": "images/clubs/siberica-legion-cover-1280.webp",
+          "width": 1280,
+          "height": 437,
+          "bytes": 633260
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#241b1d",
+      "alt": "Красно-чёрная эмблема клуба СМБ Siberica LegioN",
+      "src": "images/clubs/siberica-legion-logo-640.webp",
+      "width": 640,
+      "height": 427,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/siberica-legion-logo-240.webp",
+          "width": 240,
+          "height": 160,
+          "bytes": 2518
+        },
+        {
+          "src": "images/clubs/siberica-legion-logo-480.webp",
+          "width": 480,
+          "height": 320,
+          "bytes": 4596
+        },
+        {
+          "src": "images/clubs/siberica-legion-logo-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 5982
+        }
+      ]
+    }
   },
   {
     "id": "bridge",
@@ -432,7 +1146,25 @@
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/bridge_nsu"
       }
-    ]
+    ],
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Эмблема бридж-клуба НГУ с символами карточных мастей",
+      "src": "images/clubs/bridge-logo-200.webp",
+      "width": 200,
+      "height": 200,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/bridge-logo-200.webp",
+          "width": 200,
+          "height": 200,
+          "bytes": 12676
+        }
+      ]
+    }
   },
   {
     "id": "mtg",
@@ -451,7 +1183,31 @@
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/mtg_nsu"
       }
-    ]
+    ],
+    "cover": {
+      "kind": "illustration",
+      "fit": "contain",
+      "background": "#e9eef2",
+      "alt": "Фэнтезийная иллюстрация клуба MTG Planeswalker",
+      "src": "images/clubs/mtg-cover-376.webp",
+      "width": 376,
+      "height": 512,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/mtg-cover-352.webp",
+          "width": 352,
+          "height": 480,
+          "bytes": 232570
+        },
+        {
+          "src": "images/clubs/mtg-cover-376.webp",
+          "width": 376,
+          "height": 512,
+          "bytes": 248310
+        }
+      ]
+    }
   },
   {
     "id": "historical-political",
@@ -476,7 +1232,37 @@
     ],
     "baseRoomIds": [
       "academic-1-212"
-    ]
+    ],
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#f5f6f7",
+      "alt": "Эмблема дискуссионного историко-политического клуба НГУ",
+      "src": "images/clubs/historical-political-logo-640.webp",
+      "width": 640,
+      "height": 640,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/historical-political-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 29370
+        },
+        {
+          "src": "images/clubs/historical-political-logo-480.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 86048
+        },
+        {
+          "src": "images/clubs/historical-political-logo-640.webp",
+          "width": 640,
+          "height": 640,
+          "bytes": 142188
+        }
+      ]
+    }
   },
   {
     "id": "ethno",
@@ -498,15 +1284,75 @@
     ],
     "notes": [
       "Не уточнено, находится ли воскресный зал в пристройке общежития № 6. Эти места пока хранятся отдельно."
-    ]
+    ],
+    "cover": {
+      "kind": "photo",
+      "fit": "contain",
+      "background": "#ede7e1",
+      "alt": "Обложка Этноклуба: руки участницы за столом с предметами народного быта",
+      "src": "images/clubs/ethno-cover-1280.webp",
+      "width": 1280,
+      "height": 430,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/ethno-cover-480.webp",
+          "width": 480,
+          "height": 161,
+          "bytes": 108218
+        },
+        {
+          "src": "images/clubs/ethno-cover-960.webp",
+          "width": 960,
+          "height": 323,
+          "bytes": 347844
+        },
+        {
+          "src": "images/clubs/ethno-cover-1280.webp",
+          "width": 1280,
+          "height": 430,
+          "bytes": 559790
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#fff9eb",
+      "alt": "Круглая эмблема Этноклуба Семёнов день с всадником",
+      "src": "images/clubs/ethno-logo-640.webp",
+      "width": 640,
+      "height": 636,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/ethno-logo-240.webp",
+          "width": 240,
+          "height": 239,
+          "bytes": 59502
+        },
+        {
+          "src": "images/clubs/ethno-logo-480.webp",
+          "width": 480,
+          "height": 477,
+          "bytes": 179518
+        },
+        {
+          "src": "images/clubs/ethno-logo-640.webp",
+          "width": 640,
+          "height": 636,
+          "bytes": 295278
+        }
+      ]
+    }
   },
   {
     "id": "mountain-tourism",
     "name": "Секция горного туризма НГУ",
     "category": "Спорт",
     "description": "Беговые тренировки и лекции по горному туризму.",
-    "schedule": "Пн и пт — беговая тренировка, время не указано; чт 19:00 — лекция",
-    "location": "Пн и пт: у крыльца старого спорткомплекса НГУ; чт: новый спорткомплекс НГУ, аудитория 223",
+    "schedule": "Понедельник и пятница с 19:00 — тренировки · Четверг с 19:00 — лекция",
+    "location": "Пн и пт: старый спорткомплекс НГУ; чт: новый спорткомплекс НГУ, аудитория 223",
     "attendance": "Не указано",
     "url": "https://vk.ru/mountainnsu",
     "status": "active",
@@ -516,7 +1362,70 @@
         "kind": "user-message",
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/mountainnsu"
+      },
+      {
+        "kind": "user-message",
+        "recordedOn": "2026-11-12",
+        "note": "Уточнение пользователя: тренировки СГТ НГУ каждый понедельник и пятницу в 19:00 в старом спорткомплексе; время окончания неизвестно. Лекция в четверг сохранена."
       }
-    ]
+    ],
+    "cover": {
+      "kind": "photo",
+      "fit": "cover",
+      "background": "#e7edf1",
+      "alt": "Туристы СГТ НГУ на заснеженном горном склоне",
+      "src": "images/clubs/mountain-tourism-cover-604.webp",
+      "width": 604,
+      "height": 453,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/mountain-tourism-cover-480.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 135984
+        },
+        {
+          "src": "images/clubs/mountain-tourism-cover-604.webp",
+          "width": 604,
+          "height": 453,
+          "bytes": 173826
+        }
+      ]
+    },
+    "logo": {
+      "kind": "logo",
+      "fit": "contain",
+      "background": "#ffffff",
+      "alt": "Круглая эмблема Секции горного туризма НГУ с горами",
+      "src": "images/clubs/mountain-tourism-logo-484.webp",
+      "width": 484,
+      "height": 485,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/mountain-tourism-logo-240.webp",
+          "width": 240,
+          "height": 240,
+          "bytes": 28518
+        },
+        {
+          "src": "images/clubs/mountain-tourism-logo-479.webp",
+          "width": 479,
+          "height": 480,
+          "bytes": 78158
+        },
+        {
+          "src": "images/clubs/mountain-tourism-logo-484.webp",
+          "width": 484,
+          "height": 485,
+          "bytes": 67614
+        }
+      ]
+    },
+    "notes": [
+      "Предыдущее описание места: Пн и пт: у крыльца старого спорткомплекса НГУ; чт: новый спорткомплекс НГУ, аудитория 223. Предыдущее расписание: Пн и пт — беговая тренировка, время не указано; чт 19:00 — лекция. Уточнено пользователем 2026-11-12."
+    ],
+    "shortName": "СГТ НГУ"
   }
 ]

@@ -7,6 +7,7 @@ import { resolve } from 'node:path'
 import { setTimeout as delay } from 'node:timers/promises'
 import { chromium } from 'playwright'
 import { checkStudentPlanner } from './studentBrowserChecks.mjs'
+import { checkVisualCatalog } from './catalogVisualChecks.mjs'
 
 const port = process.env.CAMPUS_TEST_PORT ?? '4173'
 const origin = `http://127.0.0.1:${port}`
@@ -64,7 +65,7 @@ try {
   // Actual pointer click on a footprint and keyboard activation on another.
   await site('sports-old').click({ force: true })
   await page.locator('[data-building-card="sports-old"]').waitFor()
-  assert.ok(await card.getByRole('heading', { name: 'На улице у здания', exact: true }).count())
+  assert.ok(await card.getByRole('heading', { name: 'Встречи и расписания', exact: true }).count())
   assert.equal(await page.locator('path[data-site-id][stroke-dasharray]').count(), 0)
   await site('academic-1').focus()
   await page.keyboard.press('Enter')
@@ -162,6 +163,7 @@ try {
   await page.getByLabel('Сейчас', { exact: true }).check()
   assert.equal(await input.count(), 0)
   await checkStudentPlanner(page, artifacts)
+  await checkVisualCatalog(page, artifacts)
   // Network failure must not remove local map geometry or navigation.
   await page.route('https://tile.openstreetmap.org/**', route => route.abort())
   await page.reload({ waitUntil: 'domcontentloaded' })
@@ -170,7 +172,7 @@ try {
   assert.equal(await page.locator('path[data-site-id]').count(), 6)
   await choose('academic-1')
   assert.deepEqual(errors, [])
-  console.log(JSON.stringify({ contours: total, places: 6, sourceBuildingIds: 10, sites: 6, widths: [320, 390, 1440], sharedTime: true, editor: true, noPlanNavigation: true, outdoorEvents: true, keyboard: true, tileFailureFallback: true, pageErrors: errors }))
+  console.log(JSON.stringify({ contours: total, places: 6, sourceBuildingIds: 10, sites: 6, widths: [320, 390, 1440], sharedTime: true, editor: true, noPlanNavigation: true, updatedTraining: true, keyboard: true, tileFailureFallback: true, pageErrors: errors }))
 } finally {
   await browser?.close()
   server.kill('SIGTERM')

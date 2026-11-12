@@ -49,7 +49,7 @@ test('sports aliases and dorm annexes merge without losing source rooms or meeti
   assert.deepEqual(sports.sessions, buildingContext('sports-12-1')!.sessions)
   assert.equal(new Set(sports.sessions.map(session => session.id)).size, sports.sessions.length)
   const old = buildingContext('sports-old')!
-  assert.ok(old.sessions.some(session => session.locationKind === 'outdoor'))
+  assert.ok(old.sessions.some(session => session.id === 'mountain-run-mon' && session.startTime === '19:00' && session.endTime === null))
   assert.ok(old.sessions.some(session => session.id === 'siberica-tue'))
   assert.deepEqual(buildingContext('dorm-5')!.sessions, buildingContext('dorm-5-annex')!.sessions)
   assert.ok(buildingContext('dorm-5')!.sessions.some(session => session.id === 'ethno-mon'))
