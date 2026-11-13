@@ -192,28 +192,28 @@
       "fit": "contain",
       "background": "#ffffff",
       "alt": "Эмблема клуба рукоделия τρια μοιρα",
-      "src": "images/clubs/craft-logo-453.webp",
-      "width": 453,
+      "src": "images/clubs/craft-logo-640.webp",
+      "width": 640,
       "height": 640,
       "position": "50% 50%",
       "variants": [
         {
-          "src": "images/clubs/craft-logo-170.webp",
-          "width": 170,
+          "src": "images/clubs/craft-logo-240.webp",
+          "width": 240,
           "height": 240,
-          "bytes": 5770
+          "bytes": 37050
         },
         {
-          "src": "images/clubs/craft-logo-340.webp",
-          "width": 340,
+          "src": "images/clubs/craft-logo-480.webp",
+          "width": 480,
           "height": 480,
-          "bytes": 16326
+          "bytes": 104380
         },
         {
-          "src": "images/clubs/craft-logo-453.webp",
-          "width": 453,
+          "src": "images/clubs/craft-logo-640.webp",
+          "width": 640,
           "height": 640,
-          "bytes": 24486
+          "bytes": 164510
         }
       ]
     }

@@ -31,6 +31,9 @@ test('all 32 archive inputs are reviewed and the only duplicate is accounted for
 test('web assets exist, are proportional, never upscaled, losslessly encoded and correctly described', () => {
   for (const source of manifest) {
     if (source.duplicateOf || source.excluded) continue
+    const crop = 'crop' in source ? source.crop as number[] : undefined
+    const sourceWidth = crop ? crop[2] - crop[0] : source.sourceWidth!
+    const sourceHeight = crop ? crop[3] - crop[1] : source.sourceHeight!
     const club = clubs.find(club => club.id === source.clubId)!
     const media = club[source.role as 'photo' | 'logo' | 'banner']!
     assert.ok(media.alt.length > 15)
@@ -40,8 +43,8 @@ test('web assets exist, are proportional, never upscaled, losslessly encoded and
       const bytes = readFileSync(new URL(`../public/${variant.src}`, import.meta.url))
       assert.deepEqual(webpDimensions(bytes), { width: variant.width, height: variant.height })
       assert.equal(bytes.length, variant.bytes)
-      assert.ok(variant.width <= source.sourceWidth! && variant.height <= source.sourceHeight!)
-      assert.ok(Math.abs(variant.width / source.sourceWidth! - variant.height / source.sourceHeight!) <= 1 / source.sourceWidth! + 1 / source.sourceHeight!)
+      assert.ok(variant.width <= sourceWidth && variant.height <= sourceHeight)
+      assert.ok(Math.abs(variant.width / sourceWidth - variant.height / sourceHeight) <= 1 / sourceWidth + 1 / sourceHeight)
       assert.ok(bytes.includes(Buffer.from('VP8L')), 'Lossless pixels; no lossy VP8 conversion')
     }
   }

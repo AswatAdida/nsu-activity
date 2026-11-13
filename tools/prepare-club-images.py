@@ -51,6 +51,10 @@ for item in inputs:
     source = ImageOps.exif_transpose(source)
     icc = source.info.get('icc_profile')
     source = source.convert('RGBA' if 'A' in source.getbands() else 'RGB')
+    source_width, source_height = source.size
+    if item.get('crop'):
+        source = source.crop(tuple(item['crop']))
+        record['crop'] = item['crop']
     sizes = [240, 480, 640] if item['role'] == 'logo' else [480, 960, 1280]
     variants = []
     seen = set()
@@ -69,7 +73,7 @@ for item in inputs:
     media = {key: item[key] for key in ['kind', 'fit', 'background', 'alt']}
     media.update({'src': largest['src'], 'width': largest['width'], 'height': largest['height'], 'position': item.get('position', '50% 50%'), 'variants': variants})
     by_id[item['clubId']][item['role']] = media
-    record.update({'clubId': item['clubId'], 'role': item['role'], 'kind': item['kind'], 'fit': item['fit'], 'sourceWidth': source.width, 'sourceHeight': source.height, 'variants': variants})
+    record.update({'clubId': item['clubId'], 'role': item['role'], 'kind': item['kind'], 'fit': item['fit'], 'sourceWidth': source_width, 'sourceHeight': source_height, 'variants': variants})
     manifest.append(record)
 (root / 'src/data/clubs.json').write_text(json.dumps(clubs, ensure_ascii=False, indent=2) + '\n')
 (root / 'src/data/club-image-manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
