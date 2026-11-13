@@ -11,7 +11,7 @@ export default function SessionInfo({ session, date, onMap, onRoom }: Props) {
   const club = sessionClub(session)
   const candidates = [session.roomId, ...(session.alternativeRoomIds ?? [])].filter((id): id is string => id !== null)
   return <article className="space-y-3 rounded-2xl border border-blue-200 bg-white p-4" aria-label="Информация о занятии" data-session-details={session.id}>
-    <div className="flex items-center gap-4">{club && <ClubVisual club={club} image={club.logo ?? club.cover} compact />}<div><p className="eyebrow">ЗАНЯТИЕ ОБЪЕДИНЕНИЯ</p><h3 className="mt-1 text-lg font-bold">{session.clubName}</h3></div></div>
+    <div className="flex items-center gap-4">{club && <ClubVisual club={club} image={club.logo} compact />}<div><p className="eyebrow">ЗАНЯТИЕ ОБЪЕДИНЕНИЯ</p><h3 className="mt-1 text-lg font-bold">{session.clubName}</h3></div></div>
     {club && <p className="text-sm text-slate-600">{club.description}</p>}
     {date && <p className="text-sm font-semibold">{dateLabel(date)} · Новосибирск</p>}
     <p className="text-sm">{sessionLocationLabel(session)}</p>

@@ -12,7 +12,7 @@ export default function ClubCatalog({ selectedIds, onOpenSchedule, onOpenMap }: 
   const [sort, setSort] = useState('images')
   const filtered = useMemo(() => {
     const q = search.toLocaleLowerCase('ru').trim()
-    const score = (club: typeof clubs[number]) => club.cover?.kind === 'photo' ? club.cover.fit === 'cover' ? 4 : 3 : club.cover ? 2 : club.logo ? 1 : 0
+    const score = (club: typeof clubs[number]) => club.logo ? 1 : 0
     return clubs.filter(club => [club.name, club.shortName, club.description, club.location, club.schedule].join(' ').toLocaleLowerCase('ru').includes(q) && (category === 'Все' || club.category === category) && (showInactive || club.status === 'active')).sort((a, b) => sort === 'name' ? a.name.localeCompare(b.name, 'ru') : score(b) - score(a))
   }, [search, category, showInactive, sort])
   return <section className="catalog-page" aria-label="Каталог объединений">

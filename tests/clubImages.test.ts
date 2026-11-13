@@ -22,7 +22,7 @@ function webpDimensions(bytes: Buffer) {
 }
 test('all 32 archive inputs are reviewed and the only duplicate is accounted for', () => {
   assert.equal(manifest.length, 32)
-  assert.equal(clubs.filter(club => club.cover || club.logo).length, 23)
+  assert.equal(clubs.filter(club => club.logo).length, 19)
   const duplicate = manifest.find(image => image.originalFile === 'jven.jpg')!
   assert.equal(duplicate.duplicateOf, 'омут.jpg')
   assert.equal(duplicate.sha256, manifest.find(image => image.originalFile === 'омут.jpg')!.sha256)
@@ -30,9 +30,9 @@ test('all 32 archive inputs are reviewed and the only duplicate is accounted for
 })
 test('web assets exist, are proportional, never upscaled, losslessly encoded and correctly described', () => {
   for (const source of manifest) {
-    if (source.duplicateOf) continue
+    if (source.duplicateOf || source.excluded) continue
     const club = clubs.find(club => club.id === source.clubId)!
-    const media = club[source.role as 'cover' | 'logo']!
+    const media = club[source.role as 'photo' | 'logo']!
     assert.ok(media.alt.length > 15)
     assert.equal(media.fit, source.fit)
     for (const variant of media.variants) {
@@ -46,21 +46,25 @@ test('web assets exist, are proportional, never upscaled, losslessly encoded and
     }
   }
 })
-test('logos and broad/portrait compositions remain whole; original small emblems are not enlarged', () => {
+test('catalog uses only logos; VK covers and illustrations are excluded', () => {
   for (const club of clubs) {
-    if (club.logo) assert.equal(club.logo.fit, 'contain')
-    if (club.cover?.kind === 'banner') assert.equal(club.cover.fit, 'contain')
+    assert.equal('cover' in club, false)
+    if (club.logo) { assert.equal(club.logo.kind, 'logo'); assert.equal(club.logo.fit, 'contain') }
   }
   assert.equal(clubs.find(club => club.id === 'bridge')!.logo!.width, 200)
-  assert.equal(clubs.find(club => club.id === 'dansu')!.cover!.fit, 'contain')
-  assert.equal(clubs.find(club => club.id === 'russian-speaking')!.cover!.fit, 'contain')
-  assert.equal(clubs.find(club => club.id === 'mountain-tourism')!.cover!.fit, 'cover')
+  assert.equal(clubs.filter(club => club.photo).length, 1)
+  assert.equal(clubs.find(club => club.id === 'mountain-tourism')!.photo!.fit, 'contain')
+  for (const file of ['мастерская огня.png', 'клуб рукоделия.png', 'миллион голосов.png', 'русский разговорный.png', 'этноклуб 2.png', 'смб нгу 2.png']) {
+    const source = manifest.find(image => image.originalFile === file)!
+    assert.equal(source.excluded, true)
+    assert.equal(source.variants, undefined)
+  }
 })
-test('recommended pairs keep the primary cover separate from their emblem', () => {
+test('clubs with former VK covers retain emblems or a placeholder', () => {
   for (const id of ['fire', 'craft', 'vocal', 'russian-speaking', 'mountain-tourism', 'ethno', 'siberica-legion']) {
     const club = clubs.find(club => club.id === id)!
-    assert.ok(club.cover && club.logo)
-    assert.notEqual(club.cover.src, club.logo.src)
+    assert.ok(club.logo)
     assert.equal(club.logo.kind, 'logo')
   }
+  for (const id of ['dansu', 'mtg', 'mafia', 'taverna']) assert.equal(clubs.find(club => club.id === id)!.logo, undefined)
 })

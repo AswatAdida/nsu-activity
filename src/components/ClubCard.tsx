@@ -16,7 +16,7 @@ export function ClubCard({ club, selected, onOpenSchedule, onOpenMap }: Props) {
       </div>
       <details className="club-details"><summary>Подробнее об объединении <ChevronDown size={14} aria-hidden="true" /></summary>
         <div className="club-details-content">
-          {club.cover && club.logo && <ClubVisual club={club} image={club.logo} compact />}
+          {club.photo && <div className="club-detail-photo"><ClubVisual club={club} image={club.photo} /></div>}
           <p>{club.description}</p><p><strong>Расписание.</strong> {club.schedule}</p><p><strong>Место.</strong> {club.location}</p>
           <p className="flex items-start gap-2"><Users size={16} className="shrink-0" aria-hidden="true" />{club.attendance}</p>
           {club.notes?.map(note => <p key={note}>{note}</p>)}

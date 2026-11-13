@@ -30,6 +30,9 @@ output = root / 'public/images/clubs'
 output.mkdir(parents=True, exist_ok=True)
 clubs = json.loads((root / 'src/data/clubs.json').read_text())
 by_id = {club['id']: club for club in clubs}
+for club in clubs:
+    for field in ['cover', 'photo', 'logo']:
+        club.pop(field, None)
 manifest = []
 for item in inputs:
     data = originals[item['file']]
@@ -38,6 +41,10 @@ for item in inputs:
         if data != originals[item['duplicateOf']]:
             raise ValueError('Expected byte-identical duplicate')
         record['duplicateOf'] = item['duplicateOf']
+        manifest.append(record)
+        continue
+    if item.get('excluded'):
+        record.update({'clubId': item['clubId'], 'excluded': True, 'exclusionReason': item['exclusionReason']})
         manifest.append(record)
         continue
     source = Image.open(io.BytesIO(data))
@@ -65,4 +72,4 @@ for item in inputs:
     manifest.append(record)
 (root / 'src/data/clubs.json').write_text(json.dumps(clubs, ensure_ascii=False, indent=2) + '\n')
 (root / 'src/data/club-image-manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
-print(json.dumps({'filesReviewed': len(manifest), 'clubsWithImages': sum(bool(club.get('cover') or club.get('logo')) for club in clubs), 'originalBytes': sum(len(data) for data in originals.values()), 'webBytesAllVariants': sum(v['bytes'] for record in manifest for v in record.get('variants', []))}))
+print(json.dumps({'filesReviewed': len(manifest), 'clubsWithImages': sum(bool(club.get('photo') or club.get('logo')) for club in clubs), 'originalBytes': sum(len(data) for data in originals.values()), 'webBytesAllVariants': sum(v['bytes'] for record in manifest for v in record.get('variants', []))}))

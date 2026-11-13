@@ -9,7 +9,7 @@ export default function ClubMapPanel({ clubId, onPlace, onSession, onRoom }: Pro
   if (!context) return null
   const { club, sessions, bases, places, unplaced } = context
   return <article className="mb-5 rounded-2xl border border-slate-200 bg-white p-5" aria-label="Места объединения" data-map-club={clubId}>
-    <div className="flex items-center gap-4"><ClubVisual club={club} image={club.logo ?? club.cover} compact /><div><p className="eyebrow">ОБЪЕДИНЕНИЕ НА КАРТЕ</p><h3 className="mt-1 text-xl font-bold">{club.name}</h3><p className="mt-1 text-sm text-slate-500">{club.category}</p></div></div>
+    <div className="flex items-center gap-4"><ClubVisual club={club} image={club.logo} compact /><div><p className="eyebrow">ОБЪЕДИНЕНИЕ НА КАРТЕ</p><h3 className="mt-1 text-xl font-bold">{club.name}</h3><p className="mt-1 text-sm text-slate-500">{club.category}</p></div></div>
     <p className="mt-4 text-sm text-slate-600">{club.location}</p>
     <div className="mt-4 flex flex-wrap gap-2">{places.map(place => <button key={place.id} type="button" onClick={() => onPlace(place.id)} className="action-secondary">{place.name} · {place.address}</button>)}</div>
     {(!places.length || unplaced > 0) && <p className="mt-3 text-xs text-slate-500">{!places.length ? 'Место пока не привязано к карте. Выше сохранено описание из источника.' : 'Для части занятий точное место не определено; можно открыть сведения о конкретной встрече.'}</p>}

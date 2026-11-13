@@ -5,7 +5,7 @@ export type ClubImage = {
   width: number
   height: number
   alt: string
-  kind: 'photo' | 'logo' | 'banner' | 'illustration'
+  kind: 'photo' | 'logo'
   fit: 'cover' | 'contain'
   position?: string
   background?: string
@@ -17,7 +17,7 @@ export type Club = {
   name: string
   category: string
   shortName?: string
-  cover?: ClubImage
+  photo?: ClubImage
   logo?: ClubImage
   description: string
   schedule: string

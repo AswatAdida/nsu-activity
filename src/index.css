@@ -62,11 +62,13 @@ input:focus-visible { outline: 2px solid #315f94; outline-offset: 1px; }
 .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 24px; margin-top: 28px; }
 .club-card { display: flex; flex-direction: column; min-width: 0; background: white; border: 1px solid var(--nsu-line); border-radius: 16px; overflow: hidden; box-shadow: 0 3px 12px #172b4205; }
 .club-card:hover { border-color: #afbed0; }
-.club-media { aspect-ratio: 4 / 3; width: 100%; display: grid; place-items: center; position: relative; flex: none; border-bottom: 1px solid var(--nsu-line); overflow: hidden; }
+.club-media { height: 160px; width: 100%; display: grid; place-items: center; position: relative; flex: none; border-bottom: 1px solid var(--nsu-line); overflow: hidden; }
 .club-media a { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 0; }
 .club-media img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; }
 .club-media.fit-cover img { width: 100%; height: 100%; }
-.club-media.media-logo a { padding: 28px; }
+.club-media.media-logo a { padding: 20px; }
+.club-media.media-logo img { max-width: 180px !important; max-height: 120px !important; }
+.club-detail-photo .club-media { height: auto; aspect-ratio: 4 / 3; border: 0; border-radius: 10px; }
 .club-media.media-logo img { max-width: 100%; max-height: 100%; }
 .club-avatar { width: 76px; height: 76px; flex: none; display: flex; align-items: center; justify-content: center; border: 1px solid var(--nsu-line); border-radius: 12px; padding: 8px; overflow: hidden; }
 .club-avatar img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain !important; }

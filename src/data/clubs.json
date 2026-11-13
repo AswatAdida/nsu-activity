@@ -86,36 +86,6 @@
     "attendance": "5–10",
     "url": "https://vk.ru/fire_nsu",
     "status": "active",
-    "cover": {
-      "kind": "photo",
-      "fit": "contain",
-      "background": "#1d1720",
-      "alt": "Участники Мастерской огня и света выступают с огненными факелами",
-      "src": "images/clubs/fire-cover-1280.webp",
-      "width": 1280,
-      "height": 428,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/fire-cover-480.webp",
-          "width": 480,
-          "height": 161,
-          "bytes": 87418
-        },
-        {
-          "src": "images/clubs/fire-cover-960.webp",
-          "width": 960,
-          "height": 321,
-          "bytes": 304358
-        },
-        {
-          "src": "images/clubs/fire-cover-1280.webp",
-          "width": 1280,
-          "height": 428,
-          "bytes": 503050
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -157,36 +127,6 @@
     "attendance": "Не указано",
     "url": "https://vk.ru/tria_moira_nsu",
     "status": "inactive",
-    "cover": {
-      "kind": "banner",
-      "fit": "contain",
-      "background": "#f5f1ec",
-      "alt": "Обложка клуба рукоделия с разноцветными нитями",
-      "src": "images/clubs/craft-cover-1280.webp",
-      "width": 1280,
-      "height": 383,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/craft-cover-480.webp",
-          "width": 480,
-          "height": 144,
-          "bytes": 121426
-        },
-        {
-          "src": "images/clubs/craft-cover-960.webp",
-          "width": 960,
-          "height": 287,
-          "bytes": 398960
-        },
-        {
-          "src": "images/clubs/craft-cover-1280.webp",
-          "width": 1280,
-          "height": 383,
-          "bytes": 640008
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -269,36 +209,6 @@
     "attendance": "~10–20",
     "url": "https://vk.ru/vocalnsu",
     "status": "active",
-    "cover": {
-      "kind": "banner",
-      "fit": "contain",
-      "background": "#eef4f0",
-      "alt": "Баннер вокальной студии Миллион голосов с названием и участниками",
-      "src": "images/clubs/vocal-cover-1280.webp",
-      "width": 1280,
-      "height": 376,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/vocal-cover-480.webp",
-          "width": 480,
-          "height": 141,
-          "bytes": 79762
-        },
-        {
-          "src": "images/clubs/vocal-cover-960.webp",
-          "width": 960,
-          "height": 282,
-          "bytes": 286018
-        },
-        {
-          "src": "images/clubs/vocal-cover-1280.webp",
-          "width": 1280,
-          "height": 376,
-          "bytes": 470486
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -421,37 +331,7 @@
     "location": "Разные аудитории НГУ, уточняйте в анонсах",
     "attendance": "4–7 на игру",
     "url": "https://vk.ru/trpg_nsu",
-    "status": "active",
-    "cover": {
-      "kind": "illustration",
-      "fit": "contain",
-      "background": "#f0e7db",
-      "alt": "Иллюстрация Таверны с деревянной бочкой и многогранными игральными костями",
-      "src": "images/clubs/taverna-cover-1280.webp",
-      "width": 1280,
-      "height": 1280,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/taverna-cover-480.webp",
-          "width": 480,
-          "height": 480,
-          "bytes": 152836
-        },
-        {
-          "src": "images/clubs/taverna-cover-960.webp",
-          "width": 960,
-          "height": 960,
-          "bytes": 450514
-        },
-        {
-          "src": "images/clubs/taverna-cover-1280.webp",
-          "width": 1280,
-          "height": 1280,
-          "bytes": 720798
-        }
-      ]
-    }
+    "status": "active"
   },
   {
     "id": "mafia",
@@ -462,37 +342,7 @@
     "location": "Ранее ауд. 2259–2262",
     "attendance": "Ранее ~14",
     "url": "https://vk.ru/mafia_silent_don",
-    "status": "inactive",
-    "cover": {
-      "kind": "illustration",
-      "fit": "contain",
-      "background": "#161616",
-      "alt": "Иллюстрация клуба мафии: фигура в шляпе и игральные кости",
-      "src": "images/clubs/mafia-cover-904.webp",
-      "width": 904,
-      "height": 1280,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/mafia-cover-339.webp",
-          "width": 339,
-          "height": 480,
-          "bytes": 12024
-        },
-        {
-          "src": "images/clubs/mafia-cover-678.webp",
-          "width": 678,
-          "height": 960,
-          "bytes": 37920
-        },
-        {
-          "src": "images/clubs/mafia-cover-904.webp",
-          "width": 904,
-          "height": 1280,
-          "bytes": 62724
-        }
-      ]
-    }
+    "status": "inactive"
   },
   {
     "id": "media",
@@ -580,36 +430,6 @@
     "attendance": "Не указано",
     "url": "https://vk.ru/dopsihelp",
     "status": "inactive",
-    "cover": {
-      "kind": "illustration",
-      "fit": "contain",
-      "background": "#117e82",
-      "alt": "Иллюстрация Ты не один: люди соединены линией с сердцем",
-      "src": "images/clubs/help-cover-1280.webp",
-      "width": 1280,
-      "height": 385,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/help-cover-480.webp",
-          "width": 480,
-          "height": 144,
-          "bytes": 25040
-        },
-        {
-          "src": "images/clubs/help-cover-960.webp",
-          "width": 960,
-          "height": 288,
-          "bytes": 77474
-        },
-        {
-          "src": "images/clubs/help-cover-1280.webp",
-          "width": 1280,
-          "height": 385,
-          "bytes": 124130
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -734,36 +554,6 @@
         "url": "https://vk.ru/rscciep"
       }
     ],
-    "cover": {
-      "kind": "photo",
-      "fit": "contain",
-      "background": "#f0f3f5",
-      "alt": "Групповая фотография участников Русского разговорного клуба НГУ",
-      "src": "images/clubs/russian-speaking-cover-1280.webp",
-      "width": 1280,
-      "height": 422,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/russian-speaking-cover-480.webp",
-          "width": 480,
-          "height": 158,
-          "bytes": 92144
-        },
-        {
-          "src": "images/clubs/russian-speaking-cover-960.webp",
-          "width": 960,
-          "height": 317,
-          "bytes": 312872
-        },
-        {
-          "src": "images/clubs/russian-speaking-cover-1280.webp",
-          "width": 1280,
-          "height": 422,
-          "bytes": 513768
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -844,37 +634,7 @@
     ],
     "notes": [
       "Два источника содержат разные расписания. До уточнения регулярные встречи не добавлены."
-    ],
-    "cover": {
-      "kind": "photo",
-      "fit": "contain",
-      "background": "#171a20",
-      "alt": "Танцовщица DaNSU на сцене с поднятой рукой",
-      "src": "images/clubs/dansu-cover-905.webp",
-      "width": 905,
-      "height": 1280,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/dansu-cover-339.webp",
-          "width": 339,
-          "height": 480,
-          "bytes": 82922
-        },
-        {
-          "src": "images/clubs/dansu-cover-679.webp",
-          "width": 679,
-          "height": 960,
-          "bytes": 241264
-        },
-        {
-          "src": "images/clubs/dansu-cover-905.webp",
-          "width": 905,
-          "height": 1280,
-          "bytes": 377448
-        }
-      ]
-    }
+    ]
   },
   {
     "id": "omut",
@@ -1068,36 +828,6 @@
         "url": "https://vk.ru/nsu_knights"
       }
     ],
-    "cover": {
-      "kind": "illustration",
-      "fit": "contain",
-      "background": "#ede7de",
-      "alt": "Тематическая обложка клуба СМБ с воинами в исторических доспехах",
-      "src": "images/clubs/siberica-legion-cover-1280.webp",
-      "width": 1280,
-      "height": 437,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/siberica-legion-cover-480.webp",
-          "width": 480,
-          "height": 164,
-          "bytes": 104260
-        },
-        {
-          "src": "images/clubs/siberica-legion-cover-960.webp",
-          "width": 960,
-          "height": 328,
-          "bytes": 373924
-        },
-        {
-          "src": "images/clubs/siberica-legion-cover-1280.webp",
-          "width": 1280,
-          "height": 437,
-          "bytes": 633260
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -1183,31 +913,7 @@
         "recordedOn": "2026-11-10",
         "url": "https://vk.ru/mtg_nsu"
       }
-    ],
-    "cover": {
-      "kind": "illustration",
-      "fit": "contain",
-      "background": "#e9eef2",
-      "alt": "Фэнтезийная иллюстрация клуба MTG Planeswalker",
-      "src": "images/clubs/mtg-cover-376.webp",
-      "width": 376,
-      "height": 512,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/mtg-cover-352.webp",
-          "width": 352,
-          "height": 480,
-          "bytes": 232570
-        },
-        {
-          "src": "images/clubs/mtg-cover-376.webp",
-          "width": 376,
-          "height": 512,
-          "bytes": 248310
-        }
-      ]
-    }
+    ]
   },
   {
     "id": "historical-political",
@@ -1285,36 +991,6 @@
     "notes": [
       "Не уточнено, находится ли воскресный зал в пристройке общежития № 6. Эти места пока хранятся отдельно."
     ],
-    "cover": {
-      "kind": "photo",
-      "fit": "contain",
-      "background": "#ede7e1",
-      "alt": "Обложка Этноклуба: руки участницы за столом с предметами народного быта",
-      "src": "images/clubs/ethno-cover-1280.webp",
-      "width": 1280,
-      "height": 430,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/ethno-cover-480.webp",
-          "width": 480,
-          "height": 161,
-          "bytes": 108218
-        },
-        {
-          "src": "images/clubs/ethno-cover-960.webp",
-          "width": 960,
-          "height": 323,
-          "bytes": 347844
-        },
-        {
-          "src": "images/clubs/ethno-cover-1280.webp",
-          "width": 1280,
-          "height": 430,
-          "bytes": 559790
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -1369,30 +1045,6 @@
         "note": "Уточнение пользователя: тренировки СГТ НГУ каждый понедельник и пятницу в 19:00 в старом спорткомплексе; время окончания неизвестно. Лекция в четверг сохранена."
       }
     ],
-    "cover": {
-      "kind": "photo",
-      "fit": "cover",
-      "background": "#e7edf1",
-      "alt": "Туристы СГТ НГУ на заснеженном горном склоне",
-      "src": "images/clubs/mountain-tourism-cover-604.webp",
-      "width": 604,
-      "height": 453,
-      "position": "50% 50%",
-      "variants": [
-        {
-          "src": "images/clubs/mountain-tourism-cover-480.webp",
-          "width": 480,
-          "height": 360,
-          "bytes": 135984
-        },
-        {
-          "src": "images/clubs/mountain-tourism-cover-604.webp",
-          "width": 604,
-          "height": 453,
-          "bytes": 173826
-        }
-      ]
-    },
     "logo": {
       "kind": "logo",
       "fit": "contain",
@@ -1426,6 +1078,30 @@
     "notes": [
       "Предыдущее описание места: Пн и пт: у крыльца старого спорткомплекса НГУ; чт: новый спорткомплекс НГУ, аудитория 223. Предыдущее расписание: Пн и пт — беговая тренировка, время не указано; чт 19:00 — лекция. Уточнено пользователем 2026-11-12."
     ],
-    "shortName": "СГТ НГУ"
+    "shortName": "СГТ НГУ",
+    "photo": {
+      "kind": "photo",
+      "fit": "contain",
+      "background": "#e7edf1",
+      "alt": "Туристы СГТ НГУ на заснеженном горном склоне",
+      "src": "images/clubs/mountain-tourism-photo-604.webp",
+      "width": 604,
+      "height": 453,
+      "position": "50% 50%",
+      "variants": [
+        {
+          "src": "images/clubs/mountain-tourism-photo-480.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 135984
+        },
+        {
+          "src": "images/clubs/mountain-tourism-photo-604.webp",
+          "width": 604,
+          "height": 453,
+          "bytes": 173826
+        }
+      ]
+    }
   }
 ]

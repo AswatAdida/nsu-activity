@@ -40,26 +40,8 @@
     "fit": "contain",
     "sourceWidth": 1527,
     "sourceHeight": 2160,
-    "variants": [
-      {
-        "src": "images/clubs/dansu-cover-339.webp",
-        "width": 339,
-        "height": 480,
-        "bytes": 82922
-      },
-      {
-        "src": "images/clubs/dansu-cover-679.webp",
-        "width": 679,
-        "height": 960,
-        "bytes": 241264
-      },
-      {
-        "src": "images/clubs/dansu-cover-905.webp",
-        "width": 905,
-        "height": 1280,
-        "bytes": 377448
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "Planeswalker.jpg",
@@ -71,20 +53,8 @@
     "fit": "contain",
     "sourceWidth": 376,
     "sourceHeight": 512,
-    "variants": [
-      {
-        "src": "images/clubs/mtg-cover-352.webp",
-        "width": 352,
-        "height": 480,
-        "bytes": 232570
-      },
-      {
-        "src": "images/clubs/mtg-cover-376.webp",
-        "width": 376,
-        "height": 512,
-        "bytes": 248310
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "бридж клуб.jpg",
@@ -208,26 +178,8 @@
     "fit": "contain",
     "sourceWidth": 1526,
     "sourceHeight": 2160,
-    "variants": [
-      {
-        "src": "images/clubs/mafia-cover-339.webp",
-        "width": 339,
-        "height": 480,
-        "bytes": 12024
-      },
-      {
-        "src": "images/clubs/mafia-cover-678.webp",
-        "width": 678,
-        "height": 960,
-        "bytes": 37920
-      },
-      {
-        "src": "images/clubs/mafia-cover-904.webp",
-        "width": 904,
-        "height": 1280,
-        "bytes": 62724
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "клуб настольных игр нгу.jpg",
@@ -270,26 +222,8 @@
     "fit": "contain",
     "sourceWidth": 1380,
     "sourceHeight": 413,
-    "variants": [
-      {
-        "src": "images/clubs/craft-cover-480.webp",
-        "width": 480,
-        "height": 144,
-        "bytes": 121426
-      },
-      {
-        "src": "images/clubs/craft-cover-960.webp",
-        "width": 960,
-        "height": 287,
-        "bytes": 398960
-      },
-      {
-        "src": "images/clubs/craft-cover-1280.webp",
-        "width": 1280,
-        "height": 383,
-        "bytes": 640008
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "клуб рукоделия.jpg",
@@ -332,26 +266,8 @@
     "fit": "contain",
     "sourceWidth": 1549,
     "sourceHeight": 518,
-    "variants": [
-      {
-        "src": "images/clubs/fire-cover-480.webp",
-        "width": 480,
-        "height": 161,
-        "bytes": 87418
-      },
-      {
-        "src": "images/clubs/fire-cover-960.webp",
-        "width": 960,
-        "height": 321,
-        "bytes": 304358
-      },
-      {
-        "src": "images/clubs/fire-cover-1280.webp",
-        "width": 1280,
-        "height": 428,
-        "bytes": 503050
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "мастерская огня.jpg",
@@ -425,26 +341,8 @@
     "fit": "contain",
     "sourceWidth": 1703,
     "sourceHeight": 500,
-    "variants": [
-      {
-        "src": "images/clubs/vocal-cover-480.webp",
-        "width": 480,
-        "height": 141,
-        "bytes": 79762
-      },
-      {
-        "src": "images/clubs/vocal-cover-960.webp",
-        "width": 960,
-        "height": 282,
-        "bytes": 286018
-      },
-      {
-        "src": "images/clubs/vocal-cover-1280.webp",
-        "width": 1280,
-        "height": 376,
-        "bytes": 470486
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "миллион голосов.jpg",
@@ -586,26 +484,8 @@
     "fit": "contain",
     "sourceWidth": 1834,
     "sourceHeight": 605,
-    "variants": [
-      {
-        "src": "images/clubs/russian-speaking-cover-480.webp",
-        "width": 480,
-        "height": 158,
-        "bytes": 92144
-      },
-      {
-        "src": "images/clubs/russian-speaking-cover-960.webp",
-        "width": 960,
-        "height": 317,
-        "bytes": 312872
-      },
-      {
-        "src": "images/clubs/russian-speaking-cover-1280.webp",
-        "width": 1280,
-        "height": 422,
-        "bytes": 513768
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "русский разговорный.jpg",
@@ -648,26 +528,8 @@
     "fit": "contain",
     "sourceWidth": 1554,
     "sourceHeight": 531,
-    "variants": [
-      {
-        "src": "images/clubs/siberica-legion-cover-480.webp",
-        "width": 480,
-        "height": 164,
-        "bytes": 104260
-      },
-      {
-        "src": "images/clubs/siberica-legion-cover-960.webp",
-        "width": 960,
-        "height": 328,
-        "bytes": 373924
-      },
-      {
-        "src": "images/clubs/siberica-legion-cover-1280.webp",
-        "width": 1280,
-        "height": 437,
-        "bytes": 633260
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "смб нгу.jpg",
@@ -710,46 +572,28 @@
     "fit": "contain",
     "sourceWidth": 2000,
     "sourceHeight": 2000,
-    "variants": [
-      {
-        "src": "images/clubs/taverna-cover-480.webp",
-        "width": 480,
-        "height": 480,
-        "bytes": 152836
-      },
-      {
-        "src": "images/clubs/taverna-cover-960.webp",
-        "width": 960,
-        "height": 960,
-        "bytes": 450514
-      },
-      {
-        "src": "images/clubs/taverna-cover-1280.webp",
-        "width": 1280,
-        "height": 1280,
-        "bytes": 720798
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "турклуб 2.jpg",
     "originalBytes": 44875,
     "sha256": "c9995dfe66561e58ad2c85cf98a45d5be9e91430eac410ce41d0d5cf6bc73ebf",
     "clubId": "mountain-tourism",
-    "role": "cover",
+    "role": "photo",
     "kind": "photo",
-    "fit": "cover",
+    "fit": "contain",
     "sourceWidth": 604,
     "sourceHeight": 453,
     "variants": [
       {
-        "src": "images/clubs/mountain-tourism-cover-480.webp",
+        "src": "images/clubs/mountain-tourism-photo-480.webp",
         "width": 480,
         "height": 360,
         "bytes": 135984
       },
       {
-        "src": "images/clubs/mountain-tourism-cover-604.webp",
+        "src": "images/clubs/mountain-tourism-photo-604.webp",
         "width": 604,
         "height": 453,
         "bytes": 173826
@@ -797,26 +641,8 @@
     "fit": "contain",
     "sourceWidth": 1777,
     "sourceHeight": 534,
-    "variants": [
-      {
-        "src": "images/clubs/help-cover-480.webp",
-        "width": 480,
-        "height": 144,
-        "bytes": 25040
-      },
-      {
-        "src": "images/clubs/help-cover-960.webp",
-        "width": 960,
-        "height": 288,
-        "bytes": 77474
-      },
-      {
-        "src": "images/clubs/help-cover-1280.webp",
-        "width": 1280,
-        "height": 385,
-        "bytes": 124130
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "ты не один.jpg",
@@ -884,26 +710,8 @@
     "fit": "contain",
     "sourceWidth": 1851,
     "sourceHeight": 622,
-    "variants": [
-      {
-        "src": "images/clubs/ethno-cover-480.webp",
-        "width": 480,
-        "height": 161,
-        "bytes": 108218
-      },
-      {
-        "src": "images/clubs/ethno-cover-960.webp",
-        "width": 960,
-        "height": 323,
-        "bytes": 347844
-      },
-      {
-        "src": "images/clubs/ethno-cover-1280.webp",
-        "width": 1280,
-        "height": 430,
-        "bytes": 559790
-      }
-    ]
+    "excluded": true,
+    "exclusionReason": "Не используется в интерфейсе по уточнению пользователя"
   },
   {
     "originalFile": "этноклуб.jpg",
