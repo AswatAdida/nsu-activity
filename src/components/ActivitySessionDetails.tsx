@@ -19,6 +19,7 @@ export function ActivitySessionDetails({ session }: { session: ActivitySession }
       {session.catalogSource && <p className="mt-2">Источник: описание объединения в каталоге. Расписание: {session.catalogSource.schedule}. Место: {session.catalogSource.location}.</p>}
       {session.validityNeedsClarification && <p className="mt-2">Период действия указан без точных границ.</p>}
     {session.notes?.map(note => <p key={note} className="mt-2 text-xs text-blue-100">{note}</p>)}
+    {session.sourceHistory?.map((source, index) => <p key={index} className="mt-2 text-xs text-blue-100">Предыдущий источник: сведения пользователя от {source.recordedOn}.{source.url && <> <a href={source.url} target="_blank" rel="noreferrer" className="underline">Сообщество</a></>}</p>)}
     {session.source && <p className="mt-2 text-xs text-blue-200">Источник: сообщение пользователя от {session.source.recordedOn}.{session.source.url && <> <a href={session.source.url} target="_blank" rel="noopener noreferrer" className="underline">Сообщество</a></>}</p>}
     </details> : null}
   </div>

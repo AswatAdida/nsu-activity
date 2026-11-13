@@ -1,0 +1,945 @@
+[
+  {
+    "originalFile": "academian eng club.jpg",
+    "originalBytes": 179404,
+    "sha256": "54277155fff294df97a87ed43385aca091e36f9cba55b2192c4f5fe37181c9cf",
+    "clubId": "academian-english",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 2560,
+    "sourceHeight": 1682,
+    "variants": [
+      {
+        "src": "images/clubs/academian-english-logo-240.webp",
+        "width": 240,
+        "height": 158,
+        "bytes": 1796
+      },
+      {
+        "src": "images/clubs/academian-english-logo-480.webp",
+        "width": 480,
+        "height": 315,
+        "bytes": 4814
+      },
+      {
+        "src": "images/clubs/academian-english-logo-640.webp",
+        "width": 640,
+        "height": 421,
+        "bytes": 7236
+      }
+    ]
+  },
+  {
+    "originalFile": "dansu.jpg",
+    "originalBytes": 159750,
+    "sha256": "adf0b2d16dd3d16b7ec8bb6addc5cc2602bb76f5a8de37c24d9c0748d02d9478",
+    "clubId": "dansu",
+    "role": "photo",
+    "kind": "photo",
+    "fit": "contain",
+    "sourceWidth": 1527,
+    "sourceHeight": 2160,
+    "variants": [
+      {
+        "src": "images/clubs/dansu-cover-339.webp",
+        "width": 339,
+        "height": 480,
+        "bytes": 82922
+      },
+      {
+        "src": "images/clubs/dansu-cover-679.webp",
+        "width": 679,
+        "height": 960,
+        "bytes": 241264
+      },
+      {
+        "src": "images/clubs/dansu-cover-905.webp",
+        "width": 905,
+        "height": 1280,
+        "bytes": 377448
+      }
+    ]
+  },
+  {
+    "originalFile": "Planeswalker.jpg",
+    "originalBytes": 85005,
+    "sha256": "8b61b4ca97308179c20868324bec5f97568f8824fd51e9ac0bb65c7246d150cc",
+    "clubId": "mtg",
+    "role": "banner",
+    "kind": "illustration",
+    "fit": "contain",
+    "sourceWidth": 376,
+    "sourceHeight": 512,
+    "variants": [
+      {
+        "src": "images/clubs/mtg-cover-352.webp",
+        "width": 352,
+        "height": 480,
+        "bytes": 232570
+      },
+      {
+        "src": "images/clubs/mtg-cover-376.webp",
+        "width": 376,
+        "height": 512,
+        "bytes": 248310
+      }
+    ]
+  },
+  {
+    "originalFile": "бридж клуб.jpg",
+    "originalBytes": 12395,
+    "sha256": "a0a610e1325904f2629d5730b21a6647d8c9b5c0b5ff6c6d8bf8d6979c9539c0",
+    "clubId": "bridge",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 200,
+    "sourceHeight": 200,
+    "variants": [
+      {
+        "src": "images/clubs/bridge-logo-200.webp",
+        "width": 200,
+        "height": 200,
+        "bytes": 12676
+      }
+    ]
+  },
+  {
+    "originalFile": "дискуссионный клуб.jpg",
+    "originalBytes": 263818,
+    "sha256": "560cb1077067307160611fcd142eb638f4619bb8a909ca0a6188f550d8505500",
+    "clubId": "historical-political",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1000,
+    "sourceHeight": 1000,
+    "variants": [
+      {
+        "src": "images/clubs/historical-political-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 29370
+      },
+      {
+        "src": "images/clubs/historical-political-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 86048
+      },
+      {
+        "src": "images/clubs/historical-political-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 142188
+      }
+    ]
+  },
+  {
+    "originalFile": "ифп нгу.jpg",
+    "originalBytes": 735309,
+    "sha256": "72d59b9b8758bbf606246acbee2c3863a890b9741df6f12c46c62ed3bbfbaea1",
+    "clubId": "csi",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 2500,
+    "sourceHeight": 2500,
+    "variants": [
+      {
+        "src": "images/clubs/csi-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 17124
+      },
+      {
+        "src": "images/clubs/csi-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 42966
+      },
+      {
+        "src": "images/clubs/csi-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 63464
+      }
+    ]
+  },
+  {
+    "originalFile": "квартира.jpg",
+    "originalBytes": 143975,
+    "sha256": "c3dc631d7a12a0869d58757e4b1ecd1d8d8d184a7622501c67b9b9e7d3f68d9f",
+    "clubId": "theatre",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1920,
+    "sourceHeight": 1920,
+    "variants": [
+      {
+        "src": "images/clubs/theatre-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 5578
+      },
+      {
+        "src": "images/clubs/theatre-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 7972
+      },
+      {
+        "src": "images/clubs/theatre-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 12054
+      }
+    ]
+  },
+  {
+    "originalFile": "клуб мафии.jpg",
+    "originalBytes": 159779,
+    "sha256": "65827e239770ab7ee5b2078d9cea1573acad38fb1df3fb7322cebd3101ead005",
+    "clubId": "mafia",
+    "role": "banner",
+    "kind": "illustration",
+    "fit": "contain",
+    "sourceWidth": 1526,
+    "sourceHeight": 2160,
+    "variants": [
+      {
+        "src": "images/clubs/mafia-cover-339.webp",
+        "width": 339,
+        "height": 480,
+        "bytes": 12024
+      },
+      {
+        "src": "images/clubs/mafia-cover-678.webp",
+        "width": 678,
+        "height": 960,
+        "bytes": 37920
+      },
+      {
+        "src": "images/clubs/mafia-cover-904.webp",
+        "width": 904,
+        "height": 1280,
+        "bytes": 62724
+      }
+    ]
+  },
+  {
+    "originalFile": "клуб настольных игр нгу.jpg",
+    "originalBytes": 1037029,
+    "sha256": "ccb7e0da4843d48e84f05d0b7f8307a516af35f59a2f18a800f5ce4ba57e7129",
+    "clubId": "board-games",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 2084,
+    "sourceHeight": 2084,
+    "variants": [
+      {
+        "src": "images/clubs/board-games-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 45920
+      },
+      {
+        "src": "images/clubs/board-games-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 163946
+      },
+      {
+        "src": "images/clubs/board-games-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 267300
+      }
+    ]
+  },
+  {
+    "originalFile": "клуб рукоделия.png",
+    "originalBytes": 1138743,
+    "sha256": "b24adb6d9e91b4f7fd236f2808e3242f3c0224b0676a8e7e877d0f51a0d2954a",
+    "clubId": "craft",
+    "role": "banner",
+    "kind": "banner",
+    "fit": "contain",
+    "sourceWidth": 1380,
+    "sourceHeight": 413,
+    "variants": [
+      {
+        "src": "images/clubs/craft-cover-480.webp",
+        "width": 480,
+        "height": 144,
+        "bytes": 121426
+      },
+      {
+        "src": "images/clubs/craft-cover-960.webp",
+        "width": 960,
+        "height": 287,
+        "bytes": 398960
+      },
+      {
+        "src": "images/clubs/craft-cover-1280.webp",
+        "width": 1280,
+        "height": 383,
+        "bytes": 640008
+      }
+    ]
+  },
+  {
+    "originalFile": "клуб рукоделия.jpg",
+    "originalBytes": 269207,
+    "sha256": "3280f3980b454ae0ded4757c52334197d994be8211401b55cb16a1e9d244bfdd",
+    "clubId": "craft",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1811,
+    "sourceHeight": 2560,
+    "variants": [
+      {
+        "src": "images/clubs/craft-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 37050
+      },
+      {
+        "src": "images/clubs/craft-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 104380
+      },
+      {
+        "src": "images/clubs/craft-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 164510
+      }
+    ],
+    "crop": [
+      80,
+      80,
+      750,
+      750
+    ]
+  },
+  {
+    "originalFile": "мастерская огня.png",
+    "originalBytes": 1732793,
+    "sha256": "9e47a4e4e050d4a680dedb9922bab6734f7ae525df17e6dd6e6867c8ac666210",
+    "clubId": "fire",
+    "role": "photo",
+    "kind": "photo",
+    "fit": "contain",
+    "sourceWidth": 1549,
+    "sourceHeight": 518,
+    "variants": [
+      {
+        "src": "images/clubs/fire-cover-480.webp",
+        "width": 480,
+        "height": 161,
+        "bytes": 87418
+      },
+      {
+        "src": "images/clubs/fire-cover-960.webp",
+        "width": 960,
+        "height": 321,
+        "bytes": 304358
+      },
+      {
+        "src": "images/clubs/fire-cover-1280.webp",
+        "width": 1280,
+        "height": 428,
+        "bytes": 503050
+      }
+    ]
+  },
+  {
+    "originalFile": "мастерская огня.jpg",
+    "originalBytes": 323874,
+    "sha256": "c2a3ad30ef5bdc06f18993d50523d34dc2d5b451a2cc33c46b2b19fc3916a851",
+    "clubId": "fire",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1700,
+    "sourceHeight": 1700,
+    "variants": [
+      {
+        "src": "images/clubs/fire-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 17372
+      },
+      {
+        "src": "images/clubs/fire-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 50498
+      },
+      {
+        "src": "images/clubs/fire-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 72262
+      }
+    ]
+  },
+  {
+    "originalFile": "медиацентр.jpg",
+    "originalBytes": 152002,
+    "sha256": "d0021eadc5f3c79713ad74bdbbdcbf59587c80c572375adb476096284ac2827e",
+    "clubId": "media",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 920,
+    "sourceHeight": 920,
+    "variants": [
+      {
+        "src": "images/clubs/media-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 25272
+      },
+      {
+        "src": "images/clubs/media-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 75238
+      },
+      {
+        "src": "images/clubs/media-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 117412
+      }
+    ]
+  },
+  {
+    "originalFile": "миллион голосов.png",
+    "originalBytes": 1201317,
+    "sha256": "d992bc709a9d6b363c17bf84894fa86030e858bed9ff352a830264777e315b90",
+    "clubId": "vocal",
+    "role": "banner",
+    "kind": "banner",
+    "fit": "contain",
+    "sourceWidth": 1703,
+    "sourceHeight": 500,
+    "variants": [
+      {
+        "src": "images/clubs/vocal-cover-480.webp",
+        "width": 480,
+        "height": 141,
+        "bytes": 79762
+      },
+      {
+        "src": "images/clubs/vocal-cover-960.webp",
+        "width": 960,
+        "height": 282,
+        "bytes": 286018
+      },
+      {
+        "src": "images/clubs/vocal-cover-1280.webp",
+        "width": 1280,
+        "height": 376,
+        "bytes": 470486
+      }
+    ]
+  },
+  {
+    "originalFile": "миллион голосов.jpg",
+    "originalBytes": 256827,
+    "sha256": "f214a4c5e1bcc2b1ce6373889fd5fb1529ef174aabed967312b4d92962521d85",
+    "clubId": "vocal",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 800,
+    "sourceHeight": 800,
+    "variants": [
+      {
+        "src": "images/clubs/vocal-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 57150
+      },
+      {
+        "src": "images/clubs/vocal-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 196324
+      },
+      {
+        "src": "images/clubs/vocal-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 318676
+      }
+    ]
+  },
+  {
+    "originalFile": "нии туда фрисби.jpg",
+    "originalBytes": 199963,
+    "sha256": "1b218236c16832e7c8e76fd378456511b57490c85456b4ca6edad66f6c27c09d",
+    "clubId": "ultimate",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1466,
+    "sourceHeight": 1290,
+    "variants": [
+      {
+        "src": "images/clubs/ultimate-logo-240.webp",
+        "width": 240,
+        "height": 211,
+        "bytes": 9230
+      },
+      {
+        "src": "images/clubs/ultimate-logo-480.webp",
+        "width": 480,
+        "height": 422,
+        "bytes": 24556
+      },
+      {
+        "src": "images/clubs/ultimate-logo-640.webp",
+        "width": 640,
+        "height": 563,
+        "bytes": 39130
+      }
+    ]
+  },
+  {
+    "originalFile": "омут.jpg",
+    "originalBytes": 362577,
+    "sha256": "c5e7f5aa592618ff21b898aeabaff7cfa4d1181c9a4212058be6d47aee5638ae",
+    "clubId": "omut",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1483,
+    "sourceHeight": 1483,
+    "variants": [
+      {
+        "src": "images/clubs/omut-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 17610
+      },
+      {
+        "src": "images/clubs/omut-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 50058
+      },
+      {
+        "src": "images/clubs/omut-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 80448
+      }
+    ]
+  },
+  {
+    "originalFile": "jven.jpg",
+    "originalBytes": 362577,
+    "sha256": "c5e7f5aa592618ff21b898aeabaff7cfa4d1181c9a4212058be6d47aee5638ae",
+    "duplicateOf": "омут.jpg"
+  },
+  {
+    "originalFile": "ппк.jpg",
+    "originalBytes": 679911,
+    "sha256": "85311d9e854e3d1ce836af6c571662ea61825d7fdb8d2408e55592abbdd9f89f",
+    "clubId": "cinema",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1024,
+    "sourceHeight": 1024,
+    "variants": [
+      {
+        "src": "images/clubs/cinema-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 68060
+      },
+      {
+        "src": "images/clubs/cinema-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 258096
+      },
+      {
+        "src": "images/clubs/cinema-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 444178
+      }
+    ]
+  },
+  {
+    "originalFile": "русский разговорный.png",
+    "originalBytes": 1651449,
+    "sha256": "1740cc7d5b6f660d8dc14cd9611c5c82ca765b832eef6dd3c6da0f11e831230d",
+    "clubId": "russian-speaking",
+    "role": "photo",
+    "kind": "photo",
+    "fit": "contain",
+    "sourceWidth": 1834,
+    "sourceHeight": 605,
+    "variants": [
+      {
+        "src": "images/clubs/russian-speaking-cover-480.webp",
+        "width": 480,
+        "height": 158,
+        "bytes": 92144
+      },
+      {
+        "src": "images/clubs/russian-speaking-cover-960.webp",
+        "width": 960,
+        "height": 317,
+        "bytes": 312872
+      },
+      {
+        "src": "images/clubs/russian-speaking-cover-1280.webp",
+        "width": 1280,
+        "height": 422,
+        "bytes": 513768
+      }
+    ]
+  },
+  {
+    "originalFile": "русский разговорный.jpg",
+    "originalBytes": 213648,
+    "sha256": "b5b3a298e0adb9ff3236765f14a54dee6f189eaee8aaf89d060d3358fc63e93f",
+    "clubId": "russian-speaking",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 1507,
+    "sourceHeight": 1508,
+    "variants": [
+      {
+        "src": "images/clubs/russian-speaking-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 23894
+      },
+      {
+        "src": "images/clubs/russian-speaking-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 62382
+      },
+      {
+        "src": "images/clubs/russian-speaking-logo-640.webp",
+        "width": 640,
+        "height": 640,
+        "bytes": 100882
+      }
+    ]
+  },
+  {
+    "originalFile": "смб нгу 2.png",
+    "originalBytes": 2265178,
+    "sha256": "d21b4ff19899c8348faa3d7c9a7574025ea57bd9041284110a875d0846193174",
+    "clubId": "siberica-legion",
+    "role": "banner",
+    "kind": "illustration",
+    "fit": "contain",
+    "sourceWidth": 1554,
+    "sourceHeight": 531,
+    "variants": [
+      {
+        "src": "images/clubs/siberica-legion-cover-480.webp",
+        "width": 480,
+        "height": 164,
+        "bytes": 104260
+      },
+      {
+        "src": "images/clubs/siberica-legion-cover-960.webp",
+        "width": 960,
+        "height": 328,
+        "bytes": 373924
+      },
+      {
+        "src": "images/clubs/siberica-legion-cover-1280.webp",
+        "width": 1280,
+        "height": 437,
+        "bytes": 633260
+      }
+    ]
+  },
+  {
+    "originalFile": "смб нгу.jpg",
+    "originalBytes": 319688,
+    "sha256": "4afd8e45dbace52e90a79b7d2d651a81f9173a16dabaee5652805dbbc5d10622",
+    "clubId": "siberica-legion",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 2560,
+    "sourceHeight": 1706,
+    "variants": [
+      {
+        "src": "images/clubs/siberica-legion-logo-240.webp",
+        "width": 240,
+        "height": 160,
+        "bytes": 2518
+      },
+      {
+        "src": "images/clubs/siberica-legion-logo-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 4596
+      },
+      {
+        "src": "images/clubs/siberica-legion-logo-640.webp",
+        "width": 640,
+        "height": 427,
+        "bytes": 5982
+      }
+    ]
+  },
+  {
+    "originalFile": "таверна.jpg",
+    "originalBytes": 1253894,
+    "sha256": "29e15291c4b10794d04df2f40dc3a2ee7dc013d0b2d8528659c53a78578553c7",
+    "clubId": "taverna",
+    "role": "banner",
+    "kind": "illustration",
+    "fit": "contain",
+    "sourceWidth": 2000,
+    "sourceHeight": 2000,
+    "variants": [
+      {
+        "src": "images/clubs/taverna-cover-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 152836
+      },
+      {
+        "src": "images/clubs/taverna-cover-960.webp",
+        "width": 960,
+        "height": 960,
+        "bytes": 450514
+      },
+      {
+        "src": "images/clubs/taverna-cover-1280.webp",
+        "width": 1280,
+        "height": 1280,
+        "bytes": 720798
+      }
+    ]
+  },
+  {
+    "originalFile": "турклуб 2.jpg",
+    "originalBytes": 44875,
+    "sha256": "c9995dfe66561e58ad2c85cf98a45d5be9e91430eac410ce41d0d5cf6bc73ebf",
+    "clubId": "mountain-tourism",
+    "role": "photo",
+    "kind": "photo",
+    "fit": "contain",
+    "sourceWidth": 604,
+    "sourceHeight": 453,
+    "variants": [
+      {
+        "src": "images/clubs/mountain-tourism-cover-480.webp",
+        "width": 480,
+        "height": 360,
+        "bytes": 135984
+      },
+      {
+        "src": "images/clubs/mountain-tourism-cover-604.webp",
+        "width": 604,
+        "height": 453,
+        "bytes": 173826
+      }
+    ]
+  },
+  {
+    "originalFile": "турклуб.jpg",
+    "originalBytes": 80217,
+    "sha256": "af1a938aab3209fcea145b639566de0e5c3c0658c977216f0555ff8a0b12c8a8",
+    "clubId": "mountain-tourism",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 484,
+    "sourceHeight": 485,
+    "variants": [
+      {
+        "src": "images/clubs/mountain-tourism-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 28518
+      },
+      {
+        "src": "images/clubs/mountain-tourism-logo-479.webp",
+        "width": 479,
+        "height": 480,
+        "bytes": 78158
+      },
+      {
+        "src": "images/clubs/mountain-tourism-logo-484.webp",
+        "width": 484,
+        "height": 485,
+        "bytes": 67614
+      }
+    ]
+  },
+  {
+    "originalFile": "ты не один.png",
+    "originalBytes": 325361,
+    "sha256": "807bbc9de13bcffd35ffe2d6c06394724fad11b613be547e075905dbb9d474ff",
+    "clubId": "help",
+    "role": "banner",
+    "kind": "illustration",
+    "fit": "contain",
+    "sourceWidth": 1777,
+    "sourceHeight": 534,
+    "variants": [
+      {
+        "src": "images/clubs/help-cover-480.webp",
+        "width": 480,
+        "height": 144,
+        "bytes": 25040
+      },
+      {
+        "src": "images/clubs/help-cover-960.webp",
+        "width": 960,
+        "height": 288,
+        "bytes": 77474
+      },
+      {
+        "src": "images/clubs/help-cover-1280.webp",
+        "width": 1280,
+        "height": 385,
+        "bytes": 124130
+      }
+    ]
+  },
+  {
+    "originalFile": "ты не один.jpg",
+    "originalBytes": 63869,
+    "sha256": "9454c3ab82e64e6f8708699052d1188ffd8c8058015c5915928167b7256084ab",
+    "clubId": "help",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 510,
+    "sourceHeight": 510,
+    "variants": [
+      {
+        "src": "images/clubs/help-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 19376
+      },
+      {
+        "src": "images/clubs/help-logo-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 50858
+      },
+      {
+        "src": "images/clubs/help-logo-510.webp",
+        "width": 510,
+        "height": 510,
+        "bytes": 47206
+      }
+    ]
+  },
+  {
+    "originalFile": "чайный клуб.jpg",
+    "originalBytes": 17166,
+    "sha256": "a8d4be1c6cb0790a7a1f7db3d8b63ffcec770b9d4f3776ccad8619636b42558d",
+    "clubId": "tea",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 320,
+    "sourceHeight": 320,
+    "variants": [
+      {
+        "src": "images/clubs/tea-logo-240.webp",
+        "width": 240,
+        "height": 240,
+        "bytes": 29776
+      },
+      {
+        "src": "images/clubs/tea-logo-320.webp",
+        "width": 320,
+        "height": 320,
+        "bytes": 46804
+      }
+    ]
+  },
+  {
+    "originalFile": "этноклуб 2.png",
+    "originalBytes": 1726475,
+    "sha256": "a19946ae019d3b4fddde587e4f64ed2b843fb1ad0b3c244e8f749f86d0bc3bd4",
+    "clubId": "ethno",
+    "role": "photo",
+    "kind": "photo",
+    "fit": "contain",
+    "sourceWidth": 1851,
+    "sourceHeight": 622,
+    "variants": [
+      {
+        "src": "images/clubs/ethno-cover-480.webp",
+        "width": 480,
+        "height": 161,
+        "bytes": 108218
+      },
+      {
+        "src": "images/clubs/ethno-cover-960.webp",
+        "width": 960,
+        "height": 323,
+        "bytes": 347844
+      },
+      {
+        "src": "images/clubs/ethno-cover-1280.webp",
+        "width": 1280,
+        "height": 430,
+        "bytes": 559790
+      }
+    ]
+  },
+  {
+    "originalFile": "этноклуб.jpg",
+    "originalBytes": 1155311,
+    "sha256": "2af59e3fc1d4112ec014a0b3d057f9d73d43ee2a2ecc932c386caf35dcdf00c4",
+    "clubId": "ethno",
+    "role": "logo",
+    "kind": "logo",
+    "fit": "contain",
+    "sourceWidth": 2172,
+    "sourceHeight": 2160,
+    "variants": [
+      {
+        "src": "images/clubs/ethno-logo-240.webp",
+        "width": 240,
+        "height": 239,
+        "bytes": 59502
+      },
+      {
+        "src": "images/clubs/ethno-logo-480.webp",
+        "width": 480,
+        "height": 477,
+        "bytes": 179518
+      },
+      {
+        "src": "images/clubs/ethno-logo-640.webp",
+        "width": 640,
+        "height": 636,
+        "bytes": 295278
+      }
+    ]
+  }
+]

@@ -5,8 +5,9 @@ import { campusSites } from '../data/campusSites'
 import { baseRoomIds } from '../data/activityCatalog'
 import type { MapSessionRequest } from '../data/personalSchedule'
 import SessionInfo from './SessionInfo'
+import ClubMapPanel from './ClubMapPanel'
 import { campusDateTime, evaluateActivity, evaluateBuildingActivity, parseCampusDateTime, sessionsForBuildings, sessionsForRoom } from '../data/activityState'
-import { activityPlaces, buildingContext, roomNavigation, sessionMapTarget } from '../data/campusNavigation'
+import { activityPlaces, buildingContext, clubMapContext, roomNavigation, sessionMapTarget } from '../data/campusNavigation'
 import ActivityTimeFilter from './ActivityTimeFilter'
 import BuildingCard from './BuildingCard'
 import CampusMap from './CampusMap'
@@ -14,7 +15,9 @@ const FloorExplorer = lazy(() => import('./FloorExplorer'))
 
 export default function CampusActivityExplorer({ request }: { request?: MapSessionRequest | null }) {
   const requestedSession = activitySessions.find(session => session.id === request?.sessionId)
-  const initialTarget = request?.roomId ? roomNavigation(request.roomId) : requestedSession ? sessionMapTarget(requestedSession) : null
+  const initialClub = request?.clubId ? clubMapContext(request.clubId) : null
+  const [selectedClubId, setSelectedClubId] = useState(initialClub?.club.id ?? null)
+  const initialTarget = request?.roomId ? roomNavigation(request.roomId) : requestedSession ? sessionMapTarget(requestedSession) : initialClub?.places.length === 1 ? { buildingId: initialClub.places[0].id, roomId: null, floor: null } : null
   const initialTime = request?.date && requestedSession?.startTime ? `${request.date}T${requestedSession.startTime}` : null
   const [selectedSessionId, setSelectedSessionId] = useState(requestedSession?.id ?? null)
   const selectedSession = activitySessions.find(session => session.id === selectedSessionId)
@@ -59,10 +62,20 @@ export default function CampusActivityExplorer({ request }: { request?: MapSessi
     setFloorOpen(true)
   }
   function backToCampus() {
+    setSelectedClubId(null)
     setSelectedSessionId(null)
     setFloorOpen(false)
     setSelectedBuildingId(null)
     setSelectedRoomId(null)
+  }
+  function navigateSession(id: string) {
+    const session = activitySessions.find(session => session.id === id)
+    if (!session) return
+    const target = sessionMapTarget(session)
+    setSelectedSessionId(id)
+    setSelectedBuildingId(target?.buildingId ?? null)
+    setSelectedRoomId(target?.roomId ?? null)
+    setFloorOpen(Boolean(target?.roomId))
   }
   return <section id="campus-activity" className="mt-10 scroll-mt-5" aria-label="Карта студенческой активности">
     <h2 className="text-2xl font-bold">Карта студенческой активности</h2>
@@ -73,6 +86,7 @@ export default function CampusActivityExplorer({ request }: { request?: MapSessi
       {selectedBuilding && <><span aria-hidden="true">/</span><button type="button" onClick={() => setFloorOpen(false)} className="text-left font-semibold text-blue-800 underline">{selectedBuilding.name}</button></>}
       {floorOpen && <><span aria-hidden="true">/</span><span aria-current="page">Этажи и помещения</span></>}
     </nav>
+    {selectedClubId && <ClubMapPanel clubId={selectedClubId} onPlace={chooseBuilding} onSession={navigateSession} onRoom={id => navigateRoom(id)} />}
     {selectedSession && <div className="mb-5"><SessionInfo session={selectedSession} date={request?.date} onRoom={id => navigateRoom(id, true)} /></div>}
     {floorOpen && selectedBuildingId ? <>
       <button type="button" onClick={backToCampus} className="rounded-xl border border-blue-300 bg-white px-4 py-3 text-sm font-semibold text-blue-800">← К общей карте кампуса</button>

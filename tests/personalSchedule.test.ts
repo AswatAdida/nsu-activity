@@ -36,10 +36,12 @@ test('anchorless periods and seasonal bounds do not enter a fabricated calendar 
   assert.equal(week.days.flatMap(day => day.entries).length, 0)
   assert.deepEqual(week.undated.map(session => session.id).sort(), ['bookclub-sun', 'tea-sat', 'ultimate-mon', 'ultimate-sun', 'ultimate-thu'])
 })
-test('known weekdays without starts retain dated day blocks and unknown end stays null', () => {
+test('updated SGT weekdays retain 19:00 starts and unknown end stays null', () => {
   const week = studentWeek(['mountain-tourism', 'academian-english'], '2026-11-12')
   assert.equal(week.days[0].entries[0].session.id, 'mountain-run-mon')
-  assert.equal(week.days[0].entries[0].session.startTime, null)
+  assert.equal(week.days[0].entries[0].session.startTime, '19:00')
+  assert.equal(week.days[0].entries[0].session.endTime, null)
+  assert.equal(week.days[4].entries[0].session.startTime, '19:00')
   assert.equal(week.days[4].entries[0].session.id, 'mountain-run-fri')
   const english = week.days[6].entries.find(entry => entry.session.id === 'academian-english-sun')!
   assert.equal(english.session.endTime, null)

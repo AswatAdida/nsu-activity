@@ -35,7 +35,7 @@ export function studentWeek(selectedIds: readonly string[], date: string) {
     unstructured: clubs.filter(club => selectedIds.includes(club.id) && !sessionsForClub(club.id).length && club.status !== 'inactive' && !/Без фиксированного расписания|По анонсам/i.test(club.schedule)),
   }
 }
-export type MapSessionRequest = { sessionId?: string; roomId?: string; date?: string; token: number }
+export type MapSessionRequest = { sessionId?: string; clubId?: string; roomId?: string; date?: string; token: number }
 // Stable colours identify clubs; they do not encode map activity or invent durations.
 export function clubColor(clubId: string) {
   const index = Math.max(0, clubs.findIndex(club => club.id === clubId))
