@@ -5,7 +5,7 @@ export type ClubImage = {
   width: number
   height: number
   alt: string
-  kind: 'photo' | 'logo'
+  kind: 'photo' | 'logo' | 'banner' | 'illustration'
   fit: 'cover' | 'contain'
   position?: string
   background?: string
@@ -19,6 +19,7 @@ export type Club = {
   shortName?: string
   photo?: ClubImage
   logo?: ClubImage
+  banner?: ClubImage
   description: string
   schedule: string
   location: string
@@ -29,4 +30,9 @@ export type Club = {
   scheduleStatus?: 'reported' | 'needs-confirmation'
   sources?: DataSource[]
   notes?: string[]
+}
+
+// One selection rule for all full-size club visuals.
+export function primaryClubImage(club: Club): ClubImage | undefined {
+  return club.photo ?? club.logo ?? club.banner
 }

@@ -69,7 +69,6 @@ input:focus-visible { outline: 2px solid #315f94; outline-offset: 1px; }
 .club-media.media-logo a { padding: 20px; }
 .club-media.media-logo img { max-width: 180px !important; max-height: 120px !important; }
 .club-detail-photo .club-media { height: auto; aspect-ratio: 4 / 3; border: 0; border-radius: 10px; }
-.club-media.media-logo img { max-width: 100%; max-height: 100%; }
 .club-avatar { width: 76px; height: 76px; flex: none; display: flex; align-items: center; justify-content: center; border: 1px solid var(--nsu-line); border-radius: 12px; padding: 8px; overflow: hidden; }
 .club-avatar img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain !important; }
 .placeholder { background: #edf2f7; color: #557395; }

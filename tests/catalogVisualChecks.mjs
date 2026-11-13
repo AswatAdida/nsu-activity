@@ -13,7 +13,7 @@ export async function checkVisualCatalog(page, artifacts) {
   assert.equal(await root.locator('[data-club-card]').count(), 1)
   const training = card('mountain-tourism')
   await training.locator(':scope > .club-media img').evaluate(img => img.decode())
-  assert.equal(await training.locator(':scope > .club-media').getAttribute('data-image-kind'), 'logo')
+  assert.equal(await training.locator(':scope > .club-media').getAttribute('data-image-kind'), 'photo')
   assert.equal(await training.locator(':scope > .club-media img').evaluate(img => getComputedStyle(img).objectFit), 'contain')
   await training.locator('summary').click()
   assert.ok(await training.getByText('Понедельник и пятница с 19:00 — тренировки · Четверг с 19:00 — лекция', { exact: true }).count())
@@ -49,9 +49,9 @@ export async function checkVisualCatalog(page, artifacts) {
   assert.ok((await root.locator('.club-status').allTextContents()).every(status => status === 'Действует'))
   await root.getByRole('checkbox').check()
   assert.equal(await root.locator('[data-club-card]').count(), 33)
-  // Decode and inspect all 19 logos; all other clubs have designed placeholders.
+  // Decode and inspect all 23 primary images; all other clubs have designed placeholders.
   const pictures = root.locator('.club-card > .club-media img')
-  assert.equal(await pictures.count(), 19)
+  assert.equal(await pictures.count(), 23)
   for (const picture of await pictures.all()) {
     await picture.scrollIntoViewIfNeeded()
     await picture.evaluate(img => img.decode())
@@ -59,8 +59,7 @@ export async function checkVisualCatalog(page, artifacts) {
       const frame = img.closest('.club-media'), rect = frame.getBoundingClientRect(), photo = img.getBoundingClientRect()
       return { kind: frame.dataset.imageKind, fit: getComputedStyle(img).objectFit, frameRatio: rect.height / rect.width, photoWidth: photo.width, photoHeight: photo.height, ratio: photo.width / photo.height, naturalRatio: img.naturalWidth / img.naturalHeight, inside: photo.left >= rect.left - 1 && photo.right <= rect.right + 1 && photo.top >= rect.top - 1 && photo.bottom <= rect.bottom + 1, lazy: img.loading, alt: img.alt, local: new URL(img.currentSrc).origin === location.origin }
     })
-    assert.equal(geometry.kind, 'logo')
-    assert.ok(geometry.photoWidth <= 180.5 && geometry.photoHeight <= 120.5)
+    if (geometry.kind === 'logo') assert.ok(geometry.photoWidth <= 180.5 && geometry.photoHeight <= 120.5)
     assert.equal(geometry.inside, true)
     assert.equal(geometry.lazy, 'lazy')
     assert.equal(geometry.local, true)
@@ -68,9 +67,9 @@ export async function checkVisualCatalog(page, artifacts) {
     if (geometry.fit === 'contain') assert.ok(Math.abs(geometry.ratio - geometry.naturalRatio) < 0.03)
     if (geometry.kind === 'logo') assert.equal(geometry.fit, 'contain')
   }
-  assert.equal(await root.locator('.club-card > .club-media.placeholder').count(), 14)
+  assert.equal(await root.locator('.club-card > .club-media.placeholder').count(), 10)
   assert.ok(await card('bridge').locator('.club-media img').evaluate(img => img.getBoundingClientRect().width <= 200.5))
-  assert.equal(await card('dansu').locator('.club-media.placeholder').count(), 1)
+  assert.equal(await card('dansu').locator('.club-media').getAttribute('data-image-kind'), 'photo')
   assert.ok(await card('russian-speaking').locator('.club-media img').evaluate(img => getComputedStyle(img).objectFit === 'contain'))
   // Every card has the same media geometry, even with different content and types.
   for (const width of [320, 390, 768, 1440]) {
@@ -78,8 +77,9 @@ export async function checkVisualCatalog(page, artifacts) {
     await noOverflow(`${width}px visual catalogue`)
     const heights = await root.locator('.club-card > .club-media').evaluateAll(frames => frames.map(frame => frame.getBoundingClientRect().height))
     assert.ok(heights.every(height => Math.abs(height - 160) < 1))
-    assert.equal(await root.locator('[data-image-kind="banner"], [data-image-kind="illustration"]').count(), 0)
-    assert.equal(await root.locator('.club-details-content img').count(), 1)
+    for (const id of ['dansu', 'fire', 'russian-speaking', 'mountain-tourism', 'ethno']) assert.equal(await card(id).locator(':scope > .club-media').getAttribute('data-image-kind'), 'photo')
+    for (const id of ['mtg', 'mafia', 'taverna']) assert.equal(await card(id).locator(':scope > .club-media').getAttribute('data-image-fit'), 'contain')
+    assert.equal(await card('craft').locator(':scope > .club-media').getAttribute('data-image-kind'), 'logo')
     await root.evaluate(element => element.scrollIntoView({ block: 'start' }))
     await page.screenshot({ path: `${artifacts}/catalog-${width}.png` })
     await card('mountain-tourism').screenshot({ path: `${artifacts}/sgt-card-${width}.png` })
@@ -95,12 +95,12 @@ export async function checkVisualCatalog(page, artifacts) {
   await tab('Каталог объединений')
   await noOverflow('390px return to catalogue')
   // A missing logo falls back to the same compact placeholder, without breaking actions.
-  await page.route('**/images/clubs/mountain-tourism-logo-*.webp', route => route.abort())
+  await page.route('**/images/clubs/mountain-tourism-cover-*.webp', route => route.abort())
   await page.reload({ waitUntil: 'domcontentloaded' })
   await tab('Каталог объединений')
   await root.getByLabel('Поиск объединений').fill('СГТ')
   await training.locator(':scope > .club-media.placeholder').waitFor()
   assert.equal(await training.getByRole('button', { name: 'На карте: Секция горного туризма НГУ', exact: true }).isEnabled(), true)
   await tab('Карта кампуса')
-  console.log(JSON.stringify({ archivePrimaryImages: 19, placeholders: 14, imagesLoaded: true, preserveAspect: true, fullLogos: true, noSmallLogoUpscaling: true, sgtJourney: true, clubMapAction: true, imageErrorFallback: true, widths: [320, 390, 768, 1440] }))
+  console.log(JSON.stringify({ archivePrimaryImages: 23, placeholders: 10, imagesLoaded: true, preserveAspect: true, fullLogos: true, noSmallLogoUpscaling: true, sgtJourney: true, clubMapAction: true, imageErrorFallback: true, widths: [320, 390, 768, 1440] }))
 }

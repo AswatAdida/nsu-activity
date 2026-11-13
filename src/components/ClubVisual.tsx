@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import type { Club, ClubImage } from '../types/club'
+import { primaryClubImage, type Club, type ClubImage } from '../types/club'
 
-export function ClubVisual({ club, image = club.logo, compact = false }: { club: Club; image?: ClubImage; compact?: boolean }) {
+export function ClubVisual({ club, image = primaryClubImage(club), compact = false }: { club: Club; image?: ClubImage; compact?: boolean }) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null)
   if (!image || failedSrc === image.src) return <div className={compact ? 'club-avatar placeholder' : 'club-media placeholder'} role="img" aria-label={`Изображение объединения «${club.name}» пока не добавлено`}>
     <span className="placeholder-monogram" aria-hidden="true">{club.shortName ?? club.name.split(/\s+/).slice(0, 2).map(word => word[0]).join('')}</span>

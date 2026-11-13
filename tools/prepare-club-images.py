@@ -31,7 +31,7 @@ output.mkdir(parents=True, exist_ok=True)
 clubs = json.loads((root / 'src/data/clubs.json').read_text())
 by_id = {club['id']: club for club in clubs}
 for club in clubs:
-    for field in ['cover', 'photo', 'logo']:
+    for field in ['cover', 'photo', 'logo', 'banner']:
         club.pop(field, None)
 manifest = []
 for item in inputs:
@@ -60,7 +60,8 @@ for item in inputs:
         if image.size in seen:
             continue
         seen.add(image.size)
-        name = f"{item['clubId']}-{item['role']}-{image.width}.webp"
+        asset_role = 'logo' if item['role'] == 'logo' else 'cover'
+        name = f"{item['clubId']}-{asset_role}-{image.width}.webp"
         path = output / name
         image.save(path, 'WEBP', lossless=True, method=6, exact=True, **({'icc_profile': icc} if icc else {}))
         variants.append({'src': f'images/clubs/{name}', 'width': image.width, 'height': image.height, 'bytes': path.stat().st_size})

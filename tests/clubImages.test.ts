@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import rawClubs from '../src/data/clubs.json' with { type: 'json' }
 import manifest from '../src/data/club-image-manifest.json' with { type: 'json' }
-import type { Club } from '../src/types/club.ts'
+import { primaryClubImage, type Club } from '../src/types/club.ts'
 const clubs = rawClubs as Club[]
 function webpDimensions(bytes: Buffer) {
   assert.equal(bytes.toString('ascii', 0, 4), 'RIFF')
@@ -22,7 +22,7 @@ function webpDimensions(bytes: Buffer) {
 }
 test('all 32 archive inputs are reviewed and the only duplicate is accounted for', () => {
   assert.equal(manifest.length, 32)
-  assert.equal(clubs.filter(club => club.logo).length, 19)
+  assert.equal(clubs.filter(club => primaryClubImage(club)).length, 23)
   const duplicate = manifest.find(image => image.originalFile === 'jven.jpg')!
   assert.equal(duplicate.duplicateOf, 'омут.jpg')
   assert.equal(duplicate.sha256, manifest.find(image => image.originalFile === 'омут.jpg')!.sha256)
@@ -32,7 +32,7 @@ test('web assets exist, are proportional, never upscaled, losslessly encoded and
   for (const source of manifest) {
     if (source.duplicateOf || source.excluded) continue
     const club = clubs.find(club => club.id === source.clubId)!
-    const media = club[source.role as 'photo' | 'logo']!
+    const media = club[source.role as 'photo' | 'logo' | 'banner']!
     assert.ok(media.alt.length > 15)
     assert.equal(media.fit, source.fit)
     for (const variant of media.variants) {
@@ -46,25 +46,27 @@ test('web assets exist, are proportional, never upscaled, losslessly encoded and
     }
   }
 })
-test('catalog uses only logos; VK covers and illustrations are excluded', () => {
+test('photos outrank logos, logos outrank banners, banners outrank placeholders', () => {
   for (const club of clubs) {
-    assert.equal('cover' in club, false)
-    if (club.logo) { assert.equal(club.logo.kind, 'logo'); assert.equal(club.logo.fit, 'contain') }
+    assert.equal(primaryClubImage(club), club.photo ?? club.logo ?? club.banner)
+    for (const media of [club.photo, club.logo, club.banner]) if (media) assert.equal(media.fit, 'contain')
   }
-  assert.equal(clubs.find(club => club.id === 'bridge')!.logo!.width, 200)
-  assert.equal(clubs.filter(club => club.photo).length, 1)
-  assert.equal(clubs.find(club => club.id === 'mountain-tourism')!.photo!.fit, 'contain')
-  for (const file of ['мастерская огня.png', 'клуб рукоделия.png', 'миллион голосов.png', 'русский разговорный.png', 'этноклуб 2.png', 'смб нгу 2.png']) {
-    const source = manifest.find(image => image.originalFile === file)!
-    assert.equal(source.excluded, true)
-    assert.equal(source.variants, undefined)
-  }
-})
-test('clubs with former VK covers retain emblems or a placeholder', () => {
-  for (const id of ['fire', 'craft', 'vocal', 'russian-speaking', 'mountain-tourism', 'ethno', 'siberica-legion']) {
+  for (const id of ['dansu', 'fire', 'russian-speaking', 'mountain-tourism', 'ethno']) {
     const club = clubs.find(club => club.id === id)!
-    assert.ok(club.logo)
-    assert.equal(club.logo.kind, 'logo')
+    assert.equal(primaryClubImage(club), club.photo)
+    assert.equal(primaryClubImage(club)!.kind, 'photo')
   }
-  for (const id of ['dansu', 'mtg', 'mafia', 'taverna']) assert.equal(clubs.find(club => club.id === id)!.logo, undefined)
+  const club = clubs.find(club => club.id === 'craft')!
+  assert.equal(primaryClubImage(club), club.logo)
+  assert.equal(primaryClubImage({ ...club, logo: undefined }), club.banner)
+  assert.equal(primaryClubImage({ ...club, logo: undefined, banner: undefined }), undefined)
+  assert.equal(clubs.find(club => club.id === 'bridge')!.logo!.width, 200)
+})
+test('clubs without photos or emblems use their supplied artwork before a placeholder', () => {
+  for (const id of ['mtg', 'mafia', 'taverna']) {
+    const club = clubs.find(club => club.id === id)!
+    assert.ok(club.banner)
+    assert.equal(primaryClubImage(club), club.banner)
+  }
+  assert.equal(clubs.filter(club => !primaryClubImage(club)).length, 10)
 })
